@@ -7,11 +7,11 @@ make bootstrap
 
 # sparse checkout
 yadm gitconfig core.sparseCheckout true
-yadm sparse-checkout set '/*' '!README.md' '!LICENSE' '!Makefile'
+yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile'
 yadm checkout --quiet
 
-# adds aliases to fish, zsh & bash if they exists for hiding/unhiding README, LICENSE and Makefile.
-dothide="alias dothide=\"yadm sparse-checkout set '/*' '!README.md' '!LICENSE' '!Makefile' && yadm checkout --quiet\""
+# adds aliases to fish, zsh & bash if they exists for hiding/unhiding README, UNLICENSE and Makefile.
+dothide="alias dothide=\"yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet\""
 dotunhide="alias dotunhide=\"yadm sparse-checkout set '/*' && yadm checkout --quiet\""
 
 for config in "$HOME/.config/fish/config.fish" "$HOME/.zshrc" "$HOME/.bashrc"; do

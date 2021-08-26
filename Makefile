@@ -1,4 +1,5 @@
 PACMAN := sudo xbps-insall -Sy
+SCRIPTS := $(HOME)/.scripts
 
 .DEFAULT_GOAL := help
 
@@ -11,6 +12,9 @@ help:
 bootstrap: ## Bootstraps the system (does not copy dots)
 	echo "Not implemented"
 
+tree: ## Prints tree of files tracked with yadm/git
+	@git-tree --root \$$HOME --noreport 2> /dev/null || { >&2 echo "'git-tree' not found, please make sure to setup scripts first"; exit 1; }
+	
 checks:
 	@if [ -z $(PWD) ]; then\
 	    echo "Please donot run make as sudo. Bug causes \$$PWD to be not present. See:";\
@@ -20,8 +24,8 @@ checks:
 	fi
 	@echo ""
 
-hardcopy: checks $(HOME)/.config .config ## Copies the configs to ~
+copyhard: checks $(HOME)/.config .config ## Copies the configs to ~
 	echo "Not implemented"
 
-softcopy: checks $(HOME)/.config .config ## Symlinks the configs to ~
+copysoft: checks $(HOME)/.config .config ## Symlinks the configs to ~
 	echo "Not implemented"
