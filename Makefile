@@ -1,4 +1,7 @@
 PACMAN := sudo xbps-insall -Sy
+CP_SCRIPT := install -Dm755
+CP_NOTSCRIPT := install -Dm644
+
 SCRIPTS := $(HOME)/.scripts
 
 .DEFAULT_GOAL := help
@@ -8,6 +11,16 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'	
+
+kitty:
+	$(PACMAN) kitty
+	mkdir -p $(HOME)/.config/fish
+	$(CP_NOTSCRIPT) ${CURDIR}/.config/fish/* $(HOME)/.config/fish
+
+herbstluftwm: kitty
+	$(PACMAN) herbstluftwm
+	mkdir -p $(HOME)/.config/herbstluftwm
+	$(CP_SCRIPT) ${CURDIR}/.config/herbstluftwm/* $(HOME)/.config/herbstluftwm
 
 bootstrap: ## Bootstraps the system (does not copy dots)
 	echo "Not implemented"
@@ -22,10 +35,4 @@ checks:
 	    echo "https://jerome-wang.github.io/2015/08/13/pwd-in-sudo-make";\
 	    exit 1;\
 	fi
-	@echo ""
 
-copyhard: checks $(HOME)/.config .config ## Copies the configs to ~
-	echo "Not implemented"
-
-copysoft: checks $(HOME)/.config .config ## Symlinks the configs to ~
-	echo "Not implemented"

@@ -99,7 +99,7 @@ hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 # app/program launch
-hc keybind Alt-space         spawn rofi -show run -kb-cancel Alt-space
+hc keybind Alt-space         spawn rofi -show run -kb-cancel Alt-space,Escape
 
 
 # =============== Mouse Bindings ===============
@@ -156,7 +156,7 @@ hc set smart_frame_surroundings off
 hc set mouse_recenter_gap 0
 
 
-# =============== Theming ===============
+# =============== Rules for different apps ===============
 
 hc unrule -F
 #hc rule class=XTerm tag=3 # move all xterms to tag 3
@@ -180,3 +180,10 @@ if [[ -f $panel ]]; then
         "$panel" "$monitor" &
     done
 fi
+
+
+# =============== Enable copy-paste and timesync if on VMware ===============
+# if herbstclient silent new_attr bool is_first_run && [[ $(cat /proc/scsi/scsi) =~ VMware ]]; then
+#     { sleep 5 && logger 'Running vmware cmd' && vmware-toolbox-cmd timesync enable && vmware-user &> /dev/null } &
+# fi
+

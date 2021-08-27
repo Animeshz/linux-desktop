@@ -64,7 +64,8 @@ $HOME
 
 ## Install
 
-<b>NOTE: This will override your current dotfiles, please backup your original dotfiles before running any of the following commands.</b>
+**NOTICE: This section is still WIP don't use this section right now (Makefile contains not implemented recipies rn)**
+**NOTE: This will override your current dotfiles, please backup your original dotfiles before running any of the following commands.**
 
 Read the [Makefile](https://github.com/Animeshz/linux-desktop/blob/main/Makefile) to understand the things being done easily!
 
