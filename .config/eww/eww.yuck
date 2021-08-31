@@ -1,0 +1,116 @@
+; =============== Variables ===============
+
+(deflisten xworkspaces :initial ""
+  `scripts/xworkspaces`)
+
+(deflisten headphone :initial "墳"
+  `scripts/headphone`)
+
+(deflisten volume :initial "100"
+  `scripts/volume`)
+
+(defvar playerctl "")
+ ; (deflisten playerctl :initial ""))
+  ; `scripts/music`)
+
+(defpoll dt :interval "10s"
+  "date '+ %b %d  %H:%M'")
+
+; =============== Widget Structure ===============
+
+(defwidget app [icon launch]
+  (button :class "app" :onclick {"lof " + launch} :onrightclick launch
+    icon))
+
+(defwidget workspace [index name]
+  (button :class "workspace" :onclick {"wmctrl -s " + index}
+    name))
+
+(defwidget separator []
+  (box :class "separator" "|"))
+
+
+; =============== Widget Group ===============
+
+(defwidget apps []
+  (box :class "apps"
+    (app :icon "" :launch "firefox")
+    (app :icon "" :launch "nautilus")
+    (app :icon "﬏" :launch "code")))
+
+(defwidget workspaces []
+  (literal :content xworkspaces))
+
+(defwidget brightness_sound []
+  (box :class "widget-group" :space-evenly false :spacing 8
+    (box :class "red" "")
+    (box :class "white" "100%")
+    (separator)
+    (box :class "yellow" headphone) ; TODO: dynamic change to speaker icon if headphone not present
+    (box :class "white" volume)))
+
+(defwidget music []
+  (box :class "green" playerctl)) ; TODO: Slowly slideout, do not change playerctl until it slides back completely
+   
+(defwidget date_time []
+  (box :class "cyan" dt))
+
+(defwidget cpu []
+  (box :class "widget-group" :space-evenly false :spacing 8
+    (box :class "red" " ")
+    (box :class "white" {round(EWW_CPU.avg, 2) + "%"})))
+    ; (separator)))
+    ; (box :class "red" "")))
+    ; (box :class "white" EWW_TEMPS)))
+    ; (box Watt usage)
+    ; (box GHz)
+
+(defwidget ram_disk []
+  (box :class "widget-group" :space-evenly false :spacing 8
+    (box :class "magenta" {" " + round(EWW_RAM["used_mem"]/1024, 0) + "M Used"})
+    (separator)
+    (box :class "magenta" {" " + round(EWW_DISK["/"]["free"]/1024/1024/1024, 1) + "G Free"})))
+
+(defwidget wifi_speed []
+  (box :class "widget-group" :space-evenly false :spacing 8
+    (box :class "green" "  Placeholder")
+    (separator)
+    (box :class "green" "10K ⇅ 10K")))
+      ; TODO: WIFI
+    ; (box :class "cyan" EWW_NET))) ; TODO: WIFI
+
+(defwidget power []
+  (button :class "power red" :onclick "" "⏻"))
+
+
+; =============== Bar Group ===============
+
+(defwidget barleft []
+  (box :orientation "h" :space-evenly false :halign "start" :spacing 12
+    (apps)
+    (workspaces)
+    (brightness_sound)
+    (cpu))) 
+
+(defwidget barmiddle []
+  (box :orientation "h" :space-evenly false :halign "center" :spacing 10
+    (revealer :transition "slideleft" :duration 1 :reveal {playerctl != ""}
+      (box :orientation "h" :space-evenly false :spacing 10
+        (music) (separator)))
+    (date_time)))
+
+(defwidget barright []
+  (box :orientation "h" :space-evenly false :halign "end" :spacing 10
+    (ram_disk)
+    (wifi_speed)
+    (power)))
+  
+
+; =============== Top-Level Window Definitions ===============
+
+(defwindow topbar
+  :monitor 0 :stacking "fg" :wm-ignore false :windowtype "dock"
+  :reserve (struts :side "top" :distance "30px")
+  :geometry (geometry :x "0" :y "0" :width "100%" :height "30px" :anchor "top center")
+  (centerbox :orientation "h"
+    (barleft) (barmiddle) (barright)))

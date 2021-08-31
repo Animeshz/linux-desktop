@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+poll() {
+    awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)
+}
+
+poll
+stdbuf -o0 alsactl monitor | while read; do poll; done

@@ -1,0 +1,155 @@
+// =============== Colors ===============
+
+$color0:               #181B22;
+$color1:               #d25252;
+$color2:               #7fe173;
+$color3:               #ffc66d;
+$color4:               #4098ff;
+$color5:               #f57fff;
+$color6:               #bed6ff;
+$color7:               #eeeeec;
+$widget_bg:            #2b2f37;
+
+.black {
+  color: $color0;
+}
+.red {
+  color: $color1;
+}
+.green {
+  color: $color2;
+}
+.yellow {
+  color: $color3;
+}
+.blue {
+  color: $color4;
+}
+.magenta {
+  color: $color5;
+}
+.cyan {
+  color: $color6;
+}
+.white {
+  color: $color7;
+}
+.separator {
+  color: #666666;
+}
+
+
+// =============== Global Styles ===============
+
+* {
+  all: unset;
+  font-family: "CaskaydiaCove Nerd Font";
+}
+
+.topbar {
+  background-color: $color0;
+  font-size: 18px;
+  padding: 5px 0 5px 0;
+}
+
+
+// =============== Styles on classes ===============
+
+.apps {
+  background-color: $widget_bg;
+  border-radius: 0 5px 5px 0;
+  font-size: 16px;
+
+  & > .app {
+    padding: 0 10px 0 10px;
+
+    &:nth-child(3n+1) {
+      color: #f9de8f;
+    }
+    &:nth-child(3n+2) {
+      color: #ff9b93;
+    }
+    &:nth-child(3n+3) {
+      color: #95e1d3;
+    }
+  }
+}
+
+.workspaces {
+  background-color: $widget_bg;
+  border-radius: 4px;
+
+  & > .workspace {
+    padding: 0 7px 0 7px;
+
+    &:nth-child(5n+1) {
+      color: $color5;
+    }
+    &:nth-child(5n+2) {
+      color: $color2;
+    }
+    &:nth-child(5n+3) {
+      color: $color6;
+    }
+    &:nth-child(5n+4) {
+      color: $color4;
+    }
+    &:nth-child(5n+5) {
+      color: $color3;
+    }
+  }
+}
+
+.power {
+  padding-right: 10px;
+}
+
+.widget-group {
+  padding: 0 10px 0 10px;
+  border-radius: 7px;
+  background-color: $widget_bg;
+}
+
+/*
+.sidestuff slider {
+  all: unset;
+  color: #ffd5cd;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.label-ram {
+  font-size: large;
+}
+.workspaces button:hover {
+  color: #D35D6E;
+}
+*/

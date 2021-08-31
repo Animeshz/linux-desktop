@@ -149,7 +149,7 @@ done
 hc attr theme.active.outer_width 0
 hc attr theme.background_color '#14141400'
 
-hc set window_gap 12
+hc set window_gap 10
 hc set frame_padding 0
 hc set smart_window_surroundings off
 hc set smart_frame_surroundings off
