@@ -12,6 +12,9 @@ help:
 	| sort \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'	
 
+tree: ## Prints tree of files tracked with yadm/git
+	@git-tree --root \$$HOME --noreport 2> /dev/null || { >&2 echo "'git-tree' not found, please make sure to setup scripts first"; exit 1; }
+
 kitty:
 	$(PACMAN) kitty
 	mkdir -p $(HOME)/.config/fish
@@ -25,9 +28,6 @@ herbstluftwm: kitty
 bootstrap: ## Bootstraps the system (does not copy dots)
 	echo "Not implemented"
 
-tree: ## Prints tree of files tracked with yadm/git
-	@git-tree --root \$$HOME --noreport 2> /dev/null || { >&2 echo "'git-tree' not found, please make sure to setup scripts first"; exit 1; }
-	
 checks:
 	@if [ -z $(PWD) ]; then\
 	    echo "Please donot run make as sudo. Bug causes \$$PWD to be not present. See:";\

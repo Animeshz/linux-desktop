@@ -38,8 +38,9 @@ $HOME
 │   │   ├── eww.scss
 │   │   ├── eww.yuck
 │   │   └── scripts
-│   │       ├── headphone
+│   │       ├── battery
 │   │       ├── volume
+│   │       ├── weather
 │   │       └── xworkspaces
 │   ├── fish
 │   │   └── config.fish
@@ -70,8 +71,6 @@ $HOME
 ├── .xinitrc
 ├── Makefile
 ├── README.md
-├── Screenshots
-│   └── capture.jpg
 └── UNLICENSE
 ```
 
@@ -83,7 +82,8 @@ $HOME
 
 Read the [Makefile](https://github.com/Animeshz/linux-desktop/blob/main/Makefile) to understand the things being done easily!
 
-### Complete Bootstrap
+<details>
+<summary><b>Complete Bootstrap</b></summary>
 
 Requirements: git, [yadm](https://github.com/TheLocehiliosan/yadm), make
 
@@ -95,8 +95,10 @@ yadm bootstrap  # if didn't prompted in above command
 ```
 
 This hides Makefile, README.md and UNLICENSE. To unhide, run `dotunhide` to hide them back `dothide` (since these are alias, you may need to reopen the shell).
+</details>
 
-### Partial Bootstrap (take as you like)
+<details>
+<summary><b>Partial Bootstrap (take as you like)</b></summary>
 
 Requirements: git, make
 
@@ -115,6 +117,7 @@ Then run the following for whatever you like to setup.
 ```bash
 make <option>
 ```
+</details>
 
 
 ## UNLICENSE

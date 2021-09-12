@@ -43,12 +43,12 @@ $widget_bg:            #2b2f37;
 
 * {
   all: unset;
-  font-family: "CaskaydiaCove Nerd Font";
+  font-family: "Material Design Icons", "CaskaydiaCove Nerd Font";
 }
 
 .topbar {
   background-color: $color0;
-  font-size: 18px;
+  font-size: 16px;
   padding: 5px 0 5px 0;
 }
 
@@ -82,6 +82,11 @@ $widget_bg:            #2b2f37;
   & > .workspace {
     padding: 0 7px 0 7px;
 
+    &.active {
+      border-bottom: 1px solid;
+      // box-shadow: inset 0px 0px 0px 1px; 
+    }
+
     &:nth-child(5n+1) {
       color: $color5;
     }
@@ -100,56 +105,13 @@ $widget_bg:            #2b2f37;
   }
 }
 
-.power {
-  padding-right: 10px;
-}
-
 .widget-group {
   padding: 0 10px 0 10px;
   border-radius: 7px;
   background-color: $widget_bg;
 }
 
-/*
-.sidestuff slider {
-  all: unset;
-  color: #ffd5cd;
+.separator-padding {
+  padding: 0 4px 0 4px;
 }
 
-.metric scale trough highlight {
-  all: unset;
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
-}
-.metric scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
-  margin-left: 10px;
-  margin-right: 20px;
-}
-.metric scale trough highlight {
-  all: unset;
-  background-color: #D35D6E;
-  color: #000000;
-  border-radius: 10px;
-}
-.metric scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
-  margin-left: 10px;
-  margin-right: 20px;
-}
-.label-ram {
-  font-size: large;
-}
-.workspaces button:hover {
-  color: #D35D6E;
-}
-*/

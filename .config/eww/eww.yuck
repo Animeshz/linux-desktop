@@ -1,33 +1,55 @@
 ; =============== Variables ===============
 
+(defvar active_workspace 0)
 (deflisten xworkspaces :initial ""
-  `scripts/xworkspaces`)
+  `scripts/xworkspaces active_workspace`)
 
-(deflisten headphone :initial "墳"
-  `scripts/headphone`)
+(defvar vol_icon "墳")
+(deflisten vol_value :initial 100
+  `scripts/volume vol_icon`)
 
-(deflisten volume :initial "100"
-  `scripts/volume`)
+(deflisten bright_value :initial 100
+  `scripts/brightness`)
 
-(defvar playerctl "")
- ; (deflisten playerctl :initial ""))
-  ; `scripts/music`)
+(defpoll updates_count :interval "1h"
+  `xbps-install -Sun | wc -l`)
 
-(defpoll dt :interval "10s"
-  "date '+ %b %d  %H:%M'")
+(deflisten music_title :initial ""
+  `scripts/music player_toggle`)
+
+(defpoll dtime_info :interval "10s"
+  `date '+ %b %d  %I:%M %p'`)
+
+(defpoll weather_info :interval "15m"
+  `scripts/weather`)
+
+(defvar temp_value "50")
+(defvar pconsumption_value "5.0") ; https://unix.stackexchange.com/questions/10418/how-to-find-power-draw-in-watts
+
+(deflisten battery_value :initial ""
+  `scripts/battery`)
+
+(defvar wifi_ssid "V2040")
+  ; `scripts/wifi_ssid`)
+
+(defvar player_toggle false)
+(defvar cpu_toggle false)
+(defvar ram_disk_toggle false)
+(defvar wireless_toggle false)
+
 
 ; =============== Widget Structure ===============
 
 (defwidget app [icon launch]
-  (button :class "app" :onclick {"lof " + launch} :onrightclick launch
+  (button :class "app" :onclick "jumpapp ${launch}" :onrightclick launch
     icon))
 
 (defwidget workspace [index name]
-  (button :class "workspace" :onclick {"wmctrl -s " + index}
+  (button :class "workspace ${active_workspace == index ? 'active' : 'inactive'}" :onclick {"wmctrl -s " + index}
     name))
 
 (defwidget separator []
-  (box :class "separator" "|"))
+  (box :class "separator" :style "padding: 0 4px 0 4px;" "|"))
 
 
 ; =============== Widget Group ===============
@@ -35,52 +57,63 @@
 (defwidget apps []
   (box :class "apps"
     (app :icon "" :launch "firefox")
-    (app :icon "" :launch "nautilus")
-    (app :icon "﬏" :launch "code")))
+    (app :icon "" :launch "thunar")
+    (app :icon "﬏" :launch "code-oss")))
 
 (defwidget workspaces []
   (literal :content xworkspaces))
 
 (defwidget brightness_sound []
-  (box :class "widget-group" :space-evenly false :spacing 8
-    (box :class "red" "")
-    (box :class "white" "100%")
+  (box :class "widget-group white" :space-evenly false
+    (box :class "red" "") " 100%"
     (separator)
-    (box :class "yellow" headphone) ; TODO: dynamic change to speaker icon if headphone not present
-    (box :class "white" volume)))
+    (box :class "yellow" vol_icon) " ${vol_value}"))
 
 (defwidget music []
-  (box :class "green" playerctl)) ; TODO: Slowly slideout, do not change playerctl until it slides back completely
-   
+  (revealer :transition "slideleft" :duration "1s" :reveal player_toggle
+    (box :class "green" :orientation "h" :space-evenly false :spacing 10
+      music_title (separator))))
+
 (defwidget date_time []
-  (box :class "cyan" dt))
+  (box :class "cyan" dtime_info))
+
+(defwidget updates []
+  (box :class "red" " ${updates_count} updates"))
+
+(defwidget weather []
+  (box :class "widget-group cyan" :space-evenly false " 25°C" (separator) " Windy"))
 
 (defwidget cpu []
-  (box :class "widget-group" :space-evenly false :spacing 8
-    (box :class "red" " ")
-    (box :class "white" {round(EWW_CPU.avg, 2) + "%"})))
-    ; (separator)))
-    ; (box :class "red" "")))
-    ; (box :class "white" EWW_TEMPS)))
-    ; (box Watt usage)
-    ; (box GHz)
+  (eventbox :onhover "eww update cpu_toggle=true" :onhoverlost "eww update cpu_toggle=false"
+    (box :class "widget-group white" :space-evenly false
+      (box :class "red" "  ") "${round(EWW_CPU.avg, 2)}%"
+      (revealer :transition "slideright" :reveal cpu_toggle :duration "650ms"
+        (box :space-evenly false
+          (box :class "magenta" :space-evenly false :visible {temp_value != ''}
+            (separator :visible false) " ${temp_value}°C")
+          (box :class "yellow" :space-evenly false :visible {pconsumption_value != ''}
+            (separator) " ${pconsumption_value}W"))))))
 
 (defwidget ram_disk []
-  (box :class "widget-group" :space-evenly false :spacing 8
-    (box :class "magenta" {" " + round(EWW_RAM["used_mem"]/1024, 0) + "M Used"})
-    (separator)
-    (box :class "magenta" {" " + round(EWW_DISK["/"]["free"]/1024/1024/1024, 1) + "G Free"})))
+  (eventbox :onhover "eww update ram_disk_toggle=true" :onhoverlost "eww update ram_disk_toggle=false"
+    (box :class "widget-group magenta" :space-evenly false
+      " ${round(EWW_RAM["used_mem"]/1024, 0)}M" (revealer :transition "slideright" :reveal ram_disk_toggle " Used")
+      (separator)
+      " ${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle " Free"))))
+
+(defwidget battery []
+  (box :class "widget-group yellow" :visible {battery_value != ''} " ${battery_value}"))
 
 (defwidget wifi_speed []
-  (box :class "widget-group" :space-evenly false :spacing 8
-    (box :class "green" "  Placeholder")
-    (separator)
-    (box :class "green" "10K ⇅ 10K")))
-      ; TODO: WIFI
-    ; (box :class "cyan" EWW_NET))) ; TODO: WIFI
+  (eventbox :onhover "eww update wireless_toggle=true" :onhoverlost "eww update wireless_toggle=false"
+    (box :class "widget-group" :space-evenly false
+      (box :class "green" "")
+      (revealer :transition "slideright" :reveal wireless_toggle :class "green" " ${wifi_ssid}")
+      (separator)
+      (box :class "green" "${round(EWW_NET['eno16777736']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['eno16777736']['NET_DOWN'] / 1024, 0)}K"))))
 
 (defwidget power []
-  (button :class "power red" :onclick "" "⏻"))
+  (button :class "red" :style "padding-right: 10px;" :onclick "" "⏻"))
 
 
 ; =============== Bar Group ===============
@@ -90,18 +123,19 @@
     (apps)
     (workspaces)
     (brightness_sound)
-    (cpu))) 
+    (updates)))
 
 (defwidget barmiddle []
   (box :orientation "h" :space-evenly false :halign "center" :spacing 10
-    (revealer :transition "slideleft" :duration 1 :reveal {playerctl != ""}
-      (box :orientation "h" :space-evenly false :spacing 10
-        (music) (separator)))
+    (music)
     (date_time)))
 
 (defwidget barright []
   (box :orientation "h" :space-evenly false :halign "end" :spacing 10
+    (weather)
+    (cpu)
     (ram_disk)
+    (battery)
     (wifi_speed)
     (power)))
   

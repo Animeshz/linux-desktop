@@ -9,6 +9,8 @@ fish_add_path /usr/lib/ruby/gems/3.0.0/bin
 
 set fish_greeting
 
+alias snvim='sudo -E nvim'
+
 starship init fish | source
 
 alias hc='herbstclient'

@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-acpi_listen | awk '{if ($2 == "MICROPHONE" || $2 == "HEADPHONE") { print $3 == "plug" ? "" : "墳"}}'
-
