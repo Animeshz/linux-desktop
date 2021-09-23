@@ -49,7 +49,7 @@ $widget_bg:            #2b2f37;
 .topbar {
   background-color: $color0;
   font-size: 16px;
-  padding: 5px 0 5px 0;
+  // padding: 5px 0 5px 0;
 }
 
 
@@ -57,11 +57,9 @@ $widget_bg:            #2b2f37;
 
 .apps {
   background-color: $widget_bg;
-  border-radius: 0 5px 5px 0;
-  font-size: 16px;
 
   & > .app {
-    padding: 0 10px 0 10px;
+    padding: 0 5px 0 2px;
 
     &:nth-child(3n+1) {
       color: #f9de8f;
@@ -72,12 +70,16 @@ $widget_bg:            #2b2f37;
     &:nth-child(3n+3) {
       color: #95e1d3;
     }
+    &:last-child {
+      // padding-right: 3;
+    }
   }
 }
 
 .workspaces {
   background-color: $widget_bg;
-  border-radius: 4px;
+  margin: 5px 0 5px 0;
+  border-radius: 5px;
 
   & > .workspace {
     padding: 0 7px 0 7px;
@@ -106,8 +108,9 @@ $widget_bg:            #2b2f37;
 }
 
 .widget-group {
+  margin: 5px 0 5px 0;
   padding: 0 10px 0 10px;
-  border-radius: 7px;
+  border-radius: 5px;
   background-color: $widget_bg;
 }
 
