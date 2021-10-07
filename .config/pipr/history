@@ -1,0 +1,3 @@
+cat ./.bash_history | grep -i void
+---
+ls

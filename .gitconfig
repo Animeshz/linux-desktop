@@ -1,0 +1,14 @@
+[init]
+    defaultBranch = main
+[user]
+    email = animeshsahu19@yahoo.com
+    name = Animesh Sahu
+    signingkey = 541C03D55917185E
+[core]
+    editor = nvim
+[pager]
+    diff = delta
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+[commit]
+    gpgsign = true

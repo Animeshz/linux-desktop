@@ -10,10 +10,12 @@ fish_add_path /usr/lib/ruby/gems/3.0.0/bin
 
 set fish_greeting
 
-alias snvim='sudo -E nvim'
+# https://stackoverflow.com/a/42265848/11377112
+set -x GPG_TTY (tty)
 
 starship init fish | source
 
+alias snvim='sudo -E nvim'
 alias hc='herbstclient'
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
