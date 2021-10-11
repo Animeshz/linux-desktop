@@ -11,4 +11,4 @@
 [interactive]
     diffFilter = delta --color-only --features=interactive
 [commit]
-    gpgsign = true
+	gpgsign = true

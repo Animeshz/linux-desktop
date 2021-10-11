@@ -8,8 +8,11 @@
 (deflisten vol_value :initial 100
   `scripts/volume vol_icon`)
 
-(deflisten bright_value :initial 100
-  `scripts/brightness`)
+; (deflisten bright_value :initial 100
+;   `scripts/brightness`)
+; TODO: Get some async-updating based solution
+(defpoll bright_value :interval "5s"
+  `brillo -G | awk '{print int($1+0.5)}'`)
 
 (defpoll updates_count :interval "1h"
   `xbps-install -Sun | wc -l`)
@@ -67,9 +70,9 @@
 
 (defwidget brightness_sound []
   (box :class "widget-group white" :space-evenly false
-    (box :class "red" "") " 100%"
+    (box :class "red" "") " ${bright_value}%"
     (separator)
-    (box :class "yellow" vol_icon) " ${vol_value}"))
+    (box :class "yellow" vol_icon) " ${vol_value}%"))
 
 (defwidget music []
   (revealer :transition "slideleft" :duration "1s" :reveal player_toggle
@@ -108,11 +111,11 @@
 
 (defwidget wifi_speed []
   (eventbox :onhover "eww update wireless_toggle=true" :onhoverlost "eww update wireless_toggle=false"
-    (box :class "widget-group" :space-evenly false
-      (box :class "green" "")
+    (box :class "widget-group green" :space-evenly false
+      ""
       (revealer :transition "slideright" :reveal wireless_toggle :class "green" " ${wifi_ssid}")
       (separator)
-      (box :class "green" "${round(EWW_NET['eno16777736']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['eno16777736']['NET_DOWN'] / 1024, 0)}K"))))
+      "${round(EWW_NET['wlp1s0']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['wlp1s0']['NET_DOWN'] / 1024, 0)}K")))
 
 (defwidget power []
   (button :class "red" :onclick "" "⏻"))

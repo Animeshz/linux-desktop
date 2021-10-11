@@ -1,0 +1,2 @@
+! Set 1.25x scaling for most of X11 apps
+Xft.dpi: 120
