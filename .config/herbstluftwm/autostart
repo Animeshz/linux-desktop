@@ -22,8 +22,7 @@ hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-w close
 # https://github.com/herbstluftwm/herbstluftwm/issues/1372
-# hc keybind $Mod-Return spawn "$(command -v pwd-launch || printf 'eval')" "kitty"
-hc keybind $Mod-Return spawn "kitty"
+hc keybind $Mod-Return spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 
 # movement & focusing windows
 hc keybind $Mod-Left  focus left

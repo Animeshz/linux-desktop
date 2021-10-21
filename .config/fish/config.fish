@@ -7,7 +7,7 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.emacs.d/bin
 fish_add_path /usr/lib/ruby/gems/3.0.0/bin
-fish_add_path ~/Projects/eww/target/release
+fish_add_path ~/Projects/RustProjects/eww/target/release
 
 set fish_greeting
 

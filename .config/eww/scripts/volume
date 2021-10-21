@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 poll_volume() {
-    awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)
+    pactl list sinks | awk '/Volume: front-left:/ {print $5}'
 }
 
 cmd_exists() {

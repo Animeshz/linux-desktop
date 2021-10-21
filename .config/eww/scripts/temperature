@@ -1,0 +1,3 @@
+#!/bin/sh
+
+grep -E 'Tdie|Package id' /sys/class/hwmon/hwmon*/temp*_label | cut -d':' -f1 | sed 's/label/input/' | xargs cat

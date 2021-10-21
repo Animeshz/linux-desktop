@@ -5,14 +5,12 @@
   `scripts/xworkspaces active_workspace`)
 
 (defvar vol_icon "墳")
-(deflisten vol_value :initial 100
+(deflisten vol_value
   `scripts/volume vol_icon`)
 
-; (deflisten bright_value :initial 100
-;   `scripts/brightness`)
 ; TODO: Get some async-updating based solution
 (defpoll bright_value :interval "5s"
-  `brillo -G | awk '{print int($1+0.5)}'`)
+  `brillo -G | awk '{print int($1+0.5) "%"}'`)
 
 (defpoll updates_count :interval "1h"
   `xbps-install -Sun | wc -l`)
@@ -26,8 +24,11 @@
 (defpoll weather_info :interval "15m"
   `scripts/weather`)
 
-(defvar temp_value "50")
-(defvar pconsumption_value "5.0") ; https://unix.stackexchange.com/questions/10418/how-to-find-power-draw-in-watts
+(defpoll temp_value :interval "1s" :run-while cpu_toggle
+  `scripts/temperature`)
+
+(defpoll pconsumption_value :interval "1s" :run-while cpu_toggle
+  `scripts/pconsumption`)
 
 (deflisten battery_value :initial ""
   `scripts/battery`)
@@ -70,9 +71,9 @@
 
 (defwidget brightness_sound []
   (box :class "widget-group white" :space-evenly false
-    (box :class "red" "") " ${bright_value}%"
+    (box :class "red" "") " ${bright_value}"
     (separator)
-    (box :class "yellow" vol_icon) " ${vol_value}%"))
+    (box :class "yellow" vol_icon) " ${vol_value}"))
 
 (defwidget music []
   (revealer :transition "slideleft" :duration "1s" :reveal player_toggle
@@ -95,7 +96,7 @@
       (revealer :transition "slideright" :reveal cpu_toggle :duration "650ms"
         (box :space-evenly false
           (box :class "magenta" :space-evenly false :visible {temp_value != ''}
-            (separator :visible false) " ${temp_value}°C")
+            (separator :visible false) " ${round(temp_value/1000, 1)}°C")
           (box :class "yellow" :space-evenly false :visible {pconsumption_value != ''}
             (separator) " ${pconsumption_value}W"))))))
 
