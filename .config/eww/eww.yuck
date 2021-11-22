@@ -15,9 +15,6 @@
 (defpoll updates_count :interval "1h"
   `xbps-install -Sun | wc -l`)
 
-(deflisten music_title :initial ""
-  `scripts/music player_toggle`)
-
 (defpoll dtime_info :interval "10s"
   `date '+ %b %d  %I:%M %p'`)
 
@@ -33,10 +30,9 @@
 (deflisten battery_value :initial ""
   `scripts/battery`)
 
-(defvar wifi_ssid "V2040")
-  ; `scripts/wifi_ssid`)
+(defpoll wifi_ssid :interval "20s"
+  `scripts/wifi_ssid`)
 
-(defvar player_toggle false)
 (defvar cpu_toggle false)
 (defvar ram_disk_toggle false)
 (defvar wireless_toggle false)
@@ -75,11 +71,6 @@
     (separator)
     (box :class "yellow" vol_icon) " ${vol_value}"))
 
-(defwidget music []
-  (revealer :transition "slideleft" :duration "1s" :reveal player_toggle
-    (box :class "green" :orientation "h" :space-evenly false :spacing 10
-      music_title (separator))))
-
 (defwidget date_time []
   (box :class "cyan" dtime_info))
 
@@ -87,7 +78,7 @@
   (box :class "red" "${updates_count} updates"))
 
 (defwidget weather []
-  (box :class "widget-group cyan" :space-evenly false "25°C" (separator) " Windy"))
+  (box :class "widget-group cyan" :space-evenly false "${weather_info[0]}" (separator) {weather_info[1]}))
 
 (defwidget cpu []
   (eventbox :onhover "eww update cpu_toggle=true" :onhoverlost "eww update cpu_toggle=false"
@@ -116,7 +107,7 @@
       ""
       (revealer :transition "slideright" :reveal wireless_toggle :class "green" " ${wifi_ssid}")
       (separator)
-      "${round(EWW_NET['wlp1s0']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['wlp1s0']['NET_DOWN'] / 1024, 0)}K")))
+      "${round(EWW_NET['wlan0']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['wlan0']['NET_DOWN'] / 1024, 0)}K")))
 
 (defwidget power []
   (button :class "red" :onclick "" "⏻"))
@@ -132,9 +123,7 @@
     (updates)))
 
 (defwidget barmiddle []
-  (box :orientation "h" :space-evenly false :halign "center" :spacing 10
-    (music)
-    (date_time)))
+    (date_time))
 
 (defwidget barright []
   (box :orientation "h" :space-evenly false :halign "end" :spacing 10

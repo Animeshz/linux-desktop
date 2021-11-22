@@ -1,9 +1,11 @@
-[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
-
 run_cmd() {
   command -v "$1" 1>/dev/null && "$@"
 }
 
+# Syncs Xresources
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
+
+# Topbar
 run_cmd eww open topbar &
 
 # Key hold-repeat frequency

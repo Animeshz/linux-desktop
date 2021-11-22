@@ -1,1 +1,4 @@
 #!/usr/bin/env bash
+
+curl --retry 5 --connect-timeout 10 'v2.wttr.in/495006?format=\["%t","%c %C"\]' 2>/dev/null | sed 's/+//'
+

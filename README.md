@@ -7,14 +7,14 @@
 
 ```
 os      void x86_64
-ker     5.13.12_1
+ker     5.15.4_1
 init    runit
 de/wm   herbstluftwm
 bar     eww
 term    kitty
 prompt  starship
 sh      fish
-editor  nvim / micro / vscode
+editor  nvim / vscode
 font    CaskaydiaCove Nerd Font
 ```
 
@@ -23,24 +23,39 @@ font    CaskaydiaCove Nerd Font
 
 **Bar:**
 
-![Screenshots/eww_bar_early.jpg](https://github.com/Animeshz/linux-desktop/blob/media/Screenshots/eww-bar.jpg)
+![GIF/eww-bar.gif](https://github.com/Animeshz/linux-desktop/blob/media/GIF/eww-bar.gif)
+
+<!-- TODO: Rofi image here -->
+**All window closed:**
+
+![Screenshots/24-Nov-15-41-12-PM.jpg](https://github.com/Animeshz/linux-desktop/blob/media/Screenshots/24-Nov-15-41-12-PM.jpg)
+
+**Btop:**
+
+![Screenshots/24-Nov-15-45-52-PM.jpg](https://github.com/Animeshz/linux-desktop/blob/media/Screenshots/24-Nov-15-45-52-PM.jpg)
 
 
 ## Tree
 
-Generated using `make tree`, see [Animeshz/scripts](https://github.com/Animeshz/scripts).
+Generated using `git-tree --root \$HOME --noreport`, see [Animeshz/scripts](https://github.com/Animeshz/scripts).
 
 ```
 $HOME
+├── .Xresources
 ├── .bashrc
 ├── .config
+│   ├── btop
+│   │   └── btop.conf
 │   ├── eww
 │   │   ├── eww.scss
 │   │   ├── eww.yuck
 │   │   └── scripts
 │   │       ├── battery
+│   │       ├── pconsumption
+│   │       ├── temperature
 │   │       ├── volume
 │   │       ├── weather
+│   │       ├── wifi_ssid
 │   │       └── xworkspaces
 │   ├── fish
 │   │   └── config.fish
@@ -65,13 +80,23 @@ $HOME
 │   │       └── sid_dark.conf
 │   ├── micro
 │   │   └── settings.json
+│   ├── pipewire
+│   │   ├── pipewire.conf
+│   │   └── pipewire.conf##distro.VoidLinux
+│   ├── pipr
+│   │   ├── history
+│   │   └── pipr.toml
+│   ├── ranger
+│   │   └── rc.conf
 │   ├── starship.toml
+│   ├── startup.sh
 │   └── yadm
 │       └── bootstrap
+├── .gitconfig
 ├── .xinitrc
-├── Makefile
 ├── README.md
-└── UNLICENSE
+├── UNLICENSE
+└── install-script.sh
 ```
 
 
@@ -80,45 +105,7 @@ $HOME
 #### NOTICE:
 **This section is still WIP don't use this section right now (Makefile contains non implemented recipies rn). Use `git clone` and copy/use manually for now :3**
 
-Read the [Makefile](https://github.com/Animeshz/linux-desktop/blob/main/Makefile) to understand the things being done easily!
-
-<details>
-<summary><b>Complete Bootstrap</b></summary>
-
-Requirements: git, [yadm](https://github.com/TheLocehiliosan/yadm), make
-
-**NOTE: This will override your current dotfiles, please backup your original dotfiles before running any of the following commands.**
-
-```bash
-yadm clone https://github.com/Animeshz/linux-desktop
-yadm bootstrap  # if didn't prompted in above command
-```
-
-This hides Makefile, README.md and UNLICENSE. To unhide, run `dotunhide` to hide them back `dothide` (since these are alias, you may need to reopen the shell).
-</details>
-
-<details>
-<summary><b>Partial Bootstrap (take as you like)</b></summary>
-
-Requirements: git, make
-
-```bash
-git clone https://github.com/Animeshz/linux-desktop
-cd linux-desktop
-make
-```
-
-This will list all the possible user-interfacing options available.
-
-Then run the following for whatever you like to setup.
-
-**NOTE: This will override your current dotfiles, please backup your original dotfiles before running any of the following commands.**
-
-```bash
-make <option>
-```
-</details>
-
+TODO: Build Yadm script for complete bootstrap and install-script.sh for partial stuffs picking.
 
 ## UNLICENSE
 
