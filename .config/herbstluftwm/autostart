@@ -100,7 +100,7 @@ hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 # app/program launch
-hc keybind Alt-space         spawn rofi -show run -kb-cancel Alt-space,Escape
+hc keybind Alt-space         spawn rofi -show drun -kb-cancel Alt-space,Escape
 
 
 # =============== Mouse Bindings ===============

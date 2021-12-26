@@ -2,6 +2,11 @@
     # Commands to run in interactive sessions can go here
 # end
 
+function fish_user_key_bindings
+    fish_default_key_bindings -M insert
+    fish_vi_key_bindings --no-erase insert
+end
+
 fish_add_path ~/.scripts
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
@@ -17,7 +22,10 @@ set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
 
 starship init fish | source
 
+#alias sudo='sudo '  # Hack: https://askubuntu.com/a/22043/669216 does not work in fish
 alias snvim='sudo -E nvim'
+alias nv='~/.config/nvim/scripts/startup.sh && nvim $argv && ~/.config/nvim/scripts/exit.sh'
+alias snv='~/.config/nvim/scripts/startup.sh && sudo -E nvim $argv && ~/.config/nvim/scripts/exit.sh'
 alias hc='herbstclient'
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"

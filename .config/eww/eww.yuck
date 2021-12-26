@@ -127,7 +127,7 @@
 
 (defwidget barright []
   (box :orientation "h" :space-evenly false :halign "end" :spacing 10
-    (weather)
+;    (weather)
     (cpu)
     (ram_disk)
     (battery)
