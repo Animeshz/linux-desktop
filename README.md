@@ -58,7 +58,8 @@ $HOME
 │   │       ├── wifi_ssid
 │   │       └── xworkspaces
 │   ├── fish
-│   │   └── config.fish
+│   │   ├── config.fish
+│   │   └── fish_variables
 │   ├── herbstluftwm
 │   │   └── autostart
 │   ├── kitty
@@ -81,8 +82,9 @@ $HOME
 │   ├── micro
 │   │   └── settings.json
 │   ├── pipewire
-│   │   ├── pipewire.conf
-│   │   └── pipewire.conf##distro.VoidLinux
+│   │   ├── client.conf
+│   │   ├── pipewire-pulse.conf
+│   │   └── pipewire.conf
 │   ├── pipr
 │   │   ├── history
 │   │   └── pipr.toml
@@ -106,6 +108,16 @@ $HOME
 **This section is still WIP don't use this section right now (Makefile contains non implemented recipies rn). Use `git clone` and copy/use manually for now :3**
 
 TODO: Build Yadm script for complete bootstrap and install-script.sh for partial stuffs picking.
+
+
+### Remarks
+
+  * Copy .config/pipewire to /etc/pipewire to use with void's runit services
+    ```bash
+    sudo mkdir -p /etc/pipewire
+    sudo cp ~/.config/pipewire/*.conf /etc/pipewire
+    ```
+
 
 ## UNLICENSE
 

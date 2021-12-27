@@ -1,3 +1,0 @@
-context.exec = [
-    { path = "/usr/bin/pipewire-media-session"  args = "" }
-]
