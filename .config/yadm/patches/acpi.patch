@@ -1,0 +1,53 @@
+--- a/etc/acpi/handler.sh	2022-02-01 00:24:58.457901681 +0530
++++ b/etc/acpi/handler.sh	2022-02-19 22:59:51.833638717 +0530
+@@ -19,12 +19,29 @@
+ setspeed="/sys/devices/system/cpu/cpu0/cpufreq/scaling_setspeed"
+
+
++sleep_function() {
++    sleep_time=3600  # 1 hour
++    echo s2idle > /sys/power/mem_sleep
++
++    start_time=$(date +%s)
++    rtcwake -u -s $sleep_time -m mem
++
++    end_time=$(date +%s)
++    if [ $(( end_time - start_time + 2 )) -gt $sleep_time ]; then
++        echo deep > /sys/power/mem_sleep
++        zzz
++    fi
++
++    echo s2idle > /sys/power/mem_sleep
++}
++
+ case "$1" in
+     button/power)
+         case "$2" in
+             PBTN|PWRF)
+-                logger "PowerButton pressed: $2, shutting down..."
+-                shutdown -P now
++                logger "PowerButton pressed: $2, suspending" #, shutting down..."
++                sleep_function
++                #shutdown -P now
+                 ;;
+             *)  logger "ACPI action undefined: $2" ;;
+         esac
+@@ -34,7 +51,8 @@
+             SBTN|SLPB)
+                 # suspend-to-ram
+                 logger "Sleep Button pressed: $2, suspending..."
+-                zzz
++                sleep_function
++                #zzz
+                 ;;
+             *)  logger "ACPI action undefined: $2" ;;
+         esac
+@@ -76,7 +94,7 @@
+             close)
+                 # suspend-to-ram
+                 logger "LID closed, suspending..."
+-                zzz
++                sleep_function
+                 ;;
+             open)
+                 logger "LID opened"

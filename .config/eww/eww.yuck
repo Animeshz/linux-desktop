@@ -133,7 +133,7 @@
     (battery)
     (wifi_speed)
     (power)))
-  
+
 
 ; =============== Top-Level Window Definitions ===============
 

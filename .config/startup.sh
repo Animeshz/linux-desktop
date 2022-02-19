@@ -3,12 +3,12 @@
 # Startup script to be run by /etc/rc.local if exists as root
 # Donot use it, its at experimental stage right now
 << ////
-# ~~somehow chpst does not give superuser~~
+# Executes ~/.config/startup.sh for each user, if exists
 ls /home \
 | while read user; do
     startup_script="/home/$user/.config/startup"
-    if [[ -f "$startup_script" ]]; then
-      chpst -u "$user" "$startup_script"
+    if [ -f "$startup_script" ]; then
+      "$startup_script"
     fi
   done
 ////
@@ -33,7 +33,7 @@ echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
 echo 1 > /sys/module/snd_hda_intel/parameters/power_save
 echo Y > /sys/module/snd_hda_intel/parameters/power_save_controller
 
-echo powersave > /sys/module/pcie_aspm/parameters/policy  # superpowersave
+echo powersupersave > /sys/module/pcie_aspm/parameters/policy  # powersave
 
 run_cmd ryzenadj --power-saving
 

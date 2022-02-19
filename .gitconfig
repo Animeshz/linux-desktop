@@ -6,6 +6,7 @@
     signingkey = 541C03D55917185E
 [core]
     editor = nvim
+	symlinks = true
 [pager]
     diff = delta
 [interactive]

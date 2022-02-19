@@ -8,7 +8,7 @@ hc() {
 hc emit_hook reload
 
 # Set monitors and background
-hc set_monitors 1920x1080+0+0
+hc set_monitors 2256x1504+0+0
 test -f ~/.fehbg && ~/.fehbg || xsetroot -solid '#5A8E3A'
 
 
