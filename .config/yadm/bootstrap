@@ -1,5 +1,12 @@
 #!/bin/bash
 
+echo "Setting up NvChad"
+[ -d ~/.config/nvim ] && { echo "Moving ~/.config/nvim to ~/.config/nvim.back"; mv ~/.config/nvim ~/.config/nvim.back; }
+
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+ln -sf ~/.config/nvchad ~/.config/nvim/lua/custom
+
 # cd "$HOME"
 
 # bootstrap setup completely using Makefile
