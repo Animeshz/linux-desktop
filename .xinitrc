@@ -37,7 +37,7 @@ xset r rate 300 50
 #    xinput --set-prop $touchpad_id 277 0 0    # Send event modes (see: 2)
 #  done &
 
-exec herbstluftwm --locked
+exec dbus-launch --exit-with-session herbstluftwm --locked
 
 # 1: click-finger allows only two-finger tap behave as right-click and three-finger tap as middle,
 #    whereas button-areas adds right-side and middle-side realistic click recognition additionally (to above).

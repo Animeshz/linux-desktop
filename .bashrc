@@ -12,3 +12,4 @@ export GPG_TTY=$(tty)
 
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
+export PATH="$PATH:$HOME/.spicetify"

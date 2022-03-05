@@ -2,16 +2,16 @@
 local M = {}
 
 M.options = {
-    relativenumber = true,
-    shiftwidth = 4,
+   relativenumber = true,
+   shiftwidth = 4,
 }
 
 M.plugins = {
-    install = require "custom.plugins"
+   install = require("custom.plugins"),
 }
 
 M.ui = {
-    theme = "onedark",
+   theme = "onedark",
 }
 
 return M

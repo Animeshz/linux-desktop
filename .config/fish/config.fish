@@ -30,3 +30,4 @@ alias snv='~/.config/nvchad/scripts/startup.sh && sudo -E nvim $argv; ~/.config/
 alias hc='herbstclient'
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
+export PATH="$PATH:$HOME/.spicetify"
