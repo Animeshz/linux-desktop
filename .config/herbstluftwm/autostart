@@ -156,6 +156,7 @@ hc attr theme.active.outer_width 0
 hc attr theme.background_color '#14141400'
 
 hc set window_gap 5
+hc set snap_gap 0
 hc set frame_padding 0
 hc set smart_window_surroundings on
 hc set smart_frame_surroundings off
@@ -171,6 +172,8 @@ hc rule floatplacement=smart
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hc rule --class=Brave-browser floatplacement=center
 
 hc set tree_style '╾│ ├└╼─┐'
 

@@ -59,7 +59,7 @@
     (app :icon "" :launch "rofi -show run -kb-cancel Alt-space,Escape")
     (separator)
     (app :icon "" :launch "firefox")
-    (app :icon "" :launch "thunar")
+    (app :icon "" :launch "nautilus")
     (app :icon "﬏" :launch "code-oss")))
 
 (defwidget workspaces []
@@ -94,9 +94,9 @@
 (defwidget ram_disk []
   (eventbox :onhover "eww update ram_disk_toggle=true" :onhoverlost "eww update ram_disk_toggle=false"
     (box :class "widget-group magenta" :space-evenly false
-      "${round(EWW_RAM["used_mem"]/1024, 0)}M" (revealer :transition "slideright" :reveal ram_disk_toggle " Used")
+      "${round(EWW_RAM["used_mem"]/1024, 0)}M" (revealer :transition "slideright" :reveal ram_disk_toggle "Used")
       (separator)
-      "${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle " Free"))))
+      "${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle "Free"))))
 
 (defwidget battery []
   (box :class "widget-group yellow" :visible {battery_value != ''} " ${battery_value}"))
@@ -105,7 +105,7 @@
   (eventbox :onhover "eww update wireless_toggle=true" :onhoverlost "eww update wireless_toggle=false"
     (box :class "widget-group green" :space-evenly false
       ""
-      (revealer :transition "slideright" :reveal wireless_toggle :class "green" " ${wifi_ssid}")
+      (revealer :transition "slideright" :reveal wireless_toggle :class "green" "${wifi_ssid}")
       (separator)
       "${round(EWW_NET['wlan0']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['wlan0']['NET_DOWN'] / 1024, 0)}K")))
 
@@ -139,7 +139,8 @@
 
 (defwindow topbar
   :monitor 0 :stacking "fg" :wm-ignore false :windowtype "dock"
-  :reserve (struts :side "top" :distance "30px")
+  :reserve (struts :side "top" :distance "32px")
   :geometry (geometry :x "0" :y "0" :width "100%" :height "30px" :anchor "top center")
   (centerbox :orientation "h"
     (barleft) (barmiddle) (barright)))
+
