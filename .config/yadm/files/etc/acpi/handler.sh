@@ -103,6 +103,7 @@ case "$1" in
     button/volumeup)
         command -v volup && volup
         ;;
+    # cd/prev cd/next cd/play delegated to WM instead of here to use with per-user basis
     *)
         logger "ACPI group/action undefined: $1 / $2"
         ;;

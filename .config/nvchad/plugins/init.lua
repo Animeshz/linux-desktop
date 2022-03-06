@@ -1,6 +1,6 @@
 return {
    { "elkowar/yuck.vim", ft = "yuck" },
-   { "gpanders/nvim-parinfer", ft = "nvim-parinfer" },
+   { "gpanders/nvim-parinfer" },
    {
       "jose-elias-alvarez/null-ls.nvim",
       after = "nvim-lspconfig",

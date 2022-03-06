@@ -103,6 +103,10 @@ hc keybind Alt-space        spawn rofi -show drun -kb-cancel Alt-space,Escape
 hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind $Mod-Shift-P     spawn sh -c 'active-window-pid | xclip -sel clip'
 
+hc keybind XF86AudioPlay spawn mutoggle
+hc keybind XF86AudioStop spawn mutoggle
+hc keybind XF86AudioPrev spawn muprv
+hc keybind XF86AudioNext spawn munxt
 
 # =============== Mouse Bindings ===============
 
@@ -153,7 +157,7 @@ hc attr theme.background_color '#14141400'
 
 hc set window_gap 5
 hc set frame_padding 0
-hc set smart_window_surroundings off
+hc set smart_window_surroundings on
 hc set smart_frame_surroundings off
 hc set mouse_recenter_gap 0
 
