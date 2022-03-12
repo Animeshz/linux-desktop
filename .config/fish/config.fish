@@ -5,6 +5,9 @@
 function fish_user_key_bindings
     fish_default_key_bindings -M insert
     #fish_vi_key_bindings --no-erase insert
+
+    bind \cX "fish_commandline_append '| xclip -sel clip'"
+    bind \cV "fish_commandline_prepend_full 'xclip -sel clip -o |'"  # https://github.com/fish-shell/fish-shell/issues/8763
 end
 
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
@@ -20,6 +23,7 @@ set fish_greeting
 # https://stackoverflow.com/a/42265848/11377112
 set -x GPG_TTY (tty)
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
+set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
 
 starship init fish | source
 
@@ -28,6 +32,8 @@ alias snvim='sudo -E nvim'
 alias nv='~/.config/nvchad/scripts/startup.sh && nvim $argv; ~/.config/nvchad/scripts/exit.sh'
 alias snv='~/.config/nvchad/scripts/startup.sh && sudo -E nvim $argv; ~/.config/nvchad/scripts/exit.sh'
 alias hc='herbstclient'
+alias jl='jupyter-lab --notebook-dir=/home/animesh/Projects/GeneralPurpose/JupyterLab'
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
+
 export PATH="$PATH:$HOME/.spicetify"
