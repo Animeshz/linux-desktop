@@ -12,7 +12,8 @@ locate_cmd() {
     local script="./pkgs/$1"
     [[ -f "$script" ]] && echo "$script" && true
 
-    run_with_user $user "xlocate '^/usr/bin/$1\$'" \
+    # Works on shell, why not here? FFFFFFF!!!!!!!!!
+    run_with_user $user "xlocate '^/usr/bin/${1}\( ->.*\)\?$'" \
     | awk '{print $1}' \
     | xargs -I{} sh -c 'xbps-query -Rs {} | grep -iv "xbps-src" 1>/dev/null && echo {}' \
     | head -n1
