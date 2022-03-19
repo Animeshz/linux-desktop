@@ -12,17 +12,19 @@ locate_cmd() {
     local script="./pkgs/$1"
     [[ -f "$script" ]] && echo "$script" && true
 
-    # Works on shell, why not here? FFFFFFF!!!!!!!!!
     run_with_user $user "xlocate '^/usr/bin/${1}\( ->.*\)\?$'" \
     | awk '{print $1}' \
     | xargs -I{} sh -c 'xbps-query -Rs {} | grep -iv "xbps-src" 1>/dev/null && echo {}' \
-    | head -n1
+    | head -n1 \
+    | grep ^  # if no result error out
 }
 
 # installs package generically
 sync_install_pkg() {
     echo_step "  Syncing repository"
-    xbps-install -S && echo_success || exit_with_failure
+
+    xbps-install -S &>/dev/null \
+    && echo_success || exit_with_failure "Unable to sync repository, try running xbps-install -S manually"
 }
 install_pkg() {
     echo_step "  Installing package $pkg"
@@ -31,7 +33,7 @@ install_pkg() {
         [[ -f "$1" ]] && chmod u+x "$1" && "$1" \
         || xbps-install -y "$1" \
         || xbps_src_install "$1" \
-        || xpackages_install "$1"\
+        || xpackages_install "$1" \
     ); then
         echo_success
     else

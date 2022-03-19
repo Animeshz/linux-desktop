@@ -80,8 +80,12 @@ check_commands_availability() {
         fi
 
         echo
+        sync_locate_cmd
+        echo_step "  Finding package(s) providing the commands"
         pkgs=($(TERM=linux; for cmd in "${not_founds[@]}"; do locate_cmd $cmd; done))
+        [[ $? = 0 ]] && echo_success || exit_with_failure "some packages can't be located"
 
+        sync_install_pkg
         for pkg in "${pkgs[@]}"; do
             install_pkg $pkg
         done

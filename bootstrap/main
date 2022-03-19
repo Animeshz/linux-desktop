@@ -36,23 +36,28 @@ setup_sparse_checkout && setup_sparse_toggle_alias
 
 # ==================== Configuration ====================
 
+source "$SCRIPT_DIR/04-configure.sh"
+# configure_options || else specify config (kinda)
+
 
 # ==================== Bootstrap Execution ====================
 
 echo
-echo_title "Package Installation"
+echo_title "Bootstrap"
 
-# TODO: After multi-select filter from enquirer
-for pkg in $(cat $SCRIPT_DIR/$distro/packages.txt | sed '/^#/d'); do
-    install_pkg $pkg
-done
+source "$SCRIPT_DIR/05-bootstrap.sh"
+setup_scripts
+setup_nvchad
+install_pkgs
 
 
-# NvChad
-# echo "Setting up NvChad"
-# [ -d ~/.config/nvim ] && { echo "Moving ~/.config/nvim to ~/.config/nvim.back"; mv ~/.config/nvim ~/.config/nvim.back; }
-#
-# git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-# ln -sf ~/.config/nvchad ~/.config/nvim/lua/custom
+# ==================== Finalize ====================
 
+echo
+echo_title "Finalize"
+
+source "$SCRIPT_DIR/06-finalize.sh"
+finalize
+
+echo
+echo_title "Done"

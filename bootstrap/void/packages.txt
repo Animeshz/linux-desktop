@@ -78,7 +78,7 @@ mysql
 nemo
 neovim
 nethogs
-nodejs-lts
+nodejs
 noto-fonts-emoji
 noto-fonts-ttf
 octave

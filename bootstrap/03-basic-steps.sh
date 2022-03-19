@@ -12,8 +12,8 @@ setup_sparse_toggle_alias() {
     local dothide="alias dothide=\"yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet\""
     local dotunhide="alias dotunhide=\"yadm sparse-checkout set '/*' && yadm checkout --quiet\""
 
-    local files=$(run_with_user $user 'echo "$HOME/.config/fish/config.fish" "$HOME/.zshrc" "$HOME/.bashrc"')
-    for config in $files; do
+    rcfiles=$(run_with_user $user 'echo "$HOME/.config/fish/config.fish" "$HOME/.zshrc" "$HOME/.bashrc"')
+    for config in $rcfiles; do
         echo_step "  in $config"
         if [[ -f "$config" ]]; then
             grep -qxF "$dothide" "$config" || echo "$dothide" >> "$config"
@@ -23,7 +23,8 @@ setup_sparse_toggle_alias() {
             echo_warning "" "NOT_FOUND"
         fi
     done
+
+    eval "$dothide"
+    eval "$dotunhide"
 }
-
-
 
