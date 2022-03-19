@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Install Script for replicating the installation.
+# Collects all the customizing inputs at the start and installs everything.
+
+source ./00-utils.sh
+source ./01-checks.sh
+
+
+# ==================== Validations ====================
+
+echo
+echo_title "Checking Prerequisites"
+
+check_distro
+check_arch
+check_network
+check_superuser
+
+source ./$distro/02-packages.sh
+check_commands_availability enquirer zsh
+
+
+# ==================== Configuration ====================
+
+# ==================== Package Installation ====================
+
+echo
+echo_title "Package Installation"
+
+# TODO: After multi-select filter from enquirer
+for pkg in $(cat ./$distro/packages.txt | sed '/^#/d'); do
+    install_pkg $pkg
+done

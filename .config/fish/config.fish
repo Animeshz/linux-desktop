@@ -6,7 +6,7 @@ function fish_user_key_bindings
     fish_default_key_bindings -M insert
     #fish_vi_key_bindings --no-erase insert
 
-    bind \cX "fish_commandline_append '| xclip -sel clip'"
+    bind \cX "fish_commandline_append ' | xclip -sel clip'"
     bind \cV "fish_commandline_prepend_full 'xclip -sel clip -o |'"  # https://github.com/fish-shell/fish-shell/issues/8763
 end
 
