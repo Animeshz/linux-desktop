@@ -3,8 +3,11 @@
 # Install Script for replicating the installation.
 # Collects all the customizing inputs at the start and installs everything.
 
-source ./00-utils.sh
-source ./01-checks.sh
+shopt -s expand_aliases
+SCRIPT_DIR=${BASH_SOURCE%/*}
+
+source "$SCRIPT_DIR/00-utils.sh"
+source "$SCRIPT_DIR/01-checks.sh"
 
 
 # ==================== Validations ====================
@@ -16,19 +19,40 @@ check_distro
 check_arch
 check_network
 check_superuser
+check_user
 
-source ./$distro/02-packages.sh
-check_commands_availability enquirer zsh
+source "$SCRIPT_DIR/$distro/02-packages.sh"
+check_commands_availability enquirer yadm
+
+
+# ==================== Basic Steps ====================
+
+echo
+echo_title "Performing some basic steps"
+
+source "$SCRIPT_DIR/03-basic-steps.sh"
+setup_sparse_checkout && setup_sparse_toggle_alias
 
 
 # ==================== Configuration ====================
 
-# ==================== Package Installation ====================
+
+# ==================== Bootstrap Execution ====================
 
 echo
 echo_title "Package Installation"
 
 # TODO: After multi-select filter from enquirer
-for pkg in $(cat ./$distro/packages.txt | sed '/^#/d'); do
+for pkg in $(cat $SCRIPT_DIR/$distro/packages.txt | sed '/^#/d'); do
     install_pkg $pkg
 done
+
+
+# NvChad
+# echo "Setting up NvChad"
+# [ -d ~/.config/nvim ] && { echo "Moving ~/.config/nvim to ~/.config/nvim.back"; mv ~/.config/nvim ~/.config/nvim.back; }
+#
+# git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+# nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# ln -sf ~/.config/nvchad ~/.config/nvim/lua/custom
+

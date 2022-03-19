@@ -10,6 +10,6 @@ PS1='[\u@\h \W]\$ '
 # https://stackoverflow.com/a/42265848/11377112
 export GPG_TTY=$(tty)
 
-alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!Makefile' && yadm checkout --quiet"
+alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
 export PATH="$PATH:$HOME/.spicetify"

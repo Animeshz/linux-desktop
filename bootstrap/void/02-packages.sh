@@ -6,13 +6,13 @@ sync_locate_cmd() {
     fi
 
     echo_step "  Syncing xlocate"
-    xlocate -S &>/dev/null && echo_success || exit_with_failure
+    run_with_user $user "xlocate -S &>/dev/null" && echo_success || exit_with_failure
 }
 locate_cmd() {
     local script="./pkgs/$1"
     [[ -f "$script" ]] && echo "$script" && true
 
-    xlocate "^/usr/bin/$1\$" \
+    run_with_user $user "xlocate '^/usr/bin/$1\$'" \
     | awk '{print $1}' \
     | xargs -I{} sh -c 'xbps-query -Rs {} | grep -iv "xbps-src" 1>/dev/null && echo {}' \
     | head -n1
@@ -40,5 +40,9 @@ install_pkg() {
     fi
 }
 
-xbps_src_install() {}
-xpackages_install() {}
+xbps_src_install() {
+    :
+}
+xpackages_install() {
+    :
+}

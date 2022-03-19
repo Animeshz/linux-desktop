@@ -6,6 +6,10 @@ command_exists() {
     command -v "$1" 1>/dev/null && true || false
 }
 
+run_with_user() {
+    sudo -H -u "$1" bash -c "$2"
+}
+
 # <<<
 # Highly inspired by Cyclenerd/postinstall & wavefrontHQ/install
 #

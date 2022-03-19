@@ -39,12 +39,20 @@ check_network() {
 
 check_superuser() {
     echo_step "Checking superuser privileges"
-    echo_step_info "user: $(whoami)"
     if [[ $EUID -eq 0 ]]; then
         echo_success
     else
+        echo_step_info "user: $(whoami)"
         exit_with_failure "This script must be run as root"
     fi
+}
+
+check_user() {
+    echo_step "Checking current local user"
+    user=$(stat -c '%U' "$0") || exit_with_failure
+    user_home=$(cat /etc/passwd | awk "/^$user:/" | cut -d: -f6)
+    echo_step_info "$user"
+    echo_success
 }
 
 check_cmds_step() {
