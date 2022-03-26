@@ -35,5 +35,9 @@ echo Y > /sys/module/snd_hda_intel/parameters/power_save_controller
 
 echo powersupersave > /sys/module/pcie_aspm/parameters/policy  # powersave
 
+for file in /sys/bus/usb/devices/*/power/wakeup; do
+    echo disabled > "$file"
+done
+
 run_cmd ryzenadj --power-saving
 
