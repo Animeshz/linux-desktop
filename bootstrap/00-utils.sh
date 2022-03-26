@@ -71,7 +71,7 @@ function echo_failure() {
 # echo_success() outputs [ OK ] in green, at the rightmost side of the screen.
 function echo_success() {
     tput setaf 2  # 2 = green
-    echo_right "[ OK ]"
+    echo_right "[ ${1:-OK} ]"
     tput sgr0  # reset terminal
 }
 

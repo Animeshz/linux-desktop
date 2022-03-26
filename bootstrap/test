@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+source ./00-utils.sh
+
+echo_step 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been'
+if echo_warning ""  && false; then
+    echo yes
+else
+    echo no
+fi

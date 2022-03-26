@@ -29,13 +29,15 @@ sync_install_pkg() {
 install_pkg() {
     echo_step "  Installing package $pkg"
 
-    if output=$( \
-        [[ -f "$1" ]] && chmod u+x "$1" && "$1" \
-        || xbps-install -y "$1" \
-        || xbps_src_install "$1" \
-        || xpackages_install "$1" \
-    ); then
-        echo_success
+    if output=$([[ -f "$1" ]] && chmod u+x "$1" && "$1"); then
+        echo_success "SCRIPT"
+    elif output=$(xbps-install -y "$1"); then
+        echo_success "VOID-REPO"
+    elif ($XBPS_SRC_SETUP || echo_warning "" "XBPS-SRC | can't be installed w/o xbps-src" && false) && \
+        output=$(xbps_src_install "$1"); then
+        echo_success "XBPS-SRC"
+    elif $XBPS_SRC_SETUP && output=$(xpackages_install "$1"); then
+        echo_success "XPACK"
     else
         exit_with_failure "Unable to install $pkg"
         echo "Command output:"
@@ -44,8 +46,13 @@ install_pkg() {
 }
 
 xbps_src_install() {
-    :
+    if ! ${XBPS_SRC_SETUP_FINISHED:-false}; then
+        exit_with_failure "Packages from xbps-src are not available until Bootstrap step"
+    fi
 }
+
 xpackages_install() {
-    :
+    if ! ${XPACKAGES_SETUP_FINISHED:-false}; then
+        exit_with_failure "Packages from xpackages are not available until Bootstrap step"
+    fi
 }
