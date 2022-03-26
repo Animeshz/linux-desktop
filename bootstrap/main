@@ -38,6 +38,8 @@ setup_sparse_checkout && setup_sparse_toggle_alias
 
 source "$SCRIPT_DIR/04-configure.sh"
 # configure_options || else specify config (kinda)
+configure_global
+configure_distro
 
 
 # ==================== Bootstrap Execution ====================
@@ -48,7 +50,7 @@ echo_title "Bootstrap"
 source "$SCRIPT_DIR/05-bootstrap.sh"
 setup_scripts
 setup_nvchad
-install_pkgs
+bootstrap_distro
 
 
 # ==================== Finalize ====================

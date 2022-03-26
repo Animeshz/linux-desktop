@@ -1,3 +1,5 @@
+source "$SCRIPT_DIR/$distro/05-bootstrap.sh"
+
 setup_scripts() {
     echo_step "Setup Scripts"; echo
     if [[ -d "$SCRIPTS_HOME" ]]; then
@@ -28,21 +30,3 @@ setup_nvchad() {
     # ln -sf ~/.config/nvchad ~/.config/nvim/lua/custom
 }
 
-install_pkgs() {
-    echo_step "Package Installation"
-
-    # TODO: After multi-select filter from enquirer
-
-    local any_installed=0
-    local tmp=$(mktemp); xbps-query -m > ${tmp};
-    local pkgs=$(cat $SCRIPT_DIR/$distro/packages.txt | sed '/^#/d' | xargs -I{} bash -c "! grep -q {} ${tmp} && echo {}")
-    if [[ -z ${pkgs} ]]; then
-        echo_success
-    else
-        echo
-        for pkg in $pkgs; do
-            install_pkg $pkg
-        done
-        rm ${tmp}
-    fi
-}
