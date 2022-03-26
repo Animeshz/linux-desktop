@@ -23,7 +23,7 @@ locate_cmd() {
 sync_install_pkg() {
     echo_step "  Syncing repository"; echo
 
-    echo_step "    Syncing void repository"
+    echo_step "    Syncing void repository index"
     if output=$(xbps-install -S); then
         echo_success
     else
@@ -46,13 +46,18 @@ sync_install_pkg() {
 sync_xbps_src() {
     pushd ${XBPS_SRC_SETUP_PATH}
     if [[ -z $(git status --porcelain) ]] && ${XBPS_SRC_SETUP_FINISHED:-false}; then
-        run_with_user $user '\
-            git fetch upstream master \
+        run_with_user $user \
+            'git fetch upstream master \
             && git checkout master \
-            && git reset --hard upstream/master \
-            && git checkout xpack \
-            && git reset --hard upstream/master \
-            && git merge -s subtree -Xsubtree=srcpkgs xpackages/main --allow-unrelated-histories --no-edit --no-gpg-sign'
+            && git reset --hard upstream/master
+
+            commit_before_fetch=$(git rev-parse xpackages/main)
+            git fetch xpackages main
+            if [[ $(git rev-parse xpackages/main) != $commit_before_fetch ]]; then
+                git checkout xpack \
+                && git reset --hard upstream/master \
+                && git merge -s subtree -Xsubtree=srcpkgs xpackages/main --allow-unrelated-histories --no-edit --no-gpg-sign
+            fi'
         ret=$?
     fi
     popd
