@@ -21,9 +21,7 @@ locate_cmd() {
 
 # installs package generically
 sync_install_pkg() {
-    echo_step "  Syncing repository"; echo
-
-    echo_step "    Syncing void repository index"
+    echo_step "  Syncing void repository index"
     if output=$(xbps-install -S); then
         echo_success
     else
@@ -33,7 +31,7 @@ sync_install_pkg() {
         exit 1
     fi
 
-    echo_step "    Syncing xbps-src repository"
+    echo_step "  Syncing xbps-src repository"
     if output=$(sync_xbps_src 2>&1); then
         echo_success
     else
@@ -91,7 +89,7 @@ xbps_src_install() {
 
     pushd ${XBPS_SRC_SETUP_PATH}
     run_with_user $user "git checkout master && ./xbps-src pkg '$1'"
-    xbps-install -R hostdir/binpkgs "$1" || xbps-install -R hostdir/binpkgs/nonfree "$1"
+    xbps-install -R hostdir/binpkgs -y "$1" || xbps-install -R hostdir/binpkgs/nonfree -y "$1"
     ret=$?
     popd
     return $ret
@@ -104,7 +102,7 @@ xpackages_install() {
 
     pushd ${XBPS_SRC_SETUP_PATH}
     run_with_user $user "git checkout xpack && ./xbps-src pkg '$1'"
-    xbps-install -R hostdir/binpkgs/xpack "$1" || xbps-install -R hostdir/binpkgs/xpack/nonfree "$1"
+    xbps-install -R hostdir/binpkgs/xpack -y "$1" || xbps-install -R hostdir/binpkgs/xpack/nonfree -y "$1"
     ret=$?
     popd
     return $ret
