@@ -30,3 +30,15 @@ setup_nvchad() {
     # ln -sf ~/.config/nvchad ~/.config/nvim/lua/custom
 }
 
+setup_screen_dpi() {
+    echo_step "Setting up screen dpi"
+    local config=$(gen-monitor-dpi $SCREEN_SIZES)
+    if echo $config | grep -q '\b0 0\b'; then
+        rm /etc/X11/xorg.conf.d/90-monitor.conf
+        echo_failure
+    else
+        echo "$config" > /etc/X11/xorg.conf.d/90-monitor.conf
+        echo_success
+    fi
+}
+

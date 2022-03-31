@@ -14,7 +14,7 @@ run_cmd eww open topbar &
 # Use void's pipewire services temporarily, copy $XDG_CONFIG_HOME/pipewire to /etc/pipewire
 #! [ -d $HOME/.local/share/pipewire ] && install -m 755 -g $USER -o $USER -d $HOME/.local/share/pipewire
 #PIPEWIRE_RUNTIME_DIR=$HOME/.local/share/pipewire XDG_STATE_HOME=$HOME/.config pipewire &
-wireplumber &
+#wireplumber &
 
 # Key hold-repeat frequency
 xset r rate 300 50

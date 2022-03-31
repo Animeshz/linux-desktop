@@ -101,6 +101,8 @@ hc keybind $Mod-i jumpto urgent
 hc keybind Alt-space        spawn rofi -show drun -kb-cancel Alt-space,Escape
 # https://github.com/herbstluftwm/herbstluftwm/issues/1372
 hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
+hc keybind $Mod-t           spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
+hc keybind Ctrl-Alt-t       spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind $Mod-Shift-P     spawn sh -c 'active-window-pid | xclip -sel clip'
 
 hc keybind XF86AudioPlay spawn mutoggle

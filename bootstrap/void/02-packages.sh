@@ -31,17 +31,17 @@ sync_install_pkg() {
         exit 1
     fi
 
-    echo_step "  Syncing xbps-src repository"
-    if output=$(sync_xbps_src 2>&1); then
+    echo_step "  Syncing xpackages repository"
+    if output=$(sync_xpackages 2>&1); then
         echo_success
     else
-        echo_failure "Unable to sync repository, try running 'git pull' on void-packages manually"
+        echo_failure "Unable to sync repository, try running 'git fetch xpackages/main && git merge -s subtree -Xsubtree=srcpkgs xpackages/main --allow-unrelated-histories --no-edit --no-gpg-sign' on void-packages manually"
         echo "Command output:"
         printf '%s\n' $output
         exit 1
     fi
 }
-sync_xbps_src() {
+sync_xpackages() {
     pushd ${XBPS_SRC_SETUP_PATH}
     if [[ -z $(git status --porcelain) ]] && ${XBPS_SRC_SETUP_FINISHED:-false}; then
         run_with_user $user \
