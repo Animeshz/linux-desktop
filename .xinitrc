@@ -4,8 +4,9 @@ run_cmd() {
 
 # Syncs Xresources
 [ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
-#export GDK_DPI_SCALE=1.5
-#export QT_SCALE_FACTOR=1.5
+export GDK_DPI_SCALE=1.5
+export QT_SCALE_FACTOR=1.5
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # Topbar
 run_cmd eww open topbar &

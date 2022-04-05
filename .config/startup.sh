@@ -2,6 +2,7 @@
 
 # Startup script to be run by /etc/rc.local if exists as root
 # Donot use it, its at experimental stage right now
+# Also TODO: run at wake from hibernation
 << ////
 # Executes ~/.config/startup.sh for each user, if exists
 ls /home \
@@ -20,7 +21,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 run_cmd() {
-  command -v "$1" 1>/dev/null && "$@"
+  command -v "$1" 1>/dev/null && "$@" || true
 }
 
 
