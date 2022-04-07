@@ -6,7 +6,7 @@ check_distro() {
     distro="$(source /etc/os-release && printf '%s\n' "${ID}")"
     echo_step_info "$distro"
 
-    if [[ $distro = 'void' ]]; then
+    if { command -v fd && fd -td -d1 || find -type d -maxdepth 1; } | grep -q $distro; then
         echo_success
     else
         exit_with_failure "Unsupported distro"

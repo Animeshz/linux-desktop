@@ -9,5 +9,5 @@ configure_global() {
     # ask for monitor size(s) based on connected monitors
     SCREEN_SIZES=$(xrandr \
     | awk '/ connected/{print "Screen size for monitor "$1" ("$4")"}' \
-    | xargs -I{} enquirer input -m "{}")
+    | xargs -I{} enquirer input -m "{}") || exit 1
 }
