@@ -42,14 +42,17 @@ $widget_bg:            #2b2f37;
 // =============== Global Styles ===============
 
 * {
-  all: unset;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+
   font-family: "Material Design Icons", "CaskaydiaCove Nerd Font";
 }
 
 .topbar {
   background-color: $color0;
   font-size: 16px;
-  // padding: 5px 0 5px 0;
 }
 
 
@@ -78,7 +81,7 @@ $widget_bg:            #2b2f37;
 
 .workspaces {
   background-color: $widget_bg;
-  margin: 5px 0 5px 0;
+  margin-top: 3px;
   border-radius: 5px;
 
   & > .workspace {
@@ -86,7 +89,6 @@ $widget_bg:            #2b2f37;
 
     &.active {
       border-bottom: 1px solid;
-      // box-shadow: inset 0px 0px 0px 1px; 
     }
 
     &:nth-child(5n+1) {
@@ -118,3 +120,10 @@ $widget_bg:            #2b2f37;
   padding: 0 4px 0 4px;
 }
 
+progressbar {
+  margin-bottom: 12px;
+}
+
+button {
+  background: none;
+}
