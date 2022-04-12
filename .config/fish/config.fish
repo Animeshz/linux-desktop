@@ -19,21 +19,11 @@ fish_add_path /opt/flutter/bin
 fish_add_path ~/Projects/RustProjects/eww/target/release
 
 set fish_greeting
+starship init fish | source
 
 # https://stackoverflow.com/a/42265848/11377112
 set -x GPG_TTY (tty)
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
 set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
-
-starship init fish | source
-
-#alias sudo='sudo '  # Hack: https://askubuntu.com/a/22043/669216 does not work in fish
-alias snvim='sudo -E nvim'
-alias nv='~/.config/nvchad/scripts/startup.sh && nvim $argv; ~/.config/nvchad/scripts/exit.sh'
-alias snv='~/.config/nvchad/scripts/startup.sh && sudo -E nvim $argv; ~/.config/nvchad/scripts/exit.sh'
-alias hc='herbstclient'
-alias jl='jupyter-lab --notebook-dir=/home/animesh/Projects/GeneralPurpose/JupyterLab'
-alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
-alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
 
 export PATH="$PATH:$HOME/.spicetify"
