@@ -12,4 +12,7 @@ export GPG_TTY=$(tty)
 
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
+
+export PATH="$PATH:$(fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1):~/.local/bin:~/.cargo/bin:~/.emacs.d/bin:/usr/lib/ruby/gems/3.0.0/bin:/opt/flutter/bin:~/Projects/RustProjects/eww/target/release"
+
 export PATH="$PATH:$HOME/.spicetify"
