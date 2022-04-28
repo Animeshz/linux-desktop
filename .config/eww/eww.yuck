@@ -67,9 +67,9 @@
 
 (defwidget brightness_sound []
   (box :class "widget-group white" :space-evenly false
-    (box :class "red" "") " ${bright_value}"
+    (box :class "red" "") "${bright_value}"
     (separator)
-    (box :class "yellow" vol_icon) " ${vol_value}"))
+    (box :class "yellow" vol_icon) "${vol_value}"))
 
 (defwidget date_time []
   (box :class "cyan" dtime_info))
