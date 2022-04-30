@@ -8,4 +8,16 @@ return {
          require("custom.plugins.null-ls").setup()
       end,
    },
+   {
+      "nvim-neorg/neorg",
+      ft = "norg",
+      after = "nvim-treesitter",
+      config = function()
+         require('neorg').setup {
+            load = {
+               ["core.defaults"] = {}
+            }
+         }
+      end
+   },
 }

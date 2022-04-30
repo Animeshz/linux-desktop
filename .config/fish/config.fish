@@ -25,5 +25,6 @@ starship init fish | source
 set -x GPG_TTY (tty)
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
 set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
+set -x ANT_HOME /usr/share/apache-ant
 
 export PATH="$PATH:$HOME/.spicetify"
