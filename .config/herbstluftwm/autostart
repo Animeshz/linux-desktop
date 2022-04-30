@@ -107,7 +107,8 @@ hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
 ## app/program launch
-hc keybind Alt-space        spawn rofi -show drun -kb-cancel Alt-space,Escape
+#hc keybind Alt-space        spawn rofi -show drun -kb-cancel Alt-space,Escape -matching fuzzy -sorting-method fzf -sort
+hc keybind Alt-space        spawn ~/.config/rofi/launchers/misc/launcher.sh
 # https://github.com/herbstluftwm/herbstluftwm/issues/1372
 hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind $Mod-t           spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
