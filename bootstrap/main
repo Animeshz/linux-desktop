@@ -4,7 +4,7 @@
 # Collects all the customizing inputs at the start and installs everything.
 
 shopt -s expand_aliases
-cd ${SCRIPT_DIR:=${BASH_SOURCE%/*}}
+SCRIPT_DIR=${BASH_SOURCE%/*}
 
 source "$SCRIPT_DIR/00-utils.sh"
 source "$SCRIPT_DIR/01-checks.sh"
@@ -22,6 +22,11 @@ check_superuser
 check_user
 
 source "$SCRIPT_DIR/$distro/$arch/02-packages.sh"
+source "$SCRIPT_DIR/03-basic-steps.sh"
+source "$SCRIPT_DIR/04-configure.sh"
+source "$SCRIPT_DIR/05-bootstrap.sh"
+source "$SCRIPT_DIR/06-finalize.sh"
+
 check_commands_availability enquirer yadm xrandr
 
 
@@ -30,7 +35,6 @@ check_commands_availability enquirer yadm xrandr
 echo
 echo_title "Performing some basic steps"
 
-source "$SCRIPT_DIR/03-basic-steps.sh"
 setup_sparse_checkout && setup_sparse_toggle_alias
 
 
@@ -39,7 +43,6 @@ setup_sparse_checkout && setup_sparse_toggle_alias
 echo
 echo_title "Configuration"
 
-source "$SCRIPT_DIR/04-configure.sh"
 # configure_options || else specify config (kinda)
 configure_global
 configure_distro
@@ -50,7 +53,6 @@ configure_distro
 echo
 echo_title "Bootstrap"
 
-source "$SCRIPT_DIR/05-bootstrap.sh"
 setup_scripts
 setup_nvchad
 setup_screen_dpi
@@ -62,7 +64,6 @@ bootstrap_distro
 echo
 echo_title "Finalize"
 
-source "$SCRIPT_DIR/06-finalize.sh"
 finalize
 
 echo

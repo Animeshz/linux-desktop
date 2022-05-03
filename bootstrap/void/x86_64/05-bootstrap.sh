@@ -1,3 +1,5 @@
+#TODO: Break xbps-src setup into two parts, one for cloning and one for xpackages
+#TODO: Somehow make a way to install package coming from here at 01-checks (basic steps)
 setup_xbps_src() {
     echo_step "Setting up xbps-src (void-packages)"; echo
     if $XBPS_SRC_SETUP; then

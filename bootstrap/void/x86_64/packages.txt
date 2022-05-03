@@ -54,7 +54,6 @@ jq
 kitty
 kiwix-lib
 kotlin-bin
-libfprint-devel
 libkeybinder3
 libreoffice
 libsecret-devel

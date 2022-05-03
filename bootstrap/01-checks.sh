@@ -6,7 +6,7 @@ check_distro() {
     distro="$(source /etc/os-release && printf '%s\n' "${ID}")"
     echo_step_info "$distro"
 
-    if { command -v fd &>/dev/null && fd -td -d1 || find -type d -maxdepth 1; } | grep -q "^\./$distro$"; then
+    if (cd $SCRIPT_DIR && { command -v fd &>/dev/null && fd -td -d1 || find -type d -maxdepth 1; } | grep -q "^\./$distro$"); then
         echo_success
     else
         exit_with_failure "Unsupported distro"
@@ -19,7 +19,7 @@ check_arch() {
     arch=$(uname -m)
     echo_step_info "$arch"
 
-    if (cd $distro && { command -v fd &>/dev/null && fd -td -d1 || find -type d -o -type l -maxdepth 1; } | grep -q "^\./$arch$"); then
+    if (cd $SCRIPT_DIR/$distro && { command -v fd &>/dev/null && fd -td -d1 || find -type d -o -type l -maxdepth 1; } | grep -q "^\./$arch$"); then
         echo_success
     else
         exit_with_failure "Unsupported architecture"
