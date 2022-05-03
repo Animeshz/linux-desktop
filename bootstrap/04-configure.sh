@@ -3,7 +3,7 @@ SCRIPTS_URL="https://github.com/Animeshz/scripts"
 SCRIPTS_HOME="$user_home/.scripts"
 SCREEN_SIZES=
 
-source "$SCRIPT_DIR/$distro/04-configure.sh"
+source "$SCRIPT_DIR/$distro/$arch/04-configure.sh"
 
 configure_global() {
     # ask for monitor size(s) based on connected monitors

@@ -22,7 +22,7 @@ install_pkgs() {
 
     local any_installed=0
     local tmp=$(mktemp); xbps-query -m > ${tmp};
-    local pkgs=$(cat $SCRIPT_DIR/$distro/packages.txt | sed '/^#/d' | xargs -I{} bash -c "! grep -q {} ${tmp} && echo {}")
+    local pkgs=$(cat ${BASH_SOURCE%/*}/packages.txt | sed '/^#/d' | xargs -I{} bash -c "! grep -q {} ${tmp} && echo {}")
     if [[ -z ${pkgs} ]]; then
         echo_success
     else

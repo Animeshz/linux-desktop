@@ -1,4 +1,4 @@
-source "$SCRIPT_DIR/$distro/05-bootstrap.sh"
+source "$SCRIPT_DIR/$distro/$arch/05-bootstrap.sh"
 
 setup_scripts() {
     echo_step "Setup Scripts"; echo

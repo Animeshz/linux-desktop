@@ -4,7 +4,7 @@
 # Collects all the customizing inputs at the start and installs everything.
 
 shopt -s expand_aliases
-SCRIPT_DIR=${BASH_SOURCE%/*}
+cd ${SCRIPT_DIR:=${BASH_SOURCE%/*}}
 
 source "$SCRIPT_DIR/00-utils.sh"
 source "$SCRIPT_DIR/01-checks.sh"
@@ -21,7 +21,7 @@ check_network
 check_superuser
 check_user
 
-source "$SCRIPT_DIR/$distro/02-packages.sh"
+source "$SCRIPT_DIR/$distro/$arch/02-packages.sh"
 check_commands_availability enquirer yadm xrandr
 
 

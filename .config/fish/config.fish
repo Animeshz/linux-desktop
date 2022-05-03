@@ -28,3 +28,5 @@ set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
 set -x ANT_HOME /usr/share/apache-ant
 
 export PATH="$PATH:$HOME/.spicetify"
+alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
+alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"

@@ -5,5 +5,3 @@ alias snv='~/.config/nvchad/scripts/startup.sh && sudo -E nvim $argv; ~/.config/
 alias hc='herbstclient'
 alias tree='tree -C'
 alias jl='jupyter-lab --notebook-dir=/home/animesh/Projects/GeneralPurpose/JupyterLab'
-alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
-alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
