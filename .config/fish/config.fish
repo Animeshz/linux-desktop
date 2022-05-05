@@ -25,7 +25,10 @@ starship init fish | source
 set -x GPG_TTY (tty)
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
 set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
-set -x ANT_HOME /usr/share/apache-ant
+set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emuArm)
+#set -x GOROOT $HOME/.local/share/go
+set -x GOROOT $HOME/go
+fish_add_path $GOROOT/bin
 
 export PATH="$PATH:$HOME/.spicetify"
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
