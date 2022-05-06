@@ -11,7 +11,7 @@ local map = require("core.utils").map
 map("n", "cpf", "i#include <bits/stdc++.h><Esc>ousing namespace std;<Esc>o<CR>int main() {<Esc>o<Esc>oreturn 0;<Esc>o}<Esc>kki")
 map("n", "cp", "i#include <stdio.h><Esc>o<CR>int main() {<Esc>o<Esc>oreturn 0;<Esc>o}<Esc>kki")
 -- TODO: evaluate expand when mapping is called
-map("n", "jv", "ipublic class " .. vim.fn.expand("%:t:r") .. " {<Esc>opublic static void main(String args[]) {<Esc>o<Esc>o}<Esc>o}<Esc>kki")
+map("n", "cpj", "ipublic class " .. vim.fn.expand("%:t:r") .. " {<Esc>opublic static void main(String args[]) {<Esc>o<Esc>o}<Esc>o}<Esc>kki")
 
 -- https://stackoverflow.com/a/44161948/11377112
 vim.api.nvim_command("command! W exe '!mkdir -p %:h'|exe 'w'")

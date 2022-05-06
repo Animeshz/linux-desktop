@@ -7,7 +7,7 @@ M.options = {
 }
 
 M.plugins = {
-   install = require("custom.plugins"),
+   user = require("custom.plugins"),
 }
 
 M.ui = {
