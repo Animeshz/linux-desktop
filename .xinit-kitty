@@ -1,0 +1,10 @@
+# A simple standalone xorg session where only single kitty instance is alive (without any wm)
+
+[ -f ~/.Xresources ] && xrdb -merge ~/.Xresources &
+xset r rate 300 50
+
+dim=$(xrandr | awk '/ connected/{print$1,$4}' | sed 's/\+.*//' | cut -d' ' -f2)
+w=$(echo $dim | cut -dx -f1)
+h=$(echo $dim | cut -dx -f2)
+
+exec kitty --start-as fullscreen -o remember_window_size=no -o initial_window_width=$w -o initial_window_height=$h sh -c "${*:-:}; exec $SHELL"
