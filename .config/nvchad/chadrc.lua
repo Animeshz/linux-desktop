@@ -1,9 +1,13 @@
 -- inherit: lua/core/default_config.lua
+
 local M = {}
 
 M.options = {
-   relativenumber = true,
-   shiftwidth = 4,
+   user = function()
+      local opt = vim.opt
+      opt.relativenumber = true
+      opt.shiftwidth = 4
+   end
 }
 
 M.plugins = {

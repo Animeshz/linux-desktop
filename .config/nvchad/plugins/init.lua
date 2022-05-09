@@ -18,5 +18,4 @@ return {
          }
       end
    },
-   ["SirVer/ultisnips"] = {}
 }

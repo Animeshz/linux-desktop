@@ -3,7 +3,6 @@ vim.api.nvim_command("autocmd Filetype json setlocal expandtab tabstop=2 shiftwi
 vim.api.nvim_command("autocmd Filetype lua setlocal expandtab tabstop=3 shiftwidth=3 softtabstop=3")
 vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")  -- autoremove trailing spaces
 
-
 -- ===== KeyBindings =====
 local map = require("core.utils").map
 
@@ -19,3 +18,5 @@ vim.api.nvim_command("command! W exe '!mkdir -p %:h'|exe 'w'")
 -- ===== Extra =====
 vim.api.nvim_command("highlight ExtraWhitespace ctermbg=red guibg=red")
 vim.api.nvim_command("match ExtraWhitespace /\\s\\+$/")
+
+require("luasnip.loaders.from_snipmate").load({ paths = { "./snippets" } })

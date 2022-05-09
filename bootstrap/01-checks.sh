@@ -6,7 +6,7 @@ check_distro() {
     distro="$(source /etc/os-release && printf '%s\n' "${ID}")"
     echo_step_info "$distro"
 
-    if (cd $SCRIPT_DIR && { command -v fd &>/dev/null && fd -td -d1 || find -type d -maxdepth 1; } | grep -q "^\./$distro$"); then
+    if (cd $SCRIPT_DIR && { command -v fd &>/dev/null && fd -td -d1 || find -maxdepth 1 -type d; } | grep -q "^\./$distro$"); then
         echo_success
     else
         exit_with_failure "Unsupported distro"
@@ -19,7 +19,7 @@ check_arch() {
     arch=$(uname -m)
     echo_step_info "$arch"
 
-    if (cd $SCRIPT_DIR/$distro && { command -v fd &>/dev/null && fd -td -d1 || find -type d -o -type l -maxdepth 1; } | grep -q "^\./$arch$"); then
+    if (cd $SCRIPT_DIR/$distro && { command -v fd &>/dev/null && fd -td -d1 || find -maxdepth 1 -type d -o -type l; } | grep -q "^\./$arch$"); then
         echo_success
     else
         exit_with_failure "Unsupported architecture"
@@ -73,19 +73,20 @@ check_commands_availability() {
     done
 
     if [[ ${#not_founds} -ne 0 ]]; then
-        echo_step "Do you want to install the packages providing the commands? (y/n) "
+        echo_step "Do you want to install the packages providing the commands? (Y/n) "
         read -n1 ans
-        if [[ $ans != 'y' ]]; then
+        if [[ $ans != 'y' || $ans != '\n' ]]; then
             exit_with_failure "Cannot continue without required commands"
         fi
 
         echo
+        sync_install_pkg
         sync_locate_cmd
+
         echo_step "  Finding package(s) providing the commands"
         pkgs=($(TERM=linux; for cmd in "${not_founds[@]}"; do locate_cmd $cmd; done))
         [[ $? = 0 ]] && echo_success || exit_with_failure "some packages can't be located"
 
-        sync_install_pkg
         for pkg in "${pkgs[@]}"; do
             install_pkg $pkg
         done

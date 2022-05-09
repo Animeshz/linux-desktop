@@ -2,7 +2,7 @@
 sync_locate_cmd() {
     if ! command_exists xlocate; then
         echo_step "  xlocate not found, installing xtools"
-        install xtools &>/dev/null && echo_success || exit_with_failure
+        install_pkg xtools
     fi
 
     echo_step "  Syncing xlocate"
@@ -42,8 +42,8 @@ sync_install_pkg() {
     fi
 }
 sync_xpackages() {
-    pushd ${XBPS_SRC_SETUP_PATH}
-    if [[ -z $(git status --porcelain) ]] && ${XBPS_SRC_SETUP_FINISHED:-false}; then
+    if ${XBPS_SRC_SETUP_FINISHED:-false} && [[ -z $(git status --porcelain) ]]; then
+        pushd ${XBPS_SRC_SETUP_PATH}
         run_with_user $user \
             'git fetch upstream master \
             && git checkout master \
@@ -57,8 +57,8 @@ sync_xpackages() {
                 && git merge -s subtree -Xsubtree=srcpkgs xpackages/main --allow-unrelated-histories --no-edit --no-gpg-sign
             fi'
         ret=$?
+        popd
     fi
-    popd
     return $ret
 }
 

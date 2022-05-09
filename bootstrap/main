@@ -27,7 +27,11 @@ source "$SCRIPT_DIR/04-configure.sh"
 source "$SCRIPT_DIR/05-bootstrap.sh"
 source "$SCRIPT_DIR/06-finalize.sh"
 
-check_commands_availability enquirer yadm xrandr
+check_commands_availability startx kitty enquirer yadm xrandr Xorg # direct pkg-name (for kitty, see ~/todo-paths): mesa mesa-dri
+
+if [[ ! -n $DISPLAY ]]; then
+    startx ~/.xinit-kitty sudo ~/bootstrap/main && exit
+fi
 
 
 # ==================== Basic Steps ====================
