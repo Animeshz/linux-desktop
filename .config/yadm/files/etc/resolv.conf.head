@@ -1,0 +1,3 @@
+# /etc/resolv.conf.head can replace this line
+nameserver 1.1.1.1
+nameserver 172.10.100.1

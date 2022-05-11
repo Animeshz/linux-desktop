@@ -20,6 +20,7 @@ fish_add_path ~/Projects/RustProjects/eww/target/release
 
 set fish_greeting
 starship init fish | source
+[ -f ~/.config/env-tokens ] && source ~/.config/env-tokens
 
 # https://stackoverflow.com/a/42265848/11377112
 set -x GPG_TTY (tty)
