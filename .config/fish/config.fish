@@ -26,9 +26,9 @@ set -x GPG_TTY (tty)
 set -x PKG_CONFIG_PATH /usr/lib/pkgconfig
 set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
 set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emuArm)
-#set -x GOROOT $HOME/.local/share/go
-set -x GOROOT $HOME/go
-fish_add_path $GOROOT/bin
+set -x GOROOT /usr/lib/go
+set -x GOPATH $HOME/.go
+mkdir -p $GOPATH && fish_add_path $GOPATH/bin
 
 export PATH="$PATH:$HOME/.spicetify"
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"

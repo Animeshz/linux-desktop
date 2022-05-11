@@ -4,7 +4,7 @@ vim.api.nvim_command("autocmd Filetype lua setlocal expandtab tabstop=3 shiftwid
 vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")  -- autoremove trailing spaces
 
 -- ===== KeyBindings =====
-local map = require("core.utils").map
+local map = nvchad.map
 
 -- https://mr-destructive.github.io/techstructive-blog/vim/comnpetitive-programming/2021/09/13/Vim-for-cp.html
 map("n", "cpf", "i#include <bits/stdc++.h><Esc>ousing namespace std;<Esc>o<CR>int main() {<Esc>o<Esc>oreturn 0;<Esc>o}<Esc>kki")
