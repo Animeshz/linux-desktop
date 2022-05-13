@@ -17,6 +17,7 @@ fish_add_path ~/.emacs.d/bin
 fish_add_path /usr/lib/ruby/gems/3.0.0/bin
 fish_add_path /opt/flutter/bin
 fish_add_path ~/Projects/RustProjects/eww/target/release
+fish_add_path ~/Projects/GeneralPurpose/templates
 
 set fish_greeting
 starship init fish | source

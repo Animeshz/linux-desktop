@@ -4,8 +4,9 @@ setup_xbps_src() {
     echo_step "Setting up xbps-src (void-packages)"; echo
     if $XBPS_SRC_SETUP; then
         if [[ ! -d "$XBPS_SRC_SETUP_PATH" ]]; then
+            # TODO: quietly clone unless non-zero exit
             echo_step "  Cloning void-packages repository and setting upstreams"
-            git clone "$VOID_REPO_USER" "$XBPS_SRC_SETUP_PATH"
+            git clone --depth=1 "$VOID_REPO_USER" "$XBPS_SRC_SETUP_PATH"
 
             pushd $XBPS_SRC_SETUP_PATH
             git remote add --fetch upstream $VOID_REPO_UPSTREAM
