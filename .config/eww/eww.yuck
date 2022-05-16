@@ -94,9 +94,9 @@
 (defwidget ram_disk []
   (eventbox :onhover "eww update ram_disk_toggle=true" :onhoverlost "eww update ram_disk_toggle=false"
     (box :class "widget-group magenta" :space-evenly false
-      "${round(EWW_RAM["used_mem"]/1024, 0)}M" (revealer :transition "slideright" :reveal ram_disk_toggle "Used")
+      "${round(EWW_RAM["used_mem"]/1024, 0)}M" (revealer :transition "slideright" :reveal ram_disk_toggle "(${round(EWW_RAM["used_mem_perc"],0)}%) Used")
       (separator)
-      "${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle "Free"))))
+      "${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle "(${100-round(EWW_DISK["/"]["used_perc"],0)}%) Free"))))
 
 (defwidget battery []
   (box :class "widget-group yellow" :visible {battery_value != ''} " ${battery_value}"))
