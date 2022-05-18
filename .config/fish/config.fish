@@ -30,7 +30,13 @@ set -x CHROME_EXECUTABLE /bin/brave-browser-stable  # for flutter
 set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emuArm)
 set -x GOROOT /usr/lib/go
 set -x GOPATH $HOME/.go
+set -x ANDROID_HOME ~/.android-data/Sdk
+
 mkdir -p $GOPATH && fish_add_path $GOPATH/bin
+fish_add_path $ANDROID_HOME/tools
+fish_add_path $ANDROID_HOME/tools/bin
+fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
+
 
 export PATH="$PATH:$HOME/.spicetify"
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"

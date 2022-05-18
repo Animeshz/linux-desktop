@@ -75,7 +75,7 @@ check_commands_availability() {
     if [[ ${#not_founds} -ne 0 ]]; then
         echo_step "Do you want to install the packages providing the commands? (Y/n) "
         read -n1 ans
-        if [[ $ans != 'y' && $(LC_CTYPE=C printf '%d' "'$ans") != '0' ]]; then
+        if [[ $ans != 'y' && $(LC_CTYPE=C printf '%d' "'$ans") != '0' ]]; then  # y|\n
             exit_with_failure "Cannot continue without required commands"
         fi
 
