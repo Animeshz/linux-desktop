@@ -10,6 +10,10 @@ function fish_user_key_bindings
     bind \cV "fish_commandline_prepend_full 'xclip -sel clip -o |'"  # https://github.com/fish-shell/fish-shell/issues/8763
 end
 
+function cmd_exists
+    command -v $argv[1] 1>/dev/null && true || false
+end
+
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
@@ -20,7 +24,7 @@ fish_add_path ~/Projects/RustProjects/eww/target/release
 fish_add_path ~/Projects/GeneralPurpose/templates
 
 set fish_greeting
-starship init fish | source
+cmd_exists starship && starship init fish | source
 [ -f ~/.config/env-tokens ] && source ~/.config/env-tokens
 
 # https://stackoverflow.com/a/42265848/11377112
@@ -31,6 +35,7 @@ set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emu
 set -x GOROOT /usr/lib/go
 set -x GOPATH $HOME/.go
 set -x ANDROID_HOME ~/.android-data/Sdk
+if [ -f /usr/lib64/dri/iHD_drv_video.so ]; set -x LIBVA_DRIVER_NAME iHD; end
 
 mkdir -p $GOPATH && fish_add_path $GOPATH/bin
 fish_add_path $ANDROID_HOME/tools
@@ -41,3 +46,6 @@ fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
 export PATH="$PATH:$HOME/.spicetify"
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
 alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+test -f '/home/animesh/.config/netlify/helper/path.fish.inc' && source '/home/animesh/.config/netlify/helper/path.fish.inc'

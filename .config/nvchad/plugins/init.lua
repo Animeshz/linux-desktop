@@ -18,5 +18,10 @@ return {
          }
       end
    },
-   ['mg979/vim-visual-multi'] = {}
+   ['mg979/vim-visual-multi'] = {},
+   ['phaazon/hop.nvim'] = {
+      config = function()
+         require('hop').setup()
+      end
+   }
 }
