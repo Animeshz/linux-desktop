@@ -6,8 +6,8 @@ GRUB_HIDDEN_TIMEOUT=0
 GRUB_HIDDEN_TIMEOUT_QUIET=false
 GRUB_TIMEOUT=0
 GRUB_DISTRIBUTOR="Void"
-#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 mem_sleep_default=deep acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable noacpi=1"
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable noacpi=1"
+#GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 mem_sleep_default=deep acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable nvme.noacpi=1"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable nvme.noacpi=1"
 # Uncomment to use basic console
 #GRUB_TERMINAL_INPUT="console"
 # Uncomment to disable graphical terminal
