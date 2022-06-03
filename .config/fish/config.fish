@@ -35,6 +35,7 @@ set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emu
 set -x GOROOT /usr/lib/go
 set -x GOPATH $HOME/.go
 set -x ANDROID_HOME ~/.android-data/Sdk
+
 if [ -f /usr/lib64/dri/iHD_drv_video.so ]; set -x LIBVA_DRIVER_NAME iHD; end
 
 mkdir -p $GOPATH && fish_add_path $GOPATH/bin

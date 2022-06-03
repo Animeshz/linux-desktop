@@ -21,14 +21,20 @@ check_network
 check_superuser
 check_user
 
+source "$SCRIPT_DIR/$distro/$arch/01-checks.sh"
 source "$SCRIPT_DIR/$distro/$arch/02-packages.sh"
 source "$SCRIPT_DIR/03-basic-steps.sh"
 source "$SCRIPT_DIR/04-configure.sh"
 source "$SCRIPT_DIR/05-bootstrap.sh"
 source "$SCRIPT_DIR/06-finalize.sh"
 
+not_founds=()
 check_commands_availability kitty enquirer yadm xrandr xauth
 check_pkg_availability xorg font-firacode mesa mesa-dri
+
+#for pkg in "${not_founds[@]}"; do
+#    install_pkg $pkg
+#done
 
 if [[ ! -n $DISPLAY ]]; then
     exec startx ${SCRIPT_DIR%/*}/.xinit-kitty sudo $SCRIPT_DIR/main

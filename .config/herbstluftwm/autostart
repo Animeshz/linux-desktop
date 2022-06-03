@@ -18,8 +18,6 @@ hc keyunbind --all
 
 Mod=Mod4   # Mod1 = Alt, Mod4 = Super/Windows key
 
-hc keybind $Mod-Shift-e  spawn emacsclient -c -a emacs
-
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-w close
@@ -117,7 +115,10 @@ hc keybind Alt-space        spawn ~/.config/rofi/launchers/misc/launcher.sh
 hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind $Mod-t           spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind Ctrl-Alt-t       spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
-hc keybind $Mod-Shift-P     spawn sh -c 'active-window-pid | xclip -sel clip'
+hc keybind $Mod-Shift-p     spawn sh -c 'active-window-pid | xclip -sel clip'
+hc keybind $Mod-Shift-c     spawn sh -c 'printf "document.querySelector(\"video\").playbackRate = 3" | xclip -sel clip'
+
+hc keybind $Mod-Shift-e  spawn emacsclient -c -a emacs
 
 # These depends on dbus-session at local user, rest of them defined in /etc/acpi/handler.sh
 hc keybind XF86AudioPlay spawn mutoggle

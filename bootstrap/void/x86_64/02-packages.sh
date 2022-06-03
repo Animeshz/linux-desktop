@@ -81,6 +81,10 @@ install_pkg() {
         exit 1
     fi
 }
+query_pkg() {
+    xbps-query -m | grep "^$1-" 1>/dev/null
+    return $?
+}
 
 xbps_src_install() {
     if ! ${XBPS_SRC_SETUP_FINISHED:-false}; then

@@ -67,13 +67,12 @@ check_cmds_step() {
 }
 check_commands_availability() {
     echo_step "Checking if required commands are available"; echo
-    local not_founds=()
     for program in "$@"; do
         check_cmds_step $program
     done
 
     if [[ ${#not_founds} -ne 0 ]]; then
-        echo_step "Do you want to install the packages providing the commands? (Y/n) "
+        echo_step "Do you want to install the required packages? (Y/n) "
         read -n1 ans
         if [[ $ans != 'y' && $(LC_CTYPE=C printf '%d' "'$ans") != '0' ]]; then  # y|\n
             exit_with_failure "Cannot continue without required commands"
@@ -86,9 +85,6 @@ check_commands_availability() {
         echo_step "  Finding package(s) providing the commands"
         pkgs=($(TERM=linux; for cmd in "${not_founds[@]}"; do locate_cmd $cmd; done))
         [[ $? = 0 ]] && echo_success || exit_with_failure "some packages can't be located"
-
-        for pkg in "${pkgs[@]}"; do
-            install_pkg $pkg
-        done
     fi
 }
+
