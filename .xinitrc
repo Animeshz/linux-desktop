@@ -7,6 +7,7 @@ run_cmd() {
 export GDK_DPI_SCALE=1.5
 export QT_SCALE_FACTOR=1.5
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_ENABLE_HIDPI_SCALING=1
 
 # Topbar
 run_cmd eww open topbar &

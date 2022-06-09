@@ -14,6 +14,10 @@ function cmd_exists
     command -v $argv[1] 1>/dev/null && true || false
 end
 
+# For GOROOT to not takeover /usr/bin
+fish_add_path /usr/bin
+fish_add_path /usr/local/bin
+
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
@@ -42,7 +46,6 @@ mkdir -p $GOPATH && fish_add_path $GOPATH/bin
 fish_add_path $ANDROID_HOME/tools
 fish_add_path $ANDROID_HOME/tools/bin
 fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
-
 
 export PATH="$PATH:$HOME/.spicetify"
 alias dothide="yadm sparse-checkout set '/*' '!README.md' '!UNLICENSE' '!bootstrap' && yadm checkout --quiet"
