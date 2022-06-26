@@ -17,13 +17,14 @@ end
 # For GOROOT to not takeover /usr/bin
 fish_add_path /usr/bin
 fish_add_path /usr/local/bin
+fish_add_path /usr/lib/ruby/gems/3.0.0/bin
+fish_add_path /opt/flutter/bin
 
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.emacs.d/bin
-fish_add_path /usr/lib/ruby/gems/3.0.0/bin
-fish_add_path /opt/flutter/bin
+
 fish_add_path ~/Projects/RustProjects/eww/target/release
 fish_add_path ~/Projects/GeneralPurpose/templates
 
