@@ -5,3 +5,5 @@ alias snv='~/.config/nvchad/scripts/startup.sh && sudo -E nvim $argv; ~/.config/
 alias hc='herbstclient'
 alias tree='tree -C'
 alias jl='jupyter-lab --notebook-dir=/home/animesh/Projects/GeneralPurpose/JupyterLab'
+alias :q='exit'
+alias lsblk="lsblk -o NAME,MODEL,MAJ:MIN,TRAN,FSTYPE,RM,SIZE,RO,LABEL,MOUNTPOINTS"

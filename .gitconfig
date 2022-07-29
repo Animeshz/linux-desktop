@@ -6,7 +6,7 @@
     signingkey = 541C03D55917185E
 [core]
     editor = nvim
-	symlinks = true
+    symlinks = true
 [pager]
     diff = delta
 [interactive]
@@ -16,6 +16,7 @@
 [alias]
 	stash-keep = !git stash store $(git stash create)
 	webui = !/home/animesh/.git-webui/release/libexec/git-core/git-webui
+	exec = "!exec "  # runs command from root of git repository
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

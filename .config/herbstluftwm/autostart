@@ -118,8 +118,7 @@ hc keybind Ctrl-Alt-t       spawn sh -c '"$(command -v pwd-launch || printf "eva
 hc keybind $Mod-Shift-p     spawn sh -c 'active-window-pid | xclip -sel clip'
 hc keybind $Mod-Shift-c     spawn sh -c 'printf "document.querySelector(\"video\").playbackRate = 3" | xclip -sel clip'
 
-hc keybind $Mod-Shift-e  spawn emacsclient -c -a emacs
-
+hc keybind $Mod-Shift-e  spawn emote
 # These depends on dbus-session at local user, rest of them defined in /etc/acpi/handler.sh
 hc keybind XF86AudioPlay spawn mutoggle
 hc keybind XF86AudioStop spawn mutoggle
@@ -132,6 +131,7 @@ hc mouseunbind --all
 hc mousebind $Mod-Button1 move
 hc mousebind $Mod-Button2 zoom
 hc mousebind $Mod-Button3 resize
+hc mousebind $Mod-Control-Button1 resize
 
 
 # =============== Theming ===============

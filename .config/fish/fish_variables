@@ -2,10 +2,13 @@
 # VERSION: 3.0
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_npp:notepadqq
+SETUVAR _fish_abbr_nqq:notepadqq
 SETUVAR _fish_abbr_pmem:sudo\x20ps_mem
+SETUVAR _fish_abbr_xf:xbps\x2dquery\x20\x2dRf
 SETUVAR _fish_abbr_xi:sudo\x20xbps\x2dinstall
 SETUVAR _fish_abbr_xp:sudo\x20xbps\x2dpkgdb
 SETUVAR _fish_abbr_xq:xbps\x2dquery\x20\x2dRs
+SETUVAR _fish_abbr_xqf:xbps\x2dquery\x20\x2dRf
 SETUVAR _fish_abbr_xr:sudo\x20xbps\x2dremove\x20\x2dR
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
@@ -36,4 +39,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/animesh/\x2econfig/netlify/helper/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/cmdline\x2dtools/latest/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools\x1e/home/animesh/\x2ego/bin\x1e/home/animesh/Projects/GeneralPurpose/templates\x1e/home/animesh/Projects/RustProjects/eww/target/release\x1e/home/animesh/\x2eemacs\x2ed/bin\x1e/home/animesh/\x2ecargo/bin\x1e/home/animesh/\x2elocal/bin\x1e/home/animesh/\x2escripts/acpi\x1e/home/animesh/\x2escripts/bootstrapping\x1e/home/animesh/\x2escripts/main\x1e/home/animesh/\x2escripts/snips\x1e/opt/flutter/bin\x1e/usr/local/bin\x1e/usr/bin
+SETUVAR fish_user_paths:/usr/lib/ruby/gems/3\x2e1\x2e0/bin\x1e/home/animesh/\x2econfig/netlify/helper/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/cmdline\x2dtools/latest/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools\x1e/home/animesh/\x2ego/bin\x1e/home/animesh/Projects/GeneralPurpose/templates\x1e/home/animesh/Projects/RustProjects/eww/target/release\x1e/home/animesh/\x2eemacs\x2ed/bin\x1e/home/animesh/\x2ecargo/bin\x1e/home/animesh/\x2elocal/bin\x1e/home/animesh/\x2escripts/acpi\x1e/home/animesh/\x2escripts/bootstrapping\x1e/home/animesh/\x2escripts/main\x1e/home/animesh/\x2escripts/snips\x1e/opt/flutter/bin\x1e/usr/local/bin\x1e/usr/bin
