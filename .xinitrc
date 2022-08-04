@@ -1,1 +1,1 @@
-/home/animesh/.xinit-hlwm
+.xinit-hlwm
