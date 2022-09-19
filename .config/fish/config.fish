@@ -14,6 +14,8 @@ function cmd_exists
     command -v $argv[1] 1>/dev/null && true || false
 end
 
+set -x EDITOR nvim
+
 # For GOROOT to not takeover /usr/bin
 fish_add_path /usr/bin
 fish_add_path /usr/local/bin
@@ -26,7 +28,7 @@ fish_add_path ~/.cargo/bin
 fish_add_path ~/.emacs.d/bin
 
 fish_add_path ~/Projects/RustProjects/eww/target/release
-fish_add_path ~/Projects/GeneralPurpose/templates
+fish_add_path ~/Projects/main/templates
 
 set fish_greeting
 cmd_exists starship && starship init fish | source

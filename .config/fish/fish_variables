@@ -3,10 +3,18 @@
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_nc:nix\x2dchannel\x20\x2d\x2dadd
 SETUVAR _fish_abbr_ncu:nix\x2dchannel\x20\x2d\x2dupdate
+SETUVAR _fish_abbr_nfd:nix\x20develop
+SETUVAR _fish_abbr_nfr:nix\x20run\x20nixpkgs\x23
+SETUVAR _fish_abbr_nfs:nix\x20shell\x20nixpkgs\x23
 SETUVAR _fish_abbr_ng:nix\x2dcollect\x2dgarbage\x20\x2dd
+SETUVAR _fish_abbr_nph:nix\x20profile\x20history
+SETUVAR _fish_abbr_npi:nix\x20profile\x20install
 SETUVAR _fish_abbr_npp:notepadqq
+SETUVAR _fish_abbr_npr:nix\x20profile\x20remove
+SETUVAR _fish_abbr_nproll:nix\x20profile\x20rollback\x20\x2d\x2dto
 SETUVAR _fish_abbr_nqq:notepadqq
 SETUVAR _fish_abbr_ns:nix\x2dshell
+SETUVAR _fish_abbr_nu:nix\x2dchannel\x20\x2d\x2dupdate
 SETUVAR _fish_abbr_pmem:sudo\x20ps_mem
 SETUVAR _fish_abbr_xX:xbps\x2dquery\x20\x2dRX
 SETUVAR _fish_abbr_xf:xbps\x2dquery\x20\x2dRf
@@ -49,4 +57,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/usr/lib/ruby/gems/3\x2e1\x2e0/bin\x1e/home/animesh/\x2econfig/netlify/helper/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/cmdline\x2dtools/latest/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools\x1e/home/animesh/\x2ego/bin\x1e/home/animesh/Projects/GeneralPurpose/templates\x1e/home/animesh/Projects/RustProjects/eww/target/release\x1e/home/animesh/\x2eemacs\x2ed/bin\x1e/home/animesh/\x2ecargo/bin\x1e/home/animesh/\x2elocal/bin\x1e/home/animesh/\x2escripts/acpi\x1e/home/animesh/\x2escripts/bootstrapping\x1e/home/animesh/\x2escripts/main\x1e/home/animesh/\x2escripts/snips\x1e/opt/flutter/bin\x1e/usr/local/bin\x1e/usr/bin
+SETUVAR fish_user_paths:/home/animesh/Projects/main/templates\x1e/usr/lib/ruby/gems/3\x2e1\x2e0/bin\x1e/home/animesh/\x2econfig/netlify/helper/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/cmdline\x2dtools/latest/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools/bin\x1e/home/animesh/\x2eandroid\x2ddata/Sdk/tools\x1e/home/animesh/\x2ego/bin\x1e/home/animesh/Projects/GeneralPurpose/templates\x1e/home/animesh/Projects/RustProjects/eww/target/release\x1e/home/animesh/\x2eemacs\x2ed/bin\x1e/home/animesh/\x2ecargo/bin\x1e/home/animesh/\x2elocal/bin\x1e/home/animesh/\x2escripts/acpi\x1e/home/animesh/\x2escripts/bootstrapping\x1e/home/animesh/\x2escripts/main\x1e/home/animesh/\x2escripts/snips\x1e/opt/flutter/bin\x1e/usr/local/bin\x1e/usr/bin
