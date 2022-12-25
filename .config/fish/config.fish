@@ -21,17 +21,22 @@ fish_add_path /usr/bin
 fish_add_path /usr/local/bin
 fish_add_path /usr/lib/ruby/gems/3.1.0/bin
 fish_add_path /opt/flutter/bin
+fish_add_path /opt/cmdline-tools/bin
 
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
 fish_add_path ~/.local/bin
+fish_add_path ~/.yarn/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.emacs.d/bin
+fish_add_path -a ~/.nix-profile/bin
+fish_add_path -a ~/.platformio/penv/bin
 
 fish_add_path ~/Projects/RustProjects/eww/target/release
 fish_add_path ~/Projects/main/templates
 
 set fish_greeting
 cmd_exists starship && starship init fish | source
+cmd_exists zoxide && zoxide init fish | source
 [ -f ~/.config/env-tokens ] && source ~/.config/env-tokens
 
 # https://stackoverflow.com/a/42265848/11377112
