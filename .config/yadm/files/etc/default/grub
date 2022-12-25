@@ -1,13 +1,15 @@
 #
 # Configuration file for GRUB.
 #
-GRUB_DEFAULT=0
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
 GRUB_HIDDEN_TIMEOUT=0
 GRUB_HIDDEN_TIMEOUT_QUIET=false
-GRUB_TIMEOUT=1
+GRUB_TIMEOUT=2
 GRUB_DISTRIBUTOR="Void"
 #GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 mem_sleep_default=deep acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable nvme.noacpi=1"
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable nvme.noacpi=1"
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=4 acpi_osi='Windows 2020' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable nvme.noacpi=1 intel_iommu=on rd.driver.pre=vfio-pci kvm.ignore_msrs=1"
+GRUB_DISABLE_OS_PROBER=false
 # Uncomment to use basic console
 #GRUB_TERMINAL_INPUT="console"
 # Uncomment to disable graphical terminal
