@@ -1,3 +1,0 @@
-! Set 1.5x scaling for most of X11 apps
-Xft.dpi: 144
-Xcursor.size: 50
