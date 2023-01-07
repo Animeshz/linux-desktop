@@ -7,10 +7,7 @@ $primary_user = 'animesh'
 # === System ===
 
 class { 'system::timezone': timezone => 'Asia/Kolkata' }
-class { 'system::locales':
-  locale_gen_cmd => 'xbps-reconfigure --force glibc-locales',
-  locales        => ['en_US.UTF-8 UTF-8'],
-}
+class { 'system::locales':  locales  => ['en_US.UTF-8 UTF-8']}
 
 # Uses agueas, doesn't override other options present in the file
 system::sysctl::conf {
@@ -53,7 +50,6 @@ user { $primary_user:
 
 class {'packages::vscode':
   ensure          => installed,
-  binary_name     => 'code-oss',
   config_location => "/home/${primary_user}/.config/Code - OSS/",
   settings        => file('configs/vscode/settings.json'),
   extensions      => [

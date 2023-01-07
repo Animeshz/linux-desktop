@@ -1,11 +1,11 @@
 # This module manages the system's locales setting.
 class system::locales (
-  String[1]     $locale_gen_cmd,
   Array[String] $locales        = ['en_US.UTF-8 UTF-8'],
-  String[1]     $config_file    = '/etc/locale.conf',
-  String[1]     $default_file   = '/etc/default/libc-locales',
-  String[1]     $package        = 'glibc-locales',
-  String[1]        $default_locale      = $locales[0],
+  String[1]     $config_file    = $facts['os']['family'] ? { 'Void' => '/etc/locale.conf',                        default => '/etc/locale.gen' },
+  String[1]     $default_file   = $facts['os']['family'] ? { 'Void' => '/etc/default/libc-locales',               default => '/etc/locale.conf' },
+  String[1]     $locale_gen_cmd = $facts['os']['family'] ? { 'Void' => 'xbps-reconfigure --force glibc-locales',  default => '/usr/bin/locale-gen' },
+  String[1]     $package        = $facts['os']['family'] ? { 'Void' => 'glibc-locales',                           default => 'glibc' },
+  String[1]        $default_locale      = split($locales[0], / /)[0],
   Optional[String] $language            = undef,
   Optional[String] $lc_ctype            = undef,
   Optional[String] $lc_collate          = 'C',
