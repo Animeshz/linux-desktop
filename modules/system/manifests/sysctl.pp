@@ -6,6 +6,9 @@ class system::sysctl (
 
   file { $sysctl_file:
     ensure => present,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   exec { 'sysctl-load':

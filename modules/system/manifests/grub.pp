@@ -4,11 +4,12 @@ class system::grub (
 ) {
   include packages::augeas
 
-  file { $grub_file:
-    ensure => present,
-  }
-
   package { 'grub': ensure => installed }
+
+  file { $grub_file:
+    ensure  => present,
+    require => Package['grub'],
+  }
 
   exec { 'grub-update':
     command     => 'sh -c "update-grub || grub-mkconfig -o /boot/grub/grub.cfg"',

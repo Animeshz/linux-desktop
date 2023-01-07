@@ -12,7 +12,8 @@ Puppet::Type.type(:package).provide :vscode, :parent => Puppet::Provider::Packag
   def self.instances
     begin
       packages = []
-      execpipe("code --list-extensions 2>/dev/null || vscode --list-extensions 2>/dev/null || code-oss --list-extensions 2>/dev/null") do |pipe|
+      args = "--list-extensions --no-sandbox --user-data-dir /tmp --extensions-dir $VSCODE_EXTENSIONS 2>/dev/null"
+      execpipe("bash -c 'source /etc/environment && code #{args} || vscode #{args} || code-oss #{args}'") do |pipe|
         pipe.each_line do |line|
           packages << new({ name: line.chomp, ensures: 'present', provider: self.name })
         end
@@ -40,13 +41,15 @@ Puppet::Type.type(:package).provide :vscode, :parent => Puppet::Provider::Packag
   def install
     resource_name = @resource[:name]
 
-    execute("code --install-extension #{resource_name} 2>/dev/null || vscode --install-extension #{resource_name} 2>/dev/null || code-oss --install-extension #{resource_name} 2>/dev/null")
+    args = "--install-extension #{resource_name} --no-sandbox --user-data-dir /tmp --extensions-dir $VSCODE_EXTENSIONS 2>/dev/null"
+    execute("bash -c 'source /etc/environment && code #{args} || vscode #{args} || code-oss #{args}'")
   end
 
   # Removes an extension from the vscode.
   def uninstall
     resource_name = @resource[:name]
 
-    execute("code --uninstall-extension #{resource_name} 2>/dev/null || vscode --uninstall-extension #{resource_name} 2>/dev/null || code-oss --uninstall-extension #{resource_name} 2>/dev/null")
+    args = "--uninstall-extension #{resource_name} --no-sandbox --user-data-dir /tmp --extensions-dir $VSCODE_EXTENSIONS 2>/dev/null"
+    execute("bash -c 'source /etc/environment && code #{args} || vscode #{args} || code-oss #{args}'")
   end
 end
