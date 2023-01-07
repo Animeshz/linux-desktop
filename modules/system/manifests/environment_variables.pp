@@ -9,6 +9,10 @@ class system::environment_variables {
     mode   => '0644',
   }
 
+  echo { 'env-changed':
+    message => 'Please relogin/reboot to refresh changes to the environment variables',
+    refreshonly => true,
+  }
 }
 
 # Applies environment variable config
@@ -20,6 +24,6 @@ define system::environment_variables::new ($value) {
     context => "/files/${system::environment_variables::env_file}",
     onlyif  => "get ${key} != '${value}'",
     changes => "set ${key} '${value}'",
-    notify  => notice('Please relogin/reboot to refresh changes to the environment variables')
+    notify  => Echo['env-changed'],
   }
 }
