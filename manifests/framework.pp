@@ -42,7 +42,7 @@ user { $primary_user:
   groups     => ['wheel'],
   membership => 'minimum',
   # require    => [Class['packages::fish']],
-  password   => file('configs/private/password'),
+  password   => file('config/private/password'),
 }
 
 
@@ -51,7 +51,7 @@ user { $primary_user:
 class {'packages::vscode':
   ensure          => installed,
   config_location => "/home/${primary_user}/.config/Code - OSS/",
-  settings        => file('configs/vscode/settings.json'),
+  settings        => file('config/vscode/settings.json'),
   extensions      => [
     'asvetliakov.vscode-neovim',
     'brettm12345.nixfmt-vscode',
