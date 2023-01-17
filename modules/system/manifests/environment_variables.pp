@@ -10,7 +10,7 @@ class system::environment_variables {
   }
 
   echo { 'env-changed':
-    message => 'Please relogin/reboot to refresh changes to the environment variables',
+    message     => 'Please relogin/reboot to refresh changes to the environment variables',
     refreshonly => true,
   }
 }

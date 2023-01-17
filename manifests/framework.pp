@@ -7,7 +7,7 @@ $primary_user = 'animesh'
 # === System ===
 
 class { 'system::timezone': timezone => 'Asia/Kolkata' }
-class { 'system::locales':  locales  => ['en_US.UTF-8 UTF-8']}
+class { 'system::locales':  locales  => ['en_US.UTF-8 UTF-8'] }
 
 # Uses agueas, doesn't override other options present in the file
 system::sysctl::conf {
@@ -33,13 +33,17 @@ mount { '/sys/firmware/efi/efivars':
 
 # === Users ===
 
+group { 'puppet':
+  ensure => present,
+}
+
 user { $primary_user:
   ensure     => present,
   system     => false,
   managehome => true,
-  home       => '/home/animesh',
+  home       => "/home/${primary_user}",
   shell      => '/usr/bin/fish',
-  groups     => ['wheel'],
+  groups     => ['wheel', 'puppet'],
   membership => 'minimum',
   # require    => [Class['packages::fish']],
   password   => file('config/private/password'),
@@ -49,10 +53,8 @@ user { $primary_user:
 # === Packages ===
 
 class {'packages::vscode':
-  ensure          => installed,
-  config_location => "/home/${primary_user}/.config/Code - OSS/",
-  settings        => file('config/vscode/settings.json'),
-  extensions      => [
+  ensure     => installed,
+  extensions => [
     'asvetliakov.vscode-neovim',
     'brettm12345.nixfmt-vscode',
     'Equinusocio.vsc-material-theme',
@@ -64,4 +66,24 @@ class {'packages::vscode':
     'rust-lang.rust-analyzer',
   ],
 }
-
+packages::vscode::config { $primary_user:
+  config_location => "/home/${primary_user}/.config/Code - OSS/",
+  settings        => {
+    # 'editor.fontFamily' => "'CaskaydiaCove Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+  },
+  keybinds        => [
+    # {
+    #   'key'     => 'escape escape',
+    #   'command' => 'workbench.action.exitZenMode',
+    #   'when'    => 'inZenMode'
+    # },
+  ],
+  tasks           => [
+    # {
+    #   'label'   => 'echo',
+    #   'type'    => 'shell',
+    #   'command' => 'echo Hello'
+    # },
+  ],
+  update_check    => absent,
+}
