@@ -20,7 +20,7 @@ class system::grub (
 }
 
 # Applies grub config
-define system::grub::conf ($value) {
+define system::grub::config ($value) {
   include system::grub
   $key = $title
 

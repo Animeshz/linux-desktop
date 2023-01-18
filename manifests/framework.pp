@@ -10,11 +10,11 @@ class { 'system::timezone': timezone => 'Asia/Kolkata' }
 class { 'system::locales':  locales  => ['en_US.UTF-8 UTF-8'] }
 
 # Uses agueas, doesn't override other options present in the file
-system::sysctl::conf {
+system::sysctl::config {
   'vm.swappiness':                  value =>  10;
   'dev.i915.perf_stream_paranoid':  value =>  0;
 }
-system::grub::conf {
+system::grub::config {
   'GRUB_DEFAULT':               value => 'saved';
   'GRUB_SAVEDEFAULT':           value => true;
   'GRUB_HIDDEN_TIMEOUT':        value => 0;
@@ -54,17 +54,17 @@ user { $primary_user:
 
 class {'packages::vscode':
   ensure     => installed,
-  extensions => [
-    'asvetliakov.vscode-neovim',
-    'brettm12345.nixfmt-vscode',
-    'Equinusocio.vsc-material-theme',
-    'ms-python.python',
-    # 'ms-toolai.jupyter'
-    # ms-vscode-remote.remote-ssh
-    # ms-vscode-remote.remote-containers
-    'ms-vscode.cpptools',
-    'rust-lang.rust-analyzer',
-  ],
+  extensions => {
+    'VSCode NeoVim'  => { ensure => present, id => 'asvetliakov.vscode-neovim' },
+    'NixFmt'         => { ensure => present, id => 'brettm12345.nixfmt-vscode' },
+    'Material Theme' => { ensure => present, id => 'Equinusocio.vsc-material-theme' },
+    'Python'         => { ensure => present, id => 'ms-python.python' },
+    'C++'            => { ensure => present, id => 'ms-vscode.cpptools' },
+    'Rust Analyzer'  => { ensure => present, id => 'rust-lang.rust-analyzer' },
+    # '' => { ensure => present, id => 'ms-toolai.jupyter' },
+    # '' => { ensure => present, id => 'ms-vscode-remote.remote-ssh' },
+    # '' => { ensure => present, id => 'ms-vscode-remote.remote-containers' },
+  },
 }
 packages::vscode::config { $primary_user:
   config_location => "/home/${primary_user}/.config/Code - OSS/",
@@ -86,4 +86,12 @@ packages::vscode::config { $primary_user:
     # },
   ],
   update_check    => absent,
+}
+
+package {'brave-bin':}
+-> packages::chromium::config { $primary_user:
+  config_location => "/home/${primary_user}/.config/BraveSoftware/Brave-Browser/",
+  extensions      => {
+    'React DevTools' => { ensure => absent, id => 'fmkadmapgofadopljbjfkapdkoienihi' }
+  },
 }

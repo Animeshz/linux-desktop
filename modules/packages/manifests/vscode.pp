@@ -3,7 +3,7 @@ class packages::vscode (
   String                      $ensure               = 'installed',
   String                      $package              = 'vscode',
   String[1]                   $global_extension_dir = '/var/lib/vscode/extensions',
-  Array[String]               $extensions           = [],
+  Hash[String, Hash]          $extensions           = {},
 ) {
   package { $package: ensure => $ensure }
 
@@ -20,21 +20,26 @@ class packages::vscode (
   -> system::environment_variables::new { 'VSCODE_EXTENSIONS':
     value => $global_extension_dir
   }
-  -> if $extensions {
-    package { $extensions: ensure => installed, provider => 'vscode' }
+  $extensions.each |$name, $overwrite| {
+    $extension = { ensure => present } + $overwrite
+    package { $extension['id']:
+      ensure   => $extension['ensure'],
+      provider => 'vscode',
+      require  => System::Environment_variables::New['VSCODE_EXTENSIONS']
+    }
   }
 }
 
-# Defines config for vscode package (can be applied on multiple users)
-# $title => user who want to be
+# Manages config for vscode package (can be applied on multiple users)
+# $user => $title, if not passed explicitly
 define packages::vscode::config (
   String[1]                   $config_location,
-  Optional[String]            $user                 = undef,
-  Hash[String, Any]           $settings             = {},
-  Array[Hash[String, String]] $keybinds             = [],
-  Array[Hash[String, Any]]    $tasks                = [],
-  Optional[String]            $update_check         = undef,
-  Optional[String]            $ext_update_check     = undef,
+  Optional[String]            $user              = undef,
+  Hash[String, Any]           $settings          = {},
+  Array[Hash[String, String]] $keybinds          = [],
+  Array[Hash[String, Any]]    $tasks             = [],
+  Optional[String]            $update_check      = undef,
+  Optional[String]            $ext_update_check  = undef,
 ) {
   if !$user {
     $_user = $title

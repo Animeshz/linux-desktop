@@ -19,7 +19,7 @@ class system::sysctl (
 }
 
 # Applies sysctl config
-define system::sysctl::conf ($value) {
+define system::sysctl::config ($value) {
   include system::sysctl
   $key = $title
 
