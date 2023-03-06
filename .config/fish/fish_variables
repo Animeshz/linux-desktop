@@ -25,8 +25,9 @@ SETUVAR _fish_abbr_xqf:xbps\x2dquery\x20\x2dRf
 SETUVAR _fish_abbr_xr:sudo\x20xbps\x2dremove\x20\x2dR
 SETUVAR _fish_abbr_xx:xbps\x2dquery\x20\x2dRx
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
 SETUVAR _fisher_lilyball_2F_nix_2D_env_2E_fish_files:\x7e/\x2econfig/fish/conf\x2ed/nix\x2denv\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1elilyball/nix\x2denv\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1elilyball/nix\x2denv\x2efish\x1ejorgebucaran/nvm\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
@@ -57,4 +58,6 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/home/animesh/\x2eyarn/bin\x1e/home/animesh/Projects/main/templates\x1e/home/animesh/Projects/RustProjects/eww/target/release\x1e/home/animesh/\x2ecargo/bin\x1e/home/animesh/\x2elocal/bin\x1e/home/animesh/\x2escripts/acpi\x1e/home/animesh/\x2escripts/bootstrapping\x1e/home/animesh/\x2escripts/main\x1e/home/animesh/\x2escripts/snips\x1e/opt/cmdline\x2dtools/bin\x1e/usr/local/bin\x1e/usr/bin\x1e/home/animesh/\x2eplatformio/penv/bin\x1e/home/animesh/\x2enix\x2dprofile/bin
+SETUVAR fish_user_paths:/home/animesh/\x2eemacs\x2ed/bin\x1e/opt/dotnet\x1e/usr/lib/ruby/gems/3\x2e1\x2e0/bin\x1e/home/animesh/\x2eyarn/bin\x1e/home/animesh/Projects/main/templates\x1e/home/animesh/Projects/RustProjects/eww/target/release\x1e/home/animesh/\x2ecargo/bin\x1e/home/animesh/\x2elocal/bin\x1e/home/animesh/\x2escripts/acpi\x1e/home/animesh/\x2escripts/bootstrapping\x1e/home/animesh/\x2escripts/main\x1e/home/animesh/\x2escripts/snips\x1e/opt/cmdline\x2dtools/bin\x1e/usr/local/bin\x1e/usr/bin\x1e/home/animesh/\x2eplatformio/penv/bin\x1e/home/animesh/\x2enix\x2dprofile/bin
+SETUVAR nvm_data:/home/animesh/\x2elocal/share/nvm
+SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

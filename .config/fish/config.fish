@@ -24,6 +24,7 @@ fish_add_path /opt/flutter/bin
 fish_add_path /opt/cmdline-tools/bin
 
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
+fish_add_path (gem env | grep 'EXECUTABLE DIRECTORY' | sed --quiet "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.yarn/bin
 fish_add_path ~/.cargo/bin
@@ -47,6 +48,7 @@ set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emu
 set -x GOROOT /usr/lib/go
 set -x GOPATH $HOME/.go
 set -x ANDROID_HOME ~/.android-data/Sdk
+cmd_exists sccache && set -x RUSTC_WRAPPER $(command -v sccache)
 
 if [ -f /usr/lib64/dri/iHD_drv_video.so ]; set -x LIBVA_DRIVER_NAME iHD; end
 
@@ -61,3 +63,8 @@ alias dotunhide="yadm sparse-checkout set '/*' && yadm checkout --quiet"
 
 # The next line updates PATH for Netlify's Git Credential Helper.
 test -f '/home/animesh/.config/netlify/helper/path.fish.inc' && source '/home/animesh/.config/netlify/helper/path.fish.inc'
+
+# pnpm
+set -gx PNPM_HOME "/home/animesh/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
