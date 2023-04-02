@@ -38,7 +38,8 @@ font    CaskaydiaCove Nerd Font
 ## Install
 
 ```bash
-sudo xbps-install ruby  # install ruby (change on ur distro)
+# change based on your distro
+sudo xbps-install just pkg-config ruby ruby-devel
 
 just setup
 just apply --noop  # dry-run: check what will it do without doing anything

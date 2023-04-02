@@ -4,6 +4,9 @@ Exec {
 
 $primary_user = 'animesh'
 
+$data = lookup("profile::hello")
+notify {"${data}":}
+
 # === System ===
 
 class { 'system::timezone': timezone => 'Asia/Kolkata' }

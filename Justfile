@@ -8,5 +8,7 @@ setup:
 
 # call with '--noop' for dry-run
 apply *args:
-    {{SUDO}} puppet apply manifests/framework.pp --modulepath modules:/etc/puppet/modules {{args}}
+    {{SUDO}} puppet apply manifests/framework.pp --hiera_config=hiera.yaml --modulepath modules:/etc/puppet/modules {{args}}
 
+lookup *args:
+    puppet lookup --hiera_config=hiera.yaml {{args}}
