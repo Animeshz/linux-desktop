@@ -1,1 +1,8 @@
-profile::hello: "bruh"
+lookup_options:
+  '^.*$':
+    merge: deep
+
+profile::hello:
+  - "bruh"
+
+profile::single: "uwu"
