@@ -4,5 +4,28 @@ lookup_options:
 
 profile::hello:
   - "bruh"
-
+profile_hello_while: true
 profile::single: "uwu"
+
+system:
+  timezone:
+    hwclock: UTC
+    localtime: Asia/Kolkata
+
+  grub:
+    timeout: 1
+      
+  groups:
+    puppet:
+      ensure: present
+
+  users:
+    animesh:
+      ensure: present      
+      system: false
+      managehome: true
+      home: /home/animesh
+      shell: /usr/bin/fish
+      groups: ['wheel', 'puppet']
+      membership: minimum
+      # password:  # secrets file

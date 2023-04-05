@@ -4,7 +4,7 @@ Exec {
 
 $primary_user = 'animesh'
 
-$data = lookup("profile::hello")
+$data = lookup("system.grub")
 notify {"${data}":}
 
 # === System ===

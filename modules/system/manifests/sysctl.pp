@@ -16,18 +16,22 @@ class system::sysctl (
     refreshonly => true,
     subscribe   => File[$sysctl_file],
   }
+  
+  system::config {
+    
+  }
 }
 
 # Applies sysctl config
-define system::sysctl::config ($value) {
-  include system::sysctl
-  $key = $title
-
-  augeas { "sysctl_conf/${key}":
-    context => "/files/${system::sysctl::sysctl_file}",
-    onlyif  => "get ${key} != '${value}'",
-    changes => "set ${key} '${value}'",
-    require => Package['ruby-augeas'],
-    notify  => Exec['sysctl-load'],
-  }
-}
+# define system::sysctl::config ($value) {
+#   include system::sysctl
+#   $key = $title
+# 
+#   augeas { "sysctl_conf/${key}":
+#     context => "/files/${system::sysctl::sysctl_file}",
+#     onlyif  => "get ${key} != '${value}'",
+#     changes => "set ${key} '${value}'",
+#     require => Package['ruby-augeas'],
+#     notify  => Exec['sysctl-load'],
+#   }
+# }
