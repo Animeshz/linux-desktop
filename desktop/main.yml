@@ -1,0 +1,3 @@
+---
+- tasks:
+  - include_tasks: task_pipewire.yml

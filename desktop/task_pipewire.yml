@@ -1,0 +1,19 @@
+---
+- name: install pipewire
+  community.general.xbps:
+    package: '{{ item }}'
+  with_items:
+    - alsa-pipewire
+    - pipewire
+    - wireplumber
+    - pulseaudio-utils
+
+- name: enable pipewire services
+  community.general.runit:
+    name: '{{ item }}'
+    enabled: true
+    state: started
+  with_items:
+    - pipewire
+    - pipewire-pulse
+    - wireplumber

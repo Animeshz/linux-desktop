@@ -1,0 +1,4 @@
+---
+- tasks:
+  - include_tasks: task_sysctl.yml
+  - include_tasks: task_grub.yml

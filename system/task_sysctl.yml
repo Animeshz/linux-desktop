@@ -1,0 +1,8 @@
+---
+- name: set sysctl options
+  ansible.posix.sysctl:
+    name: '{{ item.key }}'
+    value: '{{ item.value }}'
+  with_dict:
+    vm.swappiness: 10
+    dev.i915.perf_stream_paranoid: 0

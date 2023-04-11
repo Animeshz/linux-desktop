@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  become: true
+  tasks:
+    #    - community.general.timezone:
+    #        name: Asia/Kolkata
+    #        hwclock: local
+    - package:
+        name: chrony
+        state: absent
+    
+
+    # - import_playbook: system/main.yml
+    # - import_playbook : desktop/main.yml
+    # - import_playbook : application/main.yml
