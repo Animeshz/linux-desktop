@@ -4,3 +4,4 @@ maintainer "Animeshz"
 
 depends "system"
 depends "apps"
+depends 'line', '>= 4.5.9'

@@ -1,0 +1,4 @@
+[submodule "dependencies/line"]
+	path = dependencies/line
+	url = https://github.com/sous-chefs/line
+	branch = 4.5.9

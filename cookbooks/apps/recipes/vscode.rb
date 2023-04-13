@@ -9,6 +9,7 @@ extensions = %w[
   rust-lang.rust-analyzer
 ]
 
+# Tasks
 execute "Install vscode" do
   command "xbps-install -y vscode"
   only_if { Internet.online? }

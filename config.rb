@@ -1,6 +1,7 @@
 # Configuration
 cookbook_path [File.expand_path("cookbooks", __dir__),
-               File.expand_path("providers", __dir__)]
+               File.expand_path("providers", __dir__),
+               File.expand_path("dependencies", __dir__)]
 json_attribs File.expand_path("solo.json", __dir__)
 
 # Temporary paths
