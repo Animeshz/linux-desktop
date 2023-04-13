@@ -21,6 +21,9 @@ git "Clone void-packages upstream repository" do
   user target_user
   group node["CHEF_GROUP"]
   only_if { Internet.online? }
+  subpkg_repositories.each do |repo|
+    notifies :run, "execute[Copy subpkg-repository: #{repo}, to upstream clone]", :immediately
+  end
 end
 
 subpkg_repositories.each do |repo|
