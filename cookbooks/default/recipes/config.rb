@@ -3,8 +3,10 @@ if node["platform"] == "void"
 end
 node.default["CHEF_GROUP"] = "chef"
 
+target_user = ENV["SUDO_USER"]
+
 # Tasks
 group node["CHEF_GROUP"] do
   append true
-  members %w[animesh]
+  members [target_user]
 end

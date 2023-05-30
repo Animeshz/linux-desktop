@@ -16,7 +16,7 @@ git "Clone elkowar/eww repository" do
 end
 
 execute "Install eww dependencies" do
-    command "xbps-install -y gcc pkg-config glib-devel gdk-pixbuf atk-devel cairo-devel pango-devel gtk+3-devel gtk-layer-shell-devel"
+    command "xbps-install -y gcc pkg-config glib-devel gdk-pixbuf atk-devel cairo-devel pango-devel gtk+3-devel gtk-layer-shell-devel patch"
 end
 
 execute "Build eww" do

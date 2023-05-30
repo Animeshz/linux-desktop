@@ -10,6 +10,7 @@ zipped_fonts = {
   "Caskaydia Cove Nerd Font" => "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/CascadiaCode.zip",
 }
 
+# Tasks
 execute "Install fonts" do
   command "xbps-install -y #{pkg_fonts.join(" ")}"
 end
