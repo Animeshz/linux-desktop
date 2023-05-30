@@ -1,0 +1,69 @@
+--- manifests/framework.pp(block
+  (resource-defaults Exec
+    (path => ([] '/usr/local/bin' '/usr/bin' '/bin' '/usr/local/sbin' '/usr/sbin' '/sbin')))
+  (= $primary_user 'animesh')
+  (= $data (call lookup 'system.grub'))
+  (resource notify
+    ((cat (str $data))))
+  (resource class
+    ('system::timezone'
+      (timezone => 'Asia/Kolkata')))
+  (resource class
+    ('system::locales'
+      (locales => ([] 'en_US.UTF-8 UTF-8'))))
+  (resource system::sysctl::config
+    ('vm.swappiness'
+      (value => 10))
+    ('dev.i915.perf_stream_paranoid'
+      (value => 0)))
+  (resource system::grub::config
+    ('GRUB_DEFAULT'
+      (value => 'saved'))
+    ('GRUB_SAVEDEFAULT'
+      (value => true))
+    ('GRUB_HIDDEN_TIMEOUT'
+      (value => 0))
+    ('GRUB_HIDDEN_TIMEOUT_QUIET'
+      (value => false))
+    ('GRUB_TIMEOUT'
+      (value => 2))
+    ('GRUB_CMDLINE_LINUX_DEFAULT'
+      (value => '"loglevel=4 acpi_osi=\'Windows 2020\' net.ifnames=0 i915.enable_psr=1 intel_pstate=disable nvme.noacpi=1 intel_iommu=on rd.driver.pre=vfio-pci kvm.ignore_msrs=1"'))
+    ('GRUB_DISABLE_OS_PROBER'
+      (value => false)))
+  (resource mount
+    ('/sys/firmware/efi/efivars'
+      (ensure => 'mounted')
+      (device => 'efivarfs')
+      (fstype => 'efivarfs')
+      (options => 'nosuid,noexec,nodev')))
+  (resource group
+    ('puppet'
+      (ensure => present)))
+  (resource user
+    ($primary_user
+      (ensure => present)
+      (system => false)
+      (managehome => true)
+      (home => (cat '/home/' (str $primary_user)))
+      (shell => '/usr/bin/fish')
+      (groups => ([] 'wheel' 'puppet'))
+      (membership => 'minimum')
+      (password => (call file 'config/private/password'))))
+  (resource class
+    ('packages::vscode'
+      (ensure => installed)
+      (extensions => ({} ('VSCode NeoVim' ({} (ensure present) (id 'asvetliakov.vscode-neovim'))) ('NixFmt' ({} (ensure present) (id 'brettm12345.nixfmt-vscode'))) ('Material Theme' ({} (ensure present) (id 'Equinusocio.vsc-material-theme'))) ('Python' ({} (ensure present) (id 'ms-python.python'))) ('C++' ({} (ensure present) (id 'ms-vscode.cpptools'))) ('Rust Analyzer' ({} (ensure present) (id 'rust-lang.rust-analyzer')))))))
+  (resource packages::vscode::config
+    ($primary_user
+      (config_location => (cat '/home/' (str $primary_user) '/.config/Code - OSS/'))
+      (settings => ({}))
+      (keybinds => ([]))
+      (tasks => ([]))
+      (update_check => absent)))
+  (-> (resource package
+    ('brave-bin')) (resource packages::chromium::config
+    ($primary_user
+      (config_location => (cat '/home/' (str $primary_user) '/.config/BraveSoftware/Brave-Browser/'))
+      (extensions => ({} ('React DevTools' ({} (ensure absent) (id 'fmkadmapgofadopljbjfkapdkoienihi'))))))))
+)
