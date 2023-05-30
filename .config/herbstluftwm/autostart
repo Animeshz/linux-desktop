@@ -21,6 +21,7 @@ Mod=Mod4   # Mod1 = Alt, Mod4 = Super/Windows key
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-w close
+hc keybind $Mod-n spawn /usr/share/doc/herbstluftwm/examples/scratchpad.sh
 
 # movement & focusing windows
 hc keybind $Mod-Left  focus left

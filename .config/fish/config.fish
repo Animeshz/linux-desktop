@@ -21,7 +21,9 @@ fish_add_path /usr/bin
 fish_add_path /usr/local/bin
 fish_add_path /usr/lib/ruby/gems/3.1.0/bin
 fish_add_path /opt/flutter/bin
+fish_add_path /opt/chef-workstation/bin
 fish_add_path /opt/cmdline-tools/bin
+fish_add_path /opt/Telegram
 
 fish_add_path (fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)
 fish_add_path (gem env | grep 'EXECUTABLE DIRECTORY' | sed --quiet "s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p")/bin
@@ -29,10 +31,11 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.yarn/bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.emacs.d/bin
+fish_add_path ~/.pub-cache/bin
 fish_add_path -a ~/.nix-profile/bin
 fish_add_path -a ~/.platformio/penv/bin
 
-fish_add_path ~/Projects/RustProjects/eww/target/release
+fish_add_path ~/Projects/others/eww/target/release
 fish_add_path ~/Projects/main/templates
 
 set fish_greeting
@@ -48,12 +51,13 @@ set -x ANT_HOME /usr/share/apache-ant               # for jar builds (mainly emu
 set -x GOROOT /usr/lib/go
 set -x GOPATH $HOME/.go
 set -x ANDROID_HOME ~/.android-data/Sdk
+set -x NDK_HOME ~/.android-data/Ndk
 cmd_exists sccache && set -x RUSTC_WRAPPER $(command -v sccache)
 
 if [ -f /usr/lib64/dri/iHD_drv_video.so ]; set -x LIBVA_DRIVER_NAME iHD; end
 
 mkdir -p $GOPATH && fish_add_path $GOPATH/bin
-fish_add_path $ANDROID_HOME/tools
+fish_add_path $ANDROID_HOME/emulator
 fish_add_path $ANDROID_HOME/tools/bin
 fish_add_path $ANDROID_HOME/cmdline-tools/latest/bin
 
@@ -68,3 +72,7 @@ test -f '/home/animesh/.config/netlify/helper/path.fish.inc' && source '/home/an
 set -gx PNPM_HOME "/home/animesh/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
+
+if [ -z $DISPLAY ] && [ $(tty) = "/dev/tty1" ];
+   pgrep herbstluftwm || startx
+end
