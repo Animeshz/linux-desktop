@@ -18,5 +18,25 @@
             "type": "github"
         },
         "version": "a5fbfdef3713b39ab4663165064554077c2a8256"
+    },
+    "emacs-pcre": {
+        "cargoLocks": null,
+        "date": "2016-09-04",
+        "extract": null,
+        "name": "emacs-pcre",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "syohex",
+            "repo": "emacs-pcre",
+            "rev": "bc63431cff76dae6ccbff6470173c96ff037fae7",
+            "sha256": "sha256-5rluKQb0nJkKbU64EfnN1prvS/y5RL58ApUp79rEr0I=",
+            "type": "github"
+        },
+        "version": "bc63431cff76dae6ccbff6470173c96ff037fae7"
     }
 }

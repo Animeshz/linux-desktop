@@ -15,5 +15,7 @@
     inputs.snowfall-lib.mkFlake {
       inherit inputs;
       src = ./.;
+
+      package-namespace = "custom";
     };
 }

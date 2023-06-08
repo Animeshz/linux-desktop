@@ -2,3 +2,8 @@
 src.git = "https://github.com/Animeshz/.emacs.d"
 src.branch = "main"
 fetch.github = "Animeshz/.emacs.d"
+
+[emacs-pcre]
+src.git = "https://github.com/syohex/emacs-pcre"
+src.branch = "master"
+fetch.github = "syohex/emacs-pcre"

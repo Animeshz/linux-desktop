@@ -13,4 +13,16 @@
     };
     date = "2023-04-01";
   };
+  emacs-pcre = {
+    pname = "emacs-pcre";
+    version = "bc63431cff76dae6ccbff6470173c96ff037fae7";
+    src = fetchFromGitHub {
+      owner = "syohex";
+      repo = "emacs-pcre";
+      rev = "bc63431cff76dae6ccbff6470173c96ff037fae7";
+      fetchSubmodules = false;
+      sha256 = "sha256-5rluKQb0nJkKbU64EfnN1prvS/y5RL58ApUp79rEr0I=";
+    };
+    date = "2016-09-04";
+  };
 }
