@@ -1,6 +1,10 @@
 export HOME_MANAGER_BACKUP_EXT := "bak"
 
 
+nvfetcher:
+  nix run nixpkgs#nvfetcher
+
+
 build-home:
   nix build '.#homeConfigurations.animesh@framework.activation-script'
 

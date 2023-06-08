@@ -1,0 +1,4 @@
+[emacs.d]
+src.git = "https://github.com/Animeshz/.emacs.d"
+src.branch = "main"
+fetch.github = "Animeshz/.emacs.d"
