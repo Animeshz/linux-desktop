@@ -99,22 +99,29 @@ in
         xset r rate ${toString cfg.autoRepeat.delay} ${toString cfg.autoRepeat.rate}
 
         # Touchpad configuration
-        # xinput list \
-        # | awk '/Touchpad/ {print $6}' \
-        # | cut -d'=' -f2 \
-        # | while read -r touchpad_id; do
-        #    xinput --set-prop $touchpad_id 313 1      # Tap
-        #    xinput --set-prop $touchpad_id 315 1      # Drag
-        #    xinput --set-prop $touchpad_id 317 0      # Drag Lock
-        #    xinput --set-prop $touchpad_id 310 1      # Horizontal Scroll
-        #    xinput --set-prop $touchpad_id 291 1      # Natural Scrolling
-        #    xinput --set-prop $touchpad_id 321 1      # Disable while Typing
-        #    xinput --set-prop $touchpad_id 294 1 0 0  # Scroll Method (two-finger, edge, button)
-        #    xinput --set-prop $touchpad_id 324 1 0    # Click Method (button-areas, click-finger) (see: 1)
-        #    xinput --set-prop $touchpad_id 302 0.5    # Accel Speed
-        #    xinput --set-prop $touchpad_id 305 1 0    # Accel Profile (adaptive, flat)
-        #    xinput --set-prop $touchpad_id 277 0 0    # Send event modes (see: 2)
-        #  done &
+        xinput list \
+        | awk '/Touchpad/ {print $6}' \
+        | cut -d'=' -f2 \
+        | while read -r touchpad_id; do
+            for property in \
+                "Tapping Enabled : 1"               \
+                "Tapping Drag Enabled : 1"          \
+                "Tapping Drag Lock Enabled : 0"     \
+                "Horizontal Scroll Enabled : 1"     \
+                "Natural Scrolling Enabled : 1"     \
+                "Disable While Typing Enabled : 1"  \
+                "Scroll Method Enabled : 1 0 0"     \
+                "Click Method Enabled : 1 0"        \
+                "Accel Speed : 0.4"                 \
+                "Accel Profile Enabled : 1 0"       \
+                "Send Events Mode Enabled : 0 0"    \
+                ; do
+                prop=$(echo "$property" | awk -F ' : ' '{print $1}')
+                value=$(echo "$property" | awk -F ' : ' '{print $2}')
+                id=$(echo "$command_output" | grep "$prop" | head -n1 | awk -F '[)(]' '{print $2}')
+                xinput --set-prop "$touchpad_id" "$id" $value || true
+            done
+         done &
 
         exec dbus-launch --exit-with-session ${windowManagerCommand}
 

@@ -1,0 +1,12 @@
+diff --git a/crates/eww/src/app.rs b/crates/eww/src/app.rs
+index 1f2c937..34eec91 100644
+--- a/crates/eww/src/app.rs
++++ b/crates/eww/src/app.rs
+@@ -349,6 +349,7 @@ impl App {
+                 None,
+             )?;
+
++            root_widget.style_context().add_class(&window_name.to_string());
+             let monitor_geometry = get_monitor_geometry(monitor.or(window_def.monitor.clone()))?;
+
+             let mut eww_window = initialize_window(monitor_geometry, root_widget, window_def, window_scope)?;
