@@ -29,6 +29,8 @@ in
     display.bars = {
       eww.enable = mkEnableOption "Setup eww";
     };
+
+    display.fonts = mkOption { type = types.listOf types.package; default = []; };
   };
 
   config = mkIf (enabledWMs >= 1) {
@@ -43,7 +45,11 @@ in
       }
     ];
 
+    fonts.fontconfig.enable = true;
+
     home.packages = mkMerge [
+      [ pkgs.feh ]
+      cfg.fonts
       (mkIf cfg.windowManagers.awesome.enable [ pkgs.awesome ])
       (mkIf cfg.windowManagers.herbstluftwm.enable [ pkgs.herbstluftwm ])
       (mkIf cfg.windowManagers.hyprland.enable [ pkgs.hyprland ])

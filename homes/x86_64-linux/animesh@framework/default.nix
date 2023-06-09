@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 with lib;
 with lib.internal;
@@ -23,6 +23,12 @@ with lib.internal;
 
     windowManagers.herbstluftwm = enabled;
     bars.eww = enabled;
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+      noto-fonts
+      noto-fonts-emoji
+      unifont
+    ];
 
     # TODO: install gfx drivers with enable.
   };
