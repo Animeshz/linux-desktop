@@ -3,13 +3,13 @@
 {
   emacs = {
     pname = "emacs";
-    version = "63874a8999f3afbae9b1df54f4371fa039319c28";
+    version = "b5346f0e48d3623ea46b35e9513ca17ceee43fe7";
     src = fetchFromGitHub {
       owner = "Animeshz";
       repo = ".emacs.d";
-      rev = "63874a8999f3afbae9b1df54f4371fa039319c28";
+      rev = "b5346f0e48d3623ea46b35e9513ca17ceee43fe7";
       fetchSubmodules = false;
-      sha256 = "sha256-5jrsiYeH/1v0/mG7UBTnMC7CL31ObzxMMvmoAtQcI1Y=";
+      sha256 = "sha256-GX0VvjRoqp5UhoPsQRlUAjpo0OXgyXrhLPJs6DECV/A=";
     };
     date = "2023-06-09";
   };
