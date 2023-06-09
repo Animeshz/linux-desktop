@@ -1,7 +1,7 @@
 {
     "emacs": {
         "cargoLocks": null,
-        "date": "2023-04-01",
+        "date": "2023-06-09",
         "extract": null,
         "name": "emacs",
         "passthru": null,
@@ -13,11 +13,11 @@
             "name": null,
             "owner": "Animeshz",
             "repo": ".emacs.d",
-            "rev": "a5fbfdef3713b39ab4663165064554077c2a8256",
-            "sha256": "sha256-h/qYUHOLXRBhG42TMx6XmZIFkplwBmj6PGDqvfIUS7w=",
+            "rev": "63874a8999f3afbae9b1df54f4371fa039319c28",
+            "sha256": "sha256-5jrsiYeH/1v0/mG7UBTnMC7CL31ObzxMMvmoAtQcI1Y=",
             "type": "github"
         },
-        "version": "a5fbfdef3713b39ab4663165064554077c2a8256"
+        "version": "63874a8999f3afbae9b1df54f4371fa039319c28"
     },
     "emacs-pcre": {
         "cargoLocks": null,

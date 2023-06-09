@@ -3,15 +3,15 @@
 {
   emacs = {
     pname = "emacs";
-    version = "a5fbfdef3713b39ab4663165064554077c2a8256";
+    version = "63874a8999f3afbae9b1df54f4371fa039319c28";
     src = fetchFromGitHub {
       owner = "Animeshz";
       repo = ".emacs.d";
-      rev = "a5fbfdef3713b39ab4663165064554077c2a8256";
+      rev = "63874a8999f3afbae9b1df54f4371fa039319c28";
       fetchSubmodules = false;
-      sha256 = "sha256-h/qYUHOLXRBhG42TMx6XmZIFkplwBmj6PGDqvfIUS7w=";
+      sha256 = "sha256-5jrsiYeH/1v0/mG7UBTnMC7CL31ObzxMMvmoAtQcI1Y=";
     };
-    date = "2023-04-01";
+    date = "2023-06-09";
   };
   emacs-pcre = {
     pname = "emacs-pcre";
