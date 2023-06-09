@@ -1,0 +1,217 @@
+#!/usr/bin/env bash
+
+hc() {
+    herbstclient "$@"
+}
+
+# Notify for reload
+hc emit_hook reload
+
+# Set monitors and background
+hc set_monitors 2256x1504+0+0
+test -f ~/.fehbg && ~/.fehbg || xsetroot -solid '#5A8E3A'
+
+
+# =============== Key Bindings ===============
+
+hc keyunbind --all
+
+Mod=Mod4   # Mod1 = Alt, Mod4 = Super/Windows key
+
+hc keybind $Mod-Shift-q quit
+hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Shift-w close
+hc keybind $Mod-n spawn /usr/share/doc/herbstluftwm/examples/scratchpad.sh
+
+# movement & focusing windows
+hc keybind $Mod-Left  focus left
+hc keybind $Mod-Down  focus down
+hc keybind $Mod-Up    focus up
+hc keybind $Mod-Right focus right
+hc keybind $Mod-h     focus left
+hc keybind $Mod-j     focus down
+hc keybind $Mod-k     focus up
+hc keybind $Mod-l     focus right
+
+# moving windows
+hc keybind $Mod-Shift-Left  shift left
+hc keybind $Mod-Shift-Down  shift down
+hc keybind $Mod-Shift-Up    shift up
+hc keybind $Mod-Shift-Right shift right
+hc keybind $Mod-Shift-h     shift left
+hc keybind $Mod-Shift-j     shift down
+hc keybind $Mod-Shift-k     shift up
+hc keybind $Mod-Shift-l     shift right
+
+# splitting frames
+hc keybind $Mod-u       split   bottom  0.5
+hc keybind $Mod-o       split   right   0.5
+
+# resizing frames and floating clients
+resizestep=0.02
+hc keybind $Mod-Control-Left    resize left +$resizestep
+hc keybind $Mod-Control-Down    resize down +$resizestep
+hc keybind $Mod-Control-Up      resize up +$resizestep
+hc keybind $Mod-Control-Right   resize right +$resizestep
+hc keybind $Mod-Control-h       resize left +$resizestep
+hc keybind $Mod-Control-j       resize down +$resizestep
+hc keybind $Mod-Control-k       resize up +$resizestep
+hc keybind $Mod-Control-l       resize right +$resizestep
+
+# tags (workspaces)
+tag_names=( {1..5} )
+tag_keys=( {1..5} )
+
+hc rename default "${tag_names[0]}" || true
+for i in "${!tag_names[@]}" ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+
+        # Swap tags
+        # TODO: Not working atm
+        #hc keybind "$Mod-Control-Shift-$key" chain , \
+        #    substitute target_tag_index "tags.by-name.$i.index" attr tags.focus.index target_tag_index , \
+        #    mktemp string swap_store \  # no comma here :(((
+        #    substitute focus_tag_name tags.focus.name attr swap_store focus_tag_name , \
+        #    substitute target_tag_name "tags.by-name.$i.name" attr tags.focus.name target_tag_name , \
+        #    substitute swap_store_value swap_store attr "tags.by-name.$i" swap_store_value
+    fi
+done
+
+# cycle through tags (workspaces)
+hc keybind $Mod-period use_index +1 --skip-visible
+hc keybind $Mod-comma  use_index -1 --skip-visible
+
+# layouting
+hc keybind $Mod-r remove
+hc keybind $Mod-s floating toggle
+hc keybind $Mod-f fullscreen toggle
+hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
+hc keybind $Mod-Shift-m set_attr clients.focus.minimized true
+hc keybind $Mod-Control-m jumpto last-minimized
+hc keybind $Mod-p pseudotile toggle
+
+# cycles through the available layouts within a frame (if it has an effect)
+hc keybind $Mod-space                                                           \
+            or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-c cycle
+hc keybind $Mod-i jumpto urgent
+
+## app/program launch
+#hc keybind Alt-space        spawn rofi -show drun -kb-cancel Super-space,Alt-space,Escape -matching fuzzy -sorting-method fzf -sort
+hc keybind Alt-space        spawn ~/.config/rofi/launchers/misc/launcher.sh
+# https://github.com/herbstluftwm/herbstluftwm/discussions/1477
+#hc keybind $Mod-space       spawn bwmenu -- -kb-cancel Super-space,Alt-space,Escape
+# https://github.com/herbstluftwm/herbstluftwm/issues/1372
+hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
+hc keybind $Mod-t           spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
+hc keybind Ctrl-Alt-t       spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
+hc keybind $Mod-Shift-p     spawn sh -c 'active-window-pid | xclip -sel clip'
+hc keybind $Mod-Shift-c     spawn sh -c 'printf "document.querySelector(\"video\").playbackRate = 3" | xclip -sel clip'
+
+hc keybind $Mod-Shift-e  spawn emote
+# These depends on dbus-session at local user, rest of them defined in /etc/acpi/handler.sh
+hc keybind XF86AudioPlay spawn mutoggle
+hc keybind XF86AudioStop spawn mutoggle
+hc keybind XF86AudioPrev spawn muprv
+hc keybind XF86AudioNext spawn munxt
+
+# =============== Mouse Bindings ===============
+
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+hc mousebind $Mod-Control-Button1 resize
+
+
+# =============== Theming ===============
+
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+hc set frame_border_active_color '#22222200'
+hc set frame_border_normal_color '#10101000'
+hc set frame_bg_normal_color '#23232300'
+hc set frame_bg_active_color '#23232300'
+hc set frame_border_width 0
+hc set always_show_frame off
+hc set frame_bg_transparent on
+hc set frame_transparent_width 0
+hc set frame_gap 0
+
+hc attr theme.title_height 0
+hc attr theme.title_font 'CaskaydiaCove Nerd Font Mono:pixelsize=12'
+hc attr theme.padding_top 0
+hc attr theme.active.color '#eeeeee'
+hc attr theme.title_color '#ffffff'
+hc attr theme.normal.color '#dadada'
+hc attr theme.urgent.color '#7811A1dd'
+hc attr theme.normal.title_color '#898989'
+hc attr theme.inner_width 0
+hc attr theme.inner_color black
+hc attr theme.border_width 0
+hc attr theme.floating.border_width 0
+hc attr theme.floating.outer_width 0
+hc attr theme.floating.outer_color black
+hc attr theme.active.inner_color '#789161'
+hc attr theme.urgent.inner_color '#9A65B0'
+hc attr theme.normal.inner_color '#606060'
+# copy inner color to outer_color
+for state in active urgent normal ; do
+    hc substitute C theme.${state}.inner_color \
+        attr theme.${state}.outer_color C
+done
+hc attr theme.active.outer_width 0
+hc attr theme.background_color '#14141400'
+
+hc set window_gap 5
+hc set snap_gap 0
+hc set frame_padding 0
+hc set smart_window_surroundings on
+hc set smart_frame_surroundings off
+hc set mouse_recenter_gap 0
+
+
+# =============== Rules for different apps ===============
+
+hc unrule -F
+#hc rule class=XTerm tag=3 # move all xterms to tag 3
+hc rule focus=on # normally focus new clients
+hc rule floatplacement=smart
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+hc rule --class=Brave-browser floatplacement=center
+
+hc set tree_style '╾│ ├└╼─┐'
+
+
+# =============== Unlock to draw the changes finally ===============
+hc unlock
+
+
+# =============== Start ./panel.sh on all the monitors ===============
+panel=~/.config/herbstluftwm/panel.sh
+if [[ -f $panel ]]; then
+    for monitor in $(hc list_monitors | cut -d: -f1) ; do
+        "$panel" "$monitor" &
+    done
+fi
+
+
+# =============== Enable copy-paste and timesync if on VMware ===============
+# if herbstclient silent new_attr bool is_first_run && [[ $(cat /proc/scsi/scsi) =~ VMware ]]; then
+#     { sleep 5 && logger 'Running vmware cmd' && vmware-toolbox-cmd timesync enable && vmware-user &> /dev/null } &
+# fi
+

@@ -19,7 +19,8 @@ generations-home:
 
 # === WARN: System config application not tested (may break non-nixos systems) ===
 build-system:
-  nix build '.#homeConfigurations.animesh@framework.activation-script'
+  nix run 'github:Animeshz/system-manager/system_packages' -- build --flake .
+
 
 switch-system: build-system
-  ./result/activate
+  sudo ./result/bin/activate

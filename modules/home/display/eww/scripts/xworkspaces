@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+cmd_exists() {
+  command -v "$1" 1> /dev/null
+}
+
+# Listen to changes to active workspace and updates it
+if [[ "$#" == 1 ]] && cmd_exists eww; then
+  xprop -spy -root _NET_CURRENT_DESKTOP | sed -ru -e 's/^.*?= (.*)$/\1/' | \
+    while read line; do
+      eww update "$1"="$line"
+    done &
+fi
+
+# Listen to changes to workspaces (addition/deletion) and recreates workspaces part of the bar
+xprop -spy -root _NET_DESKTOP_NAMES | sed -ru -e 's/^.*?= "(.*)"$/\1/' | styler superscript | stdbuf -o0 awk '{print "(box :class \"workspaces\" :space-evenly false "; for(i=1; i<=NF; i++) {print "(workspace :index " i-1 " :name \" " $i "\")"}; print ")\n"}' FS='", "' ORS=''
+

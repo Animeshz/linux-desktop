@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+poll_volume() {
+    pactl list sinks | awk '/Volume: front-left:/ {print $5}'
+}
+
+cmd_exists() {
+    command -v "$1" 1> /dev/null
+}
+
+# Updates icon in front of volume
+if [[ "$#" == 1 ]] && cmd_exists eww; then
+  acpi_listen | stdbuf -o0 awk '{if ($2 == "HEADPHONE") { print $3 == "plug" ? "" : "墳"}}' | \
+    while read line; do
+      eww update "$1"="$line"
+    done &
+fi
+
+# Polls volume for first time and then listen for changes
+poll_volume
+stdbuf -o0 alsactl monitor | \
+  while read; do
+    poll_volume
+  done

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+SOURCES_PATH='/sys/class/power_supply'
+
+SOURCES=$(ls $SOURCES_PATH | grep BAT)
+[[ -z "$SOURCES" ]] && exit 0
+
+poll() {
+    CAPACITIES=""
+    for BAT in "${SOURCES[@]}"; do
+        CAP="$(cat "$SOURCES_PATH/$BAT/capacity")"
+        STAT="$([[ $(cat "$SOURCES_PATH/$BAT/status") == "Charging" ]] && echo '' || echo '')"
+
+        CAPACITIES="$CAPACITIES $CAP%$STAT"
+    done
+
+    echo $CAPACITIES
+}
+
+acpi_listen | grep --line-buffered ac_adapter | \
+    while read; do
+        poll
+    done &
+
+
+while true; do
+    poll
+    sleep 20
+done

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo $(( $(cat /sys/class/power_supply/BAT1/voltage_now) * $(cat /sys/class/power_supply/BAT1/current_now) )) | awk '{printf "%.1f", $1 / 1000000000000 }'
+
