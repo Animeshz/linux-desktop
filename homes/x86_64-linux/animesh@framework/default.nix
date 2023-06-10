@@ -24,6 +24,8 @@ with lib.internal;
 
     windowManagers.herbstluftwm = enabled;
     bars.eww = enabled;
+    wallpaper = ./wallpaper.jpg;
+
     fonts = with pkgs; [
       (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
       noto-fonts

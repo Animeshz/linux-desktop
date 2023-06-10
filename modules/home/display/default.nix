@@ -30,6 +30,8 @@ in
       eww.enable = mkEnableOption "Setup eww";
     };
 
+    display.wallpaper = mkOption { type = types.nullOr types.path; };
+
     display.fonts = mkOption { type = types.listOf types.package; default = []; };
   };
 
@@ -97,6 +99,9 @@ in
         export QT_SCALE_FACTOR=${toString cfg.scale}
         export QT_AUTO_SCREEN_SCALE_FACTOR=0
         ${if cfg.hidpi.enable then "export QT_ENABLE_HIDPI_SCALING=1" else ""}
+
+        # Wallpaper
+        ${if cfg.wallpaper != null then "feh --bg-fill ${cfg.wallpaper}" else "xsetroot -solid '#5A8E3A'"} &
 
         # Topbar
         ${barCommand} &
