@@ -22,6 +22,7 @@ with lib.internal;
     autoRepeat.delay = 300;
     autoRepeat.rate = 50;
 
+    xorg.manage = false;  # not managing xorg & gfx drivers with nix for now (see modules/../xorg.nix)
     windowManagers.herbstluftwm = enabled;
     bars.eww = enabled;
     wallpaper = ./wallpaper.jpg;
@@ -32,8 +33,6 @@ with lib.internal;
       noto-fonts-emoji
       unifont
     ];
-
-    # TODO: install gfx drivers with enable.
   };
 
   programs.brave = {

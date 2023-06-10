@@ -1,7 +1,7 @@
-_: final: prev:
+_: self: super:
 
 {
-  eww = prev.eww.overrideAttrs (o: {
+  eww = super.eww.overrideAttrs (o: {
     patches = (o.patches or [ ]) ++ [
       ./root-window-style.patch
     ];
