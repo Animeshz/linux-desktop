@@ -38,5 +38,45 @@
             "type": "github"
         },
         "version": "bc63431cff76dae6ccbff6470173c96ff037fae7"
+    },
+    "nix-env-fish": {
+        "cargoLocks": null,
+        "date": "2021-11-29",
+        "extract": null,
+        "name": "nix-env-fish",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "lilyball",
+            "repo": "nix-env.fish",
+            "rev": "7b65bd228429e852c8fdfa07601159130a818cfa",
+            "sha256": "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=",
+            "type": "github"
+        },
+        "version": "7b65bd228429e852c8fdfa07601159130a818cfa"
+    },
+    "nvm-fish": {
+        "cargoLocks": null,
+        "date": "2023-04-30",
+        "extract": null,
+        "name": "nvm-fish",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jorgebucaran",
+            "repo": "nvm.fish",
+            "rev": "c69e5d1017b21bcfca8f42c93c7e89fff6141a8a",
+            "sha256": "sha256-LV5NiHfg4JOrcjW7hAasUSukT43UBNXGPi1oZWPbnCA=",
+            "type": "github"
+        },
+        "version": "c69e5d1017b21bcfca8f42c93c7e89fff6141a8a"
     }
 }

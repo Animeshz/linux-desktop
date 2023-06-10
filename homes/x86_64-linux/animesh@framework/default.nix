@@ -6,8 +6,9 @@ with lib.internal;
   home.stateVersion = "23.05";
   nix.extraOptions = "max-jobs = auto";
 
-  # TODO: Setup kitty starship fish
   apps.emacs = enabled;
+  apps.kitty = enabled;
+  apps.starship = enabled;
 
   apps.git = {
     user = "Animesh Sahu";
@@ -32,6 +33,111 @@ with lib.internal;
       noto-fonts
       noto-fonts-emoji
       unifont
+    ];
+  };
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    GPG_TTY = "$(tty)";
+    LIBVA_DRIVER_NAME = "iHD";
+    PKG_CONFIG_PATH = "/usr/lib/pkgconfig";
+    CHROME_EXECUTABLE = "/bin/brave-browser-stable";  # for flutter
+    ANT_HOME = "/usr/share/apache-ant";               # for jar builds (mainly emuArm)
+    GOROOT = "/usr/lib/go";
+    GOPATH = "$HOME/.go";
+    ANDROID_HOME = "$HOME/.android-data/Sdk";
+    NDK_HOME = "$HOME/.android-data/Ndk";
+    RUSTC_WRAPPER = "$(command -v sccache 2>/dev/null)";
+    PNPM_HOME = "/home/animesh/.local/share/pnpm";
+  };
+
+  home.sessionPath = [
+    "/usr/bin"
+    "/usr/local/bin"
+    "/usr/lib/ruby/gems/3.2.0/bin"
+    "/opt/flutter/bin"
+    "/opt/chef-workstation/bin"
+    "/opt/cmdline-tools/bin"
+    "/opt/Telegram"
+
+    "$(fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)"
+    "$(gem env 2>/dev/null | grep 'EXECUTABLE DIRECTORY' | sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\")/bin"
+    "$HOME/.local/bin"
+    "$HOME/.yarn/bin"
+    "$HOME/.cargo/bin"
+    "$HOME/.emacs.d/bin"
+    "$HOME/.pub-cache/bin"
+    "$HOME/.nix-profile/bin"
+    "$HOME/.platformio/penv/bin"
+    "$HOME/Projects/main/templates"
+
+    "$GOPATH/bin"
+    "$ANDROID_HOME/emulator"
+    "$ANDROID_HOME/tools/bin"
+    "$ANDROID_HOME/cmdline-tools/latest/bin"
+    "$PNPM_HOME
+    "
+  ];
+
+  home.shellAliases = {
+    sudo = "sudo ";  # Hack to run alias w/sudo: https://askubuntu.com/a/22043/669216 (does not work in fish)
+    snvim = "sudo -E nvim";
+    nv = "kitty-nopad nvim";
+    snv = "sudo -E kitty-nopad nvim";
+    hc = "herbstclient";
+    tree = "tree -C";
+    jl = "jupyter-lab --notebook-dir=/home/animesh/Projects/GeneralPurpose/JupyterLab";
+    ":q" = "exit";
+    lsblk = "lsblk -o NAME,MODEL,MAJ:MIN,TRAN,FSTYPE,RM,SIZE,RO,LABEL,MOUNTPOINTS";
+    macros = "cpp -dM /dev/null";
+
+    audio = "inxi -A";
+    battery = "inxi -B";
+    bluetooth = "inxi -E";
+    fonts = "kitty +list-fonts";
+    graphics = "inxi -G";
+    pci = "sudo inxi --slots";
+    process = "inxi --processes";
+    partitions = "inxi -P";
+    repos = "inxi -r";
+    sockets = "ss -lp";
+    system = "inxi -Fazy";
+    usb = "inxi -J";
+    wifi = "inxi -n";
+  };
+
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+  };
+
+  programs.fish = {
+    enable = true;
+
+    shellAbbrs = {
+      nqq = "notepadqq";
+      pmem = "sudo ps_mem";
+
+      xi = "sudo xbps-install";
+      xp = "sudo xbps-pkgdb";
+      xq = "xbps-query -Rs";
+      xf = "xbps-query -Rf";
+      xx = "xbps-query -Rx";
+      xX = "xbps-query -RX";
+      xr = "sudo xbps-remove -R";
+
+      ng = "nix-collect-garbage -d";
+      no = "nix store optimise";
+      nr = "nix registry list";
+      npi = "nix profile install";
+      npr = "nix profile remove";
+      nph = "nix profile history";
+      nproll = "nix profile rollback --to";
+    };
+
+    plugins = [
+      (with pkgs.sources.nix-env-fish; { name = pname; inherit src; })
+      (with pkgs.sources.nvm-fish; { name = pname; inherit src; })
     ];
   };
 

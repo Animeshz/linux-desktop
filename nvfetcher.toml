@@ -7,3 +7,14 @@ fetch.github = "Animeshz/.emacs.d"
 src.git = "https://github.com/syohex/emacs-pcre"
 src.branch = "master"
 fetch.github = "syohex/emacs-pcre"
+
+[nix-env-fish]
+src.git = "https://github.com/lilyball/nix-env.fish"
+src.branch = "master"
+fetch.github = "lilyball/nix-env.fish"
+
+[nvm-fish]
+src.git = "https://github.com/jorgebucaran/nvm.fish"
+src.branch = "main"
+fetch.github = "jorgebucaran/nvm.fish"
+
