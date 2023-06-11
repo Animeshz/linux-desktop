@@ -18,9 +18,8 @@ with lib.internal;
 
   puppet = {
     enable = true;
-    # extraModulePaths = [ ./puppet-modules ];  # idk why: undefined method `intern' for Puppet::Util::Package:Module
-                                                # works on puppet installed through ruby gem tho... wth is nix doing...
     ral = with lib.hm.dag; {
+      package.xorg = entryAnywhere { ensure = "present"; };
       # service.adb = entryAnywhere { ensure = "stopped"; };
       # service.sshd = entryAnywhere { ensure = "stopped"; };
       # service.docker = entryAnywhere { ensure = "running"; };

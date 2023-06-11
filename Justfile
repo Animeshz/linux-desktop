@@ -4,6 +4,14 @@ export HOME_MANAGER_BACKUP_EXT := "bak"
 nvfetcher:
   nix run nixpkgs#nvfetcher
 
+bundix:
+  #!/bin/sh
+  for i in packages/*; do
+    cd $i 1>/dev/null
+    [ -f Gemfile ] && nix run nixpkgs#bundix -- -l
+    cd - 1>/dev/null
+  done
+
 
 build-home:
   nix build '.#homeConfigurations.animesh@framework.activation-script'

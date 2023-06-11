@@ -1,13 +1,23 @@
 {
+  CFPropertyList = {
+    groups = ["default"];
+    platforms = [];
+    source = {
+      remotes = ["https://rubygems.org"];
+      sha256 = "0hadm41xr1fq3qp74jd9l5q8l0j9083rgklgzsilllwaav7qrrid";
+      type = "gem";
+    };
+    version = "2.3.6";
+  };
   concurrent-ruby = {
     groups = ["default"];
     platforms = [];
     source = {
       remotes = ["https://rubygems.org"];
-      sha256 = "0s4fpn3mqiizpmpy2a24k4v365pv75y50292r8ajrv4i1p5b2k14";
+      sha256 = "0krcwb6mn0iklajwngwsg850nk8k9b35dhmc2qkbdqvmifdi2y9q";
       type = "gem";
     };
-    version = "1.1.10";
+    version = "1.2.2";
   };
   deep_merge = {
     groups = ["default"];
@@ -71,15 +81,17 @@
     version = "1.15.0";
   };
   puppet = {
-    dependencies = ["concurrent-ruby" "deep_merge" "facter" "fast_gettext" "locale" "multi_json" "puppet-resource_api" "scanf" "semantic_puppet"];
+    dependencies = ["CFPropertyList" "concurrent-ruby" "deep_merge" "facter" "fast_gettext" "locale" "multi_json" "puppet-resource_api" "scanf" "semantic_puppet"];
     groups = ["default"];
     platforms = [];
     source = {
-      remotes = ["https://rubygems.org"];
-      sha256 = "1x2sjih5w53v3rap1c4ahdpy4n7my0n9f2k5lxi8nz911y38qaz3";
-      type = "gem";
+      fetchSubmodules = false;
+      rev = "5e6faed3498aa94d10fc5df9003d5f0a8829d2e8";
+      sha256 = "11vaixf1822zd3mmb5j0ha9hfvi3q6phi875s4xf9i42f4c1gc11";
+      type = "git";
+      url = "https://github.com/Animeshz/puppet";
     };
-    version = "8.0.1";
+    version = "7.26.0";
   };
   puppet-resource_api = {
     dependencies = ["hocon"];
