@@ -16,6 +16,17 @@ with lib.internal;
     signingkey = "541C03D55917185E";
   };
 
+  puppet = {
+    enable = true;
+    # extraModulePaths = [ ./puppet-modules ];  # idk why: undefined method `intern' for Puppet::Util::Package:Module
+                                                # works on puppet installed through ruby gem tho... wth is nix doing...
+    ral = with lib.hm.dag; {
+      # service.adb = entryAnywhere { ensure = "stopped"; };
+      # service.sshd = entryAnywhere { ensure = "stopped"; };
+      # service.docker = entryAnywhere { ensure = "running"; };
+    };
+  };
+
   display = {
     hidpi = enabled;
     scale = 1.5;
@@ -36,6 +47,7 @@ with lib.internal;
     ];
   };
 
+  # TODO: Move most of these variables to their modules (declutter this file).
   home.sessionVariables = {
     EDITOR = "nvim";
     GPG_TTY = "$(tty)";

@@ -8,7 +8,9 @@ nvfetcher:
 build-home:
   nix build '.#homeConfigurations.animesh@framework.activation-script'
 
-switch-home: build-home
+switch-home arg='': build-home
+  #!/bin/sh
+  [ '{{arg}}' = '--dry-run' ] && export DRY_RUN=1
   ./result/activate
 
 generations-home:
@@ -20,7 +22,6 @@ generations-home:
 # === WARN: System config application not tested (may break non-nixos systems) ===
 build-system:
   nix run 'github:Animeshz/system-manager/system_packages' -- build --flake .
-
 
 switch-system: build-system
   sudo ./result/bin/activate

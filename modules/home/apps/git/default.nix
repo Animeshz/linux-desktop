@@ -12,6 +12,9 @@ with lib;
   };
 
   config = {
+    # TODO: add xbps.rb provider first
+    # puppet.ral.package.gnupg = lib.home-manager.hm.dag.entryAnywhere { ensure = "present"; };
+
     programs.git = {
       enable = true;
       userName = cfg.user;
@@ -34,6 +37,7 @@ with lib;
       signing = {
         key = cfg.signingkey;
         signByDefault = true;
+        gpgPath = "/usr/bin/gpg";
       };
     };
   };
