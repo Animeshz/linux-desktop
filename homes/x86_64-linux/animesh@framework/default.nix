@@ -50,7 +50,6 @@ with lib.internal;
   # TODO: Move most of these variables to their modules (declutter this file).
   home.sessionVariables = {
     EDITOR = "nvim";
-    GPG_TTY = "$(tty)";
     LIBVA_DRIVER_NAME = "iHD";
     PKG_CONFIG_PATH = "/usr/lib/pkgconfig";
     CHROME_EXECUTABLE = "/bin/brave-browser-stable";  # for flutter
@@ -59,8 +58,12 @@ with lib.internal;
     GOPATH = "$HOME/.go";
     ANDROID_HOME = "$HOME/.android-data/Sdk";
     NDK_HOME = "$HOME/.android-data/Ndk";
-    RUSTC_WRAPPER = "$(command -v sccache 2>/dev/null)";
     PNPM_HOME = "/home/animesh/.local/share/pnpm";
+  };
+
+  home.dynamicSessionVariables = {
+    RUSTC_WRAPPER = "$(command -v sccache 2>/dev/null)";
+    PATH = "$PATH:$(fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1):$(gem env 2>/dev/null | grep 'EXECUTABLE DIRECTORY' | sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\")/bin";
   };
 
   home.sessionPath = [
@@ -72,8 +75,6 @@ with lib.internal;
     "/opt/cmdline-tools/bin"
     "/opt/Telegram"
 
-    "$(fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1)"
-    "$(gem env 2>/dev/null | grep 'EXECUTABLE DIRECTORY' | sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\")/bin"
     "$HOME/.local/bin"
     "$HOME/.yarn/bin"
     "$HOME/.cargo/bin"

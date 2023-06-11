@@ -17,7 +17,7 @@ with lib.home-manager;
     # Puppet's Resource Abstraction Layer (RAL) states
     puppet.ral = mkOption {
       # resource :: title :: attributes
-      type = with types; attrsOf (hm.types.dagOf (attrsOf (either bool (either int str))));
+      type = with types; attrsOf (hm.types.dagOf (attrsOf (oneOf [bool int str])));
       default = {};
       example = ''
         with hm.dag;
