@@ -37,7 +37,7 @@ with lib.home-manager;
   };
 
   config = mkIf cfg.enable {
-    dev.ruby = {
+    apps.dev.ruby = {
       enable = mkForce true;
       gems = epkgs: [ pkgs.custom.puppet ];
     };

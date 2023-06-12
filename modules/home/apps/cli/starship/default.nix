@@ -1,12 +1,12 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.apps.starship;
+  cfg = config.apps.cli.starship;
 in
 with lib;
 {
   options = {
-    apps.starship.enable = mkEnableOption "Install and configure starship";
+    apps.cli.starship.enable = mkEnableOption "Install and configure starship";
   };
 
   config = {

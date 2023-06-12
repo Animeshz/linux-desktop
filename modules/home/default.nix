@@ -7,6 +7,8 @@ let
 in
 {
   options = {
+    # Session variables which may include a shell command, that readily need
+    # to refresh on shell startup (rather than applied once at tty login).
     home.dynamicSessionVariables = mkOption {
       type = with types; lazyAttrsOf (oneOf [ str path int float ]);
       default = {};

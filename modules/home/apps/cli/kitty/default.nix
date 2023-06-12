@@ -1,12 +1,12 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.apps.kitty;
+  cfg = config.apps.cli.kitty;
 in
 with lib;
 {
   options = {
-    apps.kitty.enable = mkEnableOption "Install and configure kitty";
+    apps.cli.kitty.enable = mkEnableOption "Install and configure kitty";
   };
 
   config = mkIf cfg.enable {

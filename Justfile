@@ -1,18 +1,6 @@
 export HOME_MANAGER_BACKUP_EXT := "bak"
 
 
-nvfetcher:
-  nix run nixpkgs#nvfetcher
-
-bundix:
-  #!/bin/sh
-  for i in packages/*; do
-    cd $i 1>/dev/null
-    [ -f Gemfile ] && nix run nixpkgs#bundix -- -l
-    cd - 1>/dev/null
-  done
-
-
 build-home:
   nix build '.#homeConfigurations.animesh@framework.activation-script'
 
@@ -33,3 +21,21 @@ build-system:
 
 switch-system: build-system
   sudo ./result/bin/activate
+
+
+nvfetcher:
+  nix run nixpkgs#nvfetcher
+
+bundix:
+  #!/bin/sh
+  for i in packages/*; do
+    cd $i 1>/dev/null
+    [ -f Gemfile ] && nix run nixpkgs#bundix -- -l
+    cd - 1>/dev/null
+  done
+
+treeview arg='.':
+  #!/bin/sh
+  cd {{arg}} 1>/dev/null
+  fd .nix | tree --fromfile --noreport | sed "1s|.*|{{arg}}|"
+  cd - 1>/dev/null

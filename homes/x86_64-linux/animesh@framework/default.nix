@@ -7,8 +7,8 @@ with lib.internal;
   nix.extraOptions = "max-jobs = auto";
 
   apps.emacs = enabled;
-  apps.kitty = enabled;
-  apps.starship = enabled;
+  apps.cli.kitty = enabled;
+  apps.cli.starship = enabled;
 
   apps.git = {
     user = "Animesh Sahu";
@@ -19,12 +19,18 @@ with lib.internal;
   puppet = {
     enable = true;
     ral = with lib.hm.dag; {
-      package.xorg = entryAnywhere { ensure = "present"; };
+      package.xorg = entryAnywhere { ensure = "present"; };            # xorg suid works better on host
+      package.virtualbox-ose = entryAnywhere { ensure = "present"; };  # dkms integration works better on host
       # service.adb = entryAnywhere { ensure = "stopped"; };
       # service.sshd = entryAnywhere { ensure = "stopped"; };
       # service.docker = entryAnywhere { ensure = "running"; };
     };
   };
+
+  # TODO: Extract into virtualization.vagrant, also virtualbox above, also xorg below, into puppet.ral
+  home.packages = with pkgs; [
+    vagrant
+  ];
 
   display = {
     hidpi = enabled;

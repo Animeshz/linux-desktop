@@ -1,15 +1,15 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.dev.ruby;
+  cfg = config.apps.dev.ruby;
 in
 with lib;
 with lib.home-manager;
 {
   options = {
-    dev.ruby.enable = mkEnableOption "Install and configure ruby dev environment";
+    apps.dev.ruby.enable = mkEnableOption "Install and configure ruby dev environment";
 
-    dev.ruby.gems = mkOption {
+    apps.dev.ruby.gems = mkOption {
       default = self: [ ];
       type = hm.types.selectorFunction;
       defaultText = "epkgs: []";
