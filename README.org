@@ -43,6 +43,8 @@ just treeview homes
 :     └── animesh@framework
 :         └── default.nix
 
+My primary config is at [[homes/x86_64-linux/animesh@framework/default.nix]].
+
 *** Modules
 
 #+begin_src sh :results output :exports results
