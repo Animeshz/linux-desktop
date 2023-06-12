@@ -70,10 +70,14 @@ modules
     │   │   └── default.nix
     │   └── git
     │       └── default.nix
-    ├── default.nix
     ├── display
     │   ├── default.nix
     │   └── xorg.nix
+    ├── misc
+    │   ├── dynamicSessionVars
+    │   │   └── default.nix
+    │   └── settings
+    │       └── default.nix
     ├── puppet
     │   ├── default.nix
     │   └── etc.nix
@@ -106,9 +110,7 @@ just treeview overlays
 : overlays
 : ├── eww
 : │   └── default.nix
-: ├── nvfetcher
-: │   └── default.nix
-: └── xorgserver
+: └── nvfetcher
 :     └── default.nix
 
 ** UNLICENSE

@@ -16,7 +16,7 @@ in
   ];
 
   options = {
-    enable = mkEnableOption "Enable display management or not";
+    display.enable = mkEnableOption "Enable display management or not";
 
     display.hidpi.enable = mkEnableOption "Enable HiDPI settings or not";
     display.scale = mkOption { type = types.nullOr types.float; };
