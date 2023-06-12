@@ -19,27 +19,21 @@ with lib.internal;
   puppet = {
     enable = true;
     ral = with lib.hm.dag; {
-      package.xorg = entryAnywhere { ensure = "present"; };            # xorg suid works better on host
-      package.virtualbox-ose = entryAnywhere { ensure = "present"; };  # dkms integration works better on host
       # service.adb = entryAnywhere { ensure = "stopped"; };
       # service.sshd = entryAnywhere { ensure = "stopped"; };
       # service.docker = entryAnywhere { ensure = "running"; };
     };
   };
 
-  # TODO: Extract into virtualization.vagrant, also virtualbox above, also xorg below, into puppet.ral
-  home.packages = with pkgs; [
-    vagrant
-  ];
-
   display = {
+    enable = true;
     hidpi = enabled;
     scale = 1.5;
     cursorSize = 50;
     autoRepeat.delay = 300;
     autoRepeat.rate = 50;
 
-    xorg.manage = false;  # not managing xorg & gfx drivers with nix for now (see modules/../xorg.nix)
+    xorg.enableHost = true;
     windowManagers.herbstluftwm = enabled;
     bars.eww = enabled;
     wallpaper = ./wallpaper.jpg;
@@ -50,6 +44,12 @@ with lib.internal;
       noto-fonts-emoji
       unifont
     ];
+  };
+
+  virtualization.vagrant = {
+    enable = true;
+    libvirtHost = enabled;
+    virtualboxHost = enabled;
   };
 
   # TODO: Move most of these variables to their modules (declutter this file).

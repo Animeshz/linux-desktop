@@ -74,8 +74,12 @@ modules
     ├── display
     │   ├── default.nix
     │   └── xorg.nix
-    └── puppet
-        └── default.nix
+    ├── puppet
+    │   ├── default.nix
+    │   └── etc.nix
+    └── virtualization
+        └── vagrant
+            └── default.nix
 #+end_example
 
 *** Bundled packages

@@ -16,6 +16,8 @@ in
   ];
 
   options = {
+    enable = mkEnableOption "Enable display management or not";
+
     display.hidpi.enable = mkEnableOption "Enable HiDPI settings or not";
     display.scale = mkOption { type = types.nullOr types.float; };
     display.cursorSize = mkOption { type = types.nullOr types.int; };
@@ -39,7 +41,7 @@ in
     display.fonts = mkOption { type = types.listOf types.package; default = []; };
   };
 
-  config = mkIf (enabledWMs >= 1) {
+  config = mkIf cfg.enable {
     assertions = [
       {
         assertion = enabledWMs <= 1;

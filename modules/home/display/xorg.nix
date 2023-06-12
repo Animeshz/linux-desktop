@@ -6,23 +6,13 @@ let
 in
 {
   options = {
-    display.xorg.manage = mkEnableOption "Manage Xorg and display drivers or not";
+    display.xorg.enableHost = mkEnableOption "Manage Xorg and display drivers on host or not";
   };
 
-  config = {
-    home.packages = with pkgs; mkIf cfg.xorg.manage [
-      xorg.xorgserver
-      xorg.xf86videointel
-      xorg.xf86inputlibinput
-      xorg.xf86inputevdev
-      xorg.xinit
-      xorg.xkill
-      xorg.xrandr
-      xorg.xrdb
-      xorg.xsetroot
-      dbus
-      elogind
-    ];
+  config = mkIf cfg.enable {
+    puppet.ral = mkIf cfg.xorg.enableHost {
+      package.xorg = lib.home-manager.hm.dag.entryAnywhere { ensure = "present"; };
+    };
 
     home.file.".Xresources" = {
       executable = true;
@@ -32,27 +22,6 @@ in
 
         Xft.dpi: ${toString (builtins.floor (96 * cfg.scale))}
         Xcursor.size: ${toString cfg.cursorSize}
-      '';
-    };
-
-    # TODO (blocker): install opengl (otherwise no kitty): https://discourse.nixos.org/t/xorg-on-non-nixos/13455
-    #
-    # TODO (blocker): https://forums.gentoo.org/viewtopic-p-8690663.html?sid=ec4d4fc273ea1e6ccdbdd5cdacbe49ea
-    #     either run elogind or compile pkgs.xorg.xorgserver with -Dsuid_wrapper that overwrites whole
-    #     pkgs.xorg (instead of just pkgs.xorg.xorgserver) hence compiles all deps like herbstluftwm lmao
-    #
-    # That's why currently disabled using cfg.xorg.manage
-    #
-    # Requires "sudo usermod -aG input $(whoami)"
-    home.file.".xserverrc" = mkIf cfg.xorg.manage {
-      executable = true;
-      text = ''
-        #!/bin/sh
-        if [ -z "$XDG_VTNR" ]; then
-          exec ${pkgs.xorg.xorgserver}/bin/X -nolisten tcp -configdir ${config.xdg.configHome}/xorg.conf.d "$@"
-        else
-          exec ${pkgs.xorg.xorgserver}/bin/X -nolisten tcp -configdir ${config.xdg.configHome}/xorg.conf.d "$@" vt$XDG_VTNR
-        fi
       '';
     };
 
@@ -87,22 +56,23 @@ in
       '';
     };
 
-    xdg.configFile."xorg.conf.d/00-nix-module-paths.conf".text = ''
-      Section "Files"
-        ModulePath "${config.home.profileDirectory}/lib/xorg/modules/"
-        FontPath "${config.home.profileDirectory}/share/fonts/"
-        FontPath "${config.home.profileDirectory}/lib/X11/fonts/"
-      EndSection
-    '';
+    # This is not working atm
+    # environment.etc."X11/xorg.conf.d/00-nix-module-paths.conf".text = ''
+    #   Section "Files"
+    #     ModulePath "${config.home.profileDirectory}/lib/xorg/modules/"
+    #     FontPath "${config.home.profileDirectory}/share/fonts/"
+    #     FontPath "${config.home.profileDirectory}/lib/X11/fonts/"
+    #   EndSection
+    # '';
 
-    xdg.configFile."xorg.conf.d/20-intel.conf".text = ''
+    environment.etc."X11/xorg.conf.d/20-intel.conf".text = ''
       Section "Device"
         Identifier "Intel Graphics"
         Driver "intel"
       EndSection
     '';
 
-    xdg.configFile."xorg.conf.d/40-libinput.conf".text = ''
+    environment.etc."X11/xorg.conf.d/40-libinput.conf".text = ''
       # Match on all types of devices but joysticks
       #
       # If you want to configure your devices, do not copy this file.
@@ -167,14 +137,6 @@ in
               MatchIsTablet "on"
               MatchDevicePath "/dev/input/event*"
               Driver "libinput"
-      EndSection
-    '';
-
-    # TODO: Get from shell script "gen-monitor-dpi 13.5 > ~/.config/xorg.conf.d/90-monitor.conf"
-    xdg.configFile."xorg.conf.d/90-monitor.conf".text = ''
-      Section "Monitor"
-      	Identifier "eDP1"
-      	DisplaySize 285 190
       EndSection
     '';
   };

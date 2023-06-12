@@ -6,6 +6,8 @@ in
 with lib;
 with lib.home-manager;
 {
+  imports = [ ./etc.nix ];
+
   options = {
     puppet.enable = mkEnableOption "Install and configure kitty";
 
@@ -17,7 +19,7 @@ with lib.home-manager;
     # Puppet's Resource Abstraction Layer (RAL) states
     puppet.ral = mkOption {
       # resource :: title :: attributes
-      type = with types; attrsOf (hm.types.dagOf (attrsOf (oneOf [bool int str])));
+      type = with types; attrsOf (hm.types.dagOf (attrsOf (oneOf [bool int str path])));
       default = {};
       example = ''
         with hm.dag;
@@ -49,9 +51,9 @@ with lib.home-manager;
 
         mkCmd = res:
           let
-            identifierSplits = builtins.split "\\." res.name;
-            resourceName = builtins.elemAt identifierSplits 0;
-            resourceTitle = builtins.elemAt identifierSplits 2;
+            resourceName = builtins.elemAt (builtins.split "\\." res.name) 0;
+            nameLen = builtins.stringLength resourceName;
+            resourceTitle = builtins.substring (nameLen + 1) ((builtins.stringLength res.name) - nameLen - 1) res.name;
             resourceAttributes = concatStringsSep " " (map (attr: "${attr}=${toString res.data."${attr}"}") (builtins.attrNames res.data));
           in "${pkgs.custom.puppet}/bin/puppet resource ${resourceName} ${resourceTitle} ${resourceAttributes} --modulepath ${modulePaths}";
 
