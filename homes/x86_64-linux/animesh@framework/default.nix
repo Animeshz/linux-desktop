@@ -11,6 +11,7 @@ with lib.internal;
   apps.cli.starship = enabled;
 
   apps.git = {
+    enable = true;
     user = "Animesh Sahu";
     email = "animeshsahu19@yahoo.com";
     signingkey = "541C03D55917185E";
@@ -43,11 +44,11 @@ with lib.internal;
     ];
   };
 
-  virtualization.vagrant = {
-    enable = true;
-    libvirtHost = enabled;
-    virtualboxHost = enabled;
-  };
+  # virtualization.vagrant = {
+  #   enable = true;
+  #   libvirtHost = enabled;
+  #   virtualboxHost = enabled;
+  # };
 
   programs.bash = {
     enable = true;

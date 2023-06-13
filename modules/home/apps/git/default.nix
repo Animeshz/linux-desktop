@@ -6,12 +6,13 @@ in
 with lib;
 {
   options = {
+    apps.git.enable = mkEnableOption "Enable management of git";
     apps.git.user = mkOption { type = types.nullOr types.str; };
     apps.git.email = mkOption { type = types.nullOr types.str; };
     apps.git.signingkey = mkOption { type = types.nullOr types.str; };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     services.gpg-agent = {
       enable = true;
       pinentryFlavor = "curses";
