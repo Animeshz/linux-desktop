@@ -10,7 +10,7 @@ cmd_exists() {
 
 # Updates icon in front of volume
 if [[ "$#" == 1 ]] && cmd_exists eww; then
-  acpi_listen | stdbuf -o0 awk '{if ($2 == "HEADPHONE") { print $3 == "plug" ? "" : "墳"}}' | \
+  acpi_listen | stdbuf -o0 awk '{if ($2 == "HEADPHONE") { print $3 == "plug" ? "󰋋" : "󰕾"}}' | \
     while read line; do
       eww update "$1"="$line"
     done &

@@ -21,11 +21,8 @@ in
       ANDROID_HOME = "$HOME/.android-data/Sdk";
       NDK_HOME = "$HOME/.android-data/Ndk";
       PNPM_HOME = "/home/animesh/.local/share/pnpm";
-    };
-
-    misc.dynamicSessionVariables = {
-      RUSTC_WRAPPER = "$(command -v sccache 2>/dev/null)";
-      PATH = "$PATH:$(fd -td -d1 . ~/.scripts 2>/dev/null || find ~/.scripts -type d -maxdepth 1):$(gem env 2>/dev/null | grep 'EXECUTABLE DIRECTORY' | sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\")/bin";
+      RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
+      PATH = "$PATH:$(${pkgs.ruby}/bin/gem env 2>/dev/null | ${pkgs.coreutils}/bin/grep 'EXECUTABLE DIRECTORY' | ${pkgs.gnused}/bin/sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\"):$(${pkgs.fd}/bin/fd -td -d1 . ~/.scripts 2>/dev/null | tr \\n :)";
     };
 
     home.sessionPath = [
@@ -50,8 +47,7 @@ in
       "$ANDROID_HOME/emulator"
       "$ANDROID_HOME/tools/bin"
       "$ANDROID_HOME/cmdline-tools/latest/bin"
-      "$PNPM_HOME
-      "
+      "$PNPM_HOME"
     ];
 
     home.shellAliases = {

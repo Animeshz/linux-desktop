@@ -77,4 +77,14 @@ with lib.internal;
       { id = "ckkdlimhmcjmikdlpkmbgfkaikojcbjk"; }  # Markdown Viewer
     ];
   };
+
+  home.packages = with pkgs; [
+    btop
+    du-dust
+    fd
+    p7zip
+    ripgrep
+    tree
+    xterm
+  ];
 }

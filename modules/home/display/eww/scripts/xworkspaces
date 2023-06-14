@@ -13,5 +13,5 @@ if [[ "$#" == 1 ]] && cmd_exists eww; then
 fi
 
 # Listen to changes to workspaces (addition/deletion) and recreates workspaces part of the bar
-xprop -spy -root _NET_DESKTOP_NAMES | sed -ru -e 's/^.*?= "(.*)"$/\1/' | styler superscript | stdbuf -o0 awk '{print "(box :class \"workspaces\" :space-evenly false "; for(i=1; i<=NF; i++) {print "(workspace :index " i-1 " :name \" " $i "\")"}; print ")\n"}' FS='", "' ORS=''
+xprop -spy -root _NET_DESKTOP_NAMES | sed -ru -e 's/^.*?= "(.*)"$/\1/' | styler superscript | stdbuf -o0 awk '{print "(box :class \"workspaces\" :space-evenly false "; for(i=1; i<=NF; i++) {print "(workspace :index " i-1 " :name \"󰍹 " $i "\")"}; print ")\n"}' FS='", "' ORS=''
 

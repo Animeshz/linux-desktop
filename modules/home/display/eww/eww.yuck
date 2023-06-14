@@ -4,7 +4,7 @@
 (deflisten xworkspaces :initial ""
   `scripts/xworkspaces active_workspace`)
 
-(defvar vol_icon "墳")
+(defvar vol_icon "󰕾")
 (deflisten vol_value
   `scripts/volume vol_icon`)
 
@@ -16,7 +16,7 @@
   `xbps-install -Sun | wc -l`)
 
 (defpoll dtime_info :interval "10s"
-  `date '+ %b %d  %I:%M %p'`)
+  `date '+󰃶 %b %d  %I:%M %p'`)
 
 (defpoll weather_info :interval "15m"
   `scripts/weather`)
@@ -59,15 +59,15 @@
     (app :icon "" :launch "rofi -show run -kb-cancel Alt-space,Escape")
     (separator)
     (app :icon "" :launch "firefox")
-    (app :icon "" :launch "nautilus")
-    (app :icon "﬏" :launch "code-oss")))
+    (app :icon "" :launch "nautilus")
+    (app :icon "" :launch "code-oss")))
 
 (defwidget workspaces []
   (literal :content xworkspaces))
 
 (defwidget brightness_sound []
   (box :class "widget-group white" :space-evenly false
-    (box :class "red" "") "${bright_value}"
+    (box :class "red" "󰄨") "${bright_value}"
     (separator)
     (box :class "yellow" vol_icon) "${vol_value}"))
 
@@ -96,7 +96,7 @@
     (box :class "widget-group magenta" :space-evenly false
       "${round(EWW_RAM["used_mem"]/1024/1024, 0)}M" (revealer :transition "slideright" :reveal ram_disk_toggle "(${round(EWW_RAM["used_mem_perc"],0)}%) Used")
       (separator)
-      "${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle "(${100-round(EWW_DISK["/"]["used_perc"],0)}%) Free"))))
+      "󰋊${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle "(${100-round(EWW_DISK["/"]["used_perc"],0)}%) Free"))))
 
 (defwidget battery []
   (box :class "widget-group yellow" :visible {battery_value != ''} " ${battery_value}"))

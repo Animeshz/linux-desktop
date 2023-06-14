@@ -74,8 +74,6 @@ modules
     │   ├── default.nix
     │   └── xorg.nix
     ├── misc
-    │   ├── dynamicSessionVars
-    │   │   └── default.nix
     │   └── settings
     │       └── default.nix
     ├── puppet

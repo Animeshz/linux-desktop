@@ -13,6 +13,7 @@ with lib;
   };
 
   config = mkIf cfg.enable {
+    home.packages = [ pkgs.gnupg ];
     services.gpg-agent = {
       enable = true;
       pinentryFlavor = "curses";
