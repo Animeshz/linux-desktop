@@ -19,10 +19,6 @@ with lib.internal;
 
   puppet = enabled;
 
-  # TODO: Move most of hardcoded personal better defaults (preferences) at misc.settings
-  # to their individual modules its currently too unmanaged...
-  misc.settings.apply = true;
-
   display = {
     enable = true;
     hidpi = enabled;
@@ -85,6 +81,29 @@ with lib.internal;
     p7zip
     ripgrep
     tree
+    xdg-utils
     xterm
   ];
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = "brave-browser.desktop";
+      "inode/directory" = "ranger.desktop";
+      "text/plain" = "emacs.desktop";
+    };
+    associations.added = {
+      "x-scheme-handler/http" = "brave-browser.desktop";
+      "x-scheme-handler/https" = "brave-browser.desktop";
+      "x-scheme-handler/mailto" = "brave-browser.desktop";
+      "x-scheme-handler/unknown" = "brave-browser.desktop";
+      "x-scheme-handler/element" = "element-desktop.desktop";
+      "x-scheme-handler/irc" = "element-desktop.desktop";
+    };
+    # Default browser is set with $BROWSER in misc.settings for now
+  };
+
+  # TODO: Move most of hardcoded personal better defaults (preferences) at misc.settings
+  # to their individual modules its currently too unmanaged...
+  misc.settings.apply = true;
 }

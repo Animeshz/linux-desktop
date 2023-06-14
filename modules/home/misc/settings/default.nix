@@ -14,8 +14,9 @@ in
       EDITOR = "nvim";
       LIBVA_DRIVER_NAME = "iHD";
       PKG_CONFIG_PATH = "/usr/lib/pkgconfig";
-      CHROME_EXECUTABLE = "/bin/brave-browser-stable";  # for flutter
-      ANT_HOME = "/usr/share/apache-ant";               # for jar builds (mainly emuArm)
+      BROWSER = "${config.programs.brave.package}/bin/brave";            # for xdg-open
+      CHROME_EXECUTABLE = "${config.programs.brave.package}/bin/brave";  # for flutter
+      ANT_HOME = "/usr/share/apache-ant";                                # for jar builds (mainly emuArm)
       GOROOT = "/usr/lib/go";
       GOPATH = "$HOME/.go";
       ANDROID_HOME = "$HOME/.android-data/Sdk";
