@@ -118,6 +118,9 @@ hc keybind Alt-space        spawn ~/.config/rofi/launchers/misc/launcher.sh
 hc keybind $Mod-Shift-t     spawn sh -c 'xterm'
 hc keybind $Mod-Shift-b     spawn sh -c 'brave || brave-browser-stable'
 
+hc keybind $Mod-m           spawn emacs
+hc keybind $Mod-b           spawn brave
+
 hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind $Mod-t           spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind Ctrl-Alt-t       spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
