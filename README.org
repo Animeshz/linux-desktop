@@ -92,6 +92,8 @@ just treeview packages
 
 #+RESULTS:
 : packages
+: ├── emacs-chdir
+: │   └── default.nix
 : ├── emacs-pcre
 : │   └── default.nix
 : └── puppet

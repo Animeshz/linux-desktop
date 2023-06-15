@@ -1,9 +1,9 @@
 {
-    "emacs": {
+    "emacs-chdir": {
         "cargoLocks": null,
-        "date": "2023-06-12",
+        "date": "2023-06-15",
         "extract": null,
-        "name": "emacs",
+        "name": "emacs-chdir",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -12,12 +12,12 @@
             "leaveDotGit": false,
             "name": null,
             "owner": "Animeshz",
-            "repo": ".emacs.d",
-            "rev": "d1c30f018cdfed9926593fbf9692914e16593597",
-            "sha256": "sha256-YvVJUq57kjvqdo7A5EhJj3wxSo4eHAEHMimaPhBfTzU=",
+            "repo": "emacs-chdir",
+            "rev": "54f143147f9ae8173193fe0f4c8a17976474239e",
+            "sha256": "sha256-R/wOZ4Chu1E+sU0lEI0vn08denxeZCbkE6PcKFag5/A=",
             "type": "github"
         },
-        "version": "d1c30f018cdfed9926593fbf9692914e16593597"
+        "version": "54f143147f9ae8173193fe0f4c8a17976474239e"
     },
     "emacs-pcre": {
         "cargoLocks": null,

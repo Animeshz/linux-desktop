@@ -55,8 +55,8 @@ with lib.internal;
     enable = true;
 
     plugins = [
-      (with pkgs.sources.nix-env-fish; { name = pname; inherit src; })
-      (with pkgs.sources.nvm-fish; { name = pname; inherit src; })
+      (with pkgs.nvfetcher-sources.nix-env-fish; { name = pname; inherit src; })
+      (with pkgs.nvfetcher-sources.nvm-fish; { name = pname; inherit src; })
     ];
   };
 
@@ -78,9 +78,12 @@ with lib.internal;
     btop
     du-dust
     fd
+    maim
+    moreutils
     p7zip
     ripgrep
     tree
+    xclip
     xdg-utils
     xterm
   ];
