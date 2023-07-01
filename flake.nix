@@ -18,6 +18,7 @@
       inherit inputs;
       src = ./.;
 
+      channels-config.allowUnfree = true;
       package-namespace = "custom";
     };
 }

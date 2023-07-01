@@ -40,6 +40,16 @@ with lib.internal;
     ];
   };
 
+  dconf = {
+    enable = true;
+    settings = with lib.home-manager.hm.gvariant; {
+      "org/gtk/settings/file-chooser" = {
+        window-position = mkTuple [ 100 100 ];
+        window-size = mkTuple [ 500 500 ];
+      };
+    };
+  };
+
   # virtualization.vagrant = {
   #   enable = true;
   #   libvirtHost = enabled;
@@ -74,18 +84,26 @@ with lib.internal;
     ];
   };
 
+  # General packages which require zero-to-no configurations
+  # They _are_ general and not project-specific
   home.packages = with pkgs; [
+    bat
     btop
     du-dust
     fd
+    logseq
     maim
     moreutils
+    nushell
     p7zip
+    pandoc
     ripgrep
     tree
+    wget
     xclip
     xdg-utils
     xterm
+    zoxide
   ];
 
   xdg.mimeApps = {
@@ -102,6 +120,7 @@ with lib.internal;
       "x-scheme-handler/unknown" = "brave-browser.desktop";
       "x-scheme-handler/element" = "element-desktop.desktop";
       "x-scheme-handler/irc" = "element-desktop.desktop";
+      "x-scheme-handler/logseq" = "logseq.desktop";
     };
     # Default browser is set with $BROWSER in misc.settings for now
   };

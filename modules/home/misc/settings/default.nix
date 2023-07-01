@@ -116,5 +116,32 @@ in
       "--force-device-scale-factor=1.5"
       "--password-store=basic"
     ];
+
+    environment.etc."cron.weekly/fstrim" = {
+      executable = true;
+      text = "fstrim / || zpool trim zroot";
+    };
+
+    environment.etc."acpi/handler.sh" = {
+      executable = true;
+      source = ./files/acpi/handler.sh;
+    };
+
+    environment.etc."auto-cpufreq.conf".text = ''
+      [charger]
+      governor = powersave
+      turbo = off
+
+      [battery]
+      governor = powersave
+      turbo = off
+    '';
+
+    environment.etc."sysctl.conf".text = ''
+      # See sysctl.conf(5)
+
+      vm.swappiness=10
+      dev.i915.perf_stream_paranoid=0
+    '';
   };
 }

@@ -120,6 +120,7 @@ hc keybind $Mod-Shift-b     spawn sh -c 'brave || brave-browser-stable'
 
 hc keybind $Mod-m           spawn emacs
 hc keybind $Mod-b           spawn brave
+hc keybind $Mod-slash       spawn logseq
 
 hc keybind $Mod-Return      spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
 hc keybind $Mod-t           spawn sh -c '"$(command -v pwd-launch || printf "eval")" "kitty"'
