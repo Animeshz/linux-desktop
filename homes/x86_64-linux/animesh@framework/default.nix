@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ inputs, pkgs, lib, ... }:
 
 with lib;
 with lib.internal;
@@ -91,6 +91,7 @@ with lib.internal;
     btop
     du-dust
     fd
+    ffmpeg
     logseq
     maim
     moreutils
@@ -128,4 +129,7 @@ with lib.internal;
   # TODO: Move most of hardcoded personal better defaults (preferences) at misc.settings
   # to their individual modules its currently too unmanaged...
   misc.settings.apply = true;
+
+  # Realise this so flake inputs are not garbage-collected until this profile is activated
+  xdg.configFile."nix-flake-inputs".text = lib.concatStringsSep "\n" (map (ip: ip.outPath) (lib.attrValues inputs));
 }
