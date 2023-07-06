@@ -10,6 +10,12 @@ with lib.internal;
   apps.cli.kitty = enabled;
   apps.cli.starship = enabled;
 
+  apps.cli.ranger = {
+    enable = true;
+    previewImages = true;
+    previewPdfs = true;
+  };
+
   apps.git = {
     enable = true;
     user = "Animesh Sahu";
@@ -93,6 +99,7 @@ with lib.internal;
     fd
     ffmpeg
     logseq
+    inxi
     maim
     moreutils
     nushell
