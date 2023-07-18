@@ -3,6 +3,7 @@
 with lib;
 with lib.internal;
 {
+  snowfallorg.user.enable = true;
   home.stateVersion = "23.05";
   nix.extraOptions = "max-jobs = auto";
 

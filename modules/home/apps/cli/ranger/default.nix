@@ -18,7 +18,7 @@ with lib;
   config = mkIf cfg.enable {
     home.packages = mkMerge [
       [ pkgs.ranger ]
-      (mkIf cfg.previewPdfs [ pkgs.poppler ])
+      (mkIf cfg.previewPdfs [ pkgs.poppler_utils ])
     ];
 
     xdg.configFile."ranger/rc.conf".text = ''
@@ -784,3 +784,4 @@ with lib;
     '';
   };
 }
+
