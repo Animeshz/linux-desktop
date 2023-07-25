@@ -7,6 +7,10 @@ with lib.internal;
   home.stateVersion = "23.05";
   nix.extraOptions = "max-jobs = auto";
 
+  # https://ayats.org/blog/channels-to-flakes
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  home.sessionVariables.NIX_PATH = "nixpkgs=nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
+
   apps.emacs = enabled;
   apps.cli.kitty = enabled;
   apps.cli.starship = enabled;

@@ -241,11 +241,11 @@ in
     environment.etc."auto-cpufreq.conf".text = ''
       [charger]
       governor = powersave
-      turbo = off
+      turbo = never
 
       [battery]
       governor = powersave
-      turbo = off
+      turbo = never
     '';
 
     environment.etc."sysctl.conf".text = ''
