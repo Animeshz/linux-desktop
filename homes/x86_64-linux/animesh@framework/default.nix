@@ -9,7 +9,7 @@ with lib.internal;
 
   # https://ayats.org/blog/channels-to-flakes
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  home.sessionVariables.NIX_PATH = "nixpkgs=nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
+  home.sessionVariables.NIX_PATH = "nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
 
   apps.emacs = enabled;
   apps.cli.kitty = enabled;
