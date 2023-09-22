@@ -9,7 +9,7 @@ with lib.internal;
 
   # https://ayats.org/blog/channels-to-flakes
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  home.sessionVariables.NIX_PATH = "nixpkgs=flake:nixpkgs$\{NIX_PATH:+:$NIX_PATH}";
+  home.sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
 
   apps.emacs = enabled;
   apps.cli.kitty = enabled;
@@ -51,15 +51,16 @@ with lib.internal;
     ];
   };
 
-  dconf = {
-    enable = true;
-    settings = with lib.home-manager.hm.gvariant; {
-      "org/gtk/settings/file-chooser" = {
-        window-position = mkTuple [ 100 100 ];
-        window-size = mkTuple [ 500 500 ];
-      };
-    };
-  };
+  # Non-Systemd not working...
+  # dconf = {
+  #   enable = true;
+  #   settings = with lib.home-manager.hm.gvariant; {
+  #     "org/gtk/settings/file-chooser" = {
+  #       window-position = mkTuple [ 100 100 ];
+  #       window-size = mkTuple [ 500 500 ];
+  #     };
+  #   };
+  # };
 
   # virtualization.vagrant = {
   #   enable = true;

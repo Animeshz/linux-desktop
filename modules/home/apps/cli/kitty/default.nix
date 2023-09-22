@@ -10,7 +10,7 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    programs.kitty.enable = true;
+    #programs.kitty.enable = true;   # TODO: Temporarily commented because of GLFX error
 
     xdg.configFile."kitty/kitty.conf".source = ./kitty.conf;
     xdg.configFile."kitty/themes" = {
