@@ -6,7 +6,7 @@
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:Animeshz/nixpkgs/nixos-23.05";
 
-    snowfall-lib.url = "github:snowfallorg/lib/feat/home-manager";
+    snowfall-lib.url = "github:snowfallorg/lib";
     snowfall-lib.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager/release-23.05";
@@ -20,5 +20,7 @@
 
       channels-config.allowUnfree = true;
       package-namespace = "custom";
+
+      # Option Reference: https://github.com/snowfallorg/lib/tree/main/snowfall-lib/flake/default.nix#L99
     };
 }
