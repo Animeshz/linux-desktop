@@ -3,6 +3,8 @@
 with lib;
 with lib.internal;
 {
+  imports = [ inputs.nix-index-database.hmModules.nix-index ];
+
   snowfallorg.user.enable = true;
   home.stateVersion = "23.05";
   nix.extraOptions = "max-jobs = auto";
@@ -29,6 +31,7 @@ with lib.internal;
   };
 
   puppet = enabled;
+  programs.nix-index-database.comma.enable = true;
 
   display = {
     enable = true;
