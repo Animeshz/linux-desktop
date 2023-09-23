@@ -122,6 +122,12 @@ in
       text = "fstrim / || zpool trim zroot";
     };
 
+
+    environment.etc."cron.weekly/nix-store-optimise" = {
+      executable = true;
+      text = "nix store optimise";
+    };
+
     environment.etc."acpi/handler.sh" = {
       executable = true;
       text = ''

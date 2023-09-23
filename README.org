@@ -113,6 +113,18 @@ just treeview overlays
 : └── nvfetcher
 :     └── default.nix
 
+** Notes
+
+To cleanup older generations:
+
+#+begin_src sh :results output :exports code
+pushd ~/.local/state/nix/profiles && ls | awk "!/$(readlink home-manager)/ && /home-manager-/" | xargs rm && popd
+nix-collect-garbage --delete-old
+nix store gc --debug
+#+end_src
+
+Sometimes mmap files prevent gc, reboot + same thing may clear even more!
+
 ** UNLICENSE
 
 #+begin_src md :noeval

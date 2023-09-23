@@ -32,6 +32,7 @@ with lib.internal;
 
   puppet = enabled;
   programs.nix-index-database.comma.enable = true;
+  programs.nix-index.enable = false;
 
   display = {
     enable = true;
