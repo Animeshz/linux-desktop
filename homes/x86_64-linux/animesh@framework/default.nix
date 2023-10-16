@@ -130,8 +130,6 @@ with lib.internal;
       "application/pdf" = "brave-browser.desktop";
       "inode/directory" = "ranger.desktop";
       "text/plain" = "emacs.desktop";
-    };
-    associations.added = {
       "x-scheme-handler/http" = "brave-browser.desktop";
       "x-scheme-handler/https" = "brave-browser.desktop";
       "x-scheme-handler/mailto" = "brave-browser.desktop";
