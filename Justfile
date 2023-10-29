@@ -25,7 +25,7 @@ treeview arg='.':
 
 # Update all dependencies in nvfetcher.toml
 nvfetcher:
-  nix run nixpkgs#nvfetcher
+  nix run github:NixOS/nixpkgs#nvfetcher  # (not nixpkgs#nvfetcher because) https://github.com/berberman/nvfetcher/issues/96
 
 # Update all gems in packages/**
 bundix:

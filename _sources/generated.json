@@ -13,11 +13,11 @@
             "name": null,
             "owner": "Animeshz",
             "repo": "emacs-chdir",
-            "rev": "54f143147f9ae8173193fe0f4c8a17976474239e",
-            "sha256": "sha256-R/wOZ4Chu1E+sU0lEI0vn08denxeZCbkE6PcKFag5/A=",
+            "rev": "2de98712fd22b309e532c090cf2d6178496eb416",
+            "sha256": "sha256-hc4fh5kAxIZS0/luvvtUscxoY68IgrTaw6v5FJ+dpN0=",
             "type": "github"
         },
-        "version": "54f143147f9ae8173193fe0f4c8a17976474239e"
+        "version": "2de98712fd22b309e532c090cf2d6178496eb416"
     },
     "emacs-pcre": {
         "cargoLocks": null,
@@ -39,11 +39,11 @@
         },
         "version": "bc63431cff76dae6ccbff6470173c96ff037fae7"
     },
-    "nix-env-fish": {
+    "nix-fish": {
         "cargoLocks": null,
-        "date": "2021-11-29",
+        "date": "2023-07-04",
         "extract": null,
-        "name": "nix-env-fish",
+        "name": "nix-fish",
         "passthru": null,
         "pinned": false,
         "src": {
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "owner": "lilyball",
-            "repo": "nix-env.fish",
-            "rev": "7b65bd228429e852c8fdfa07601159130a818cfa",
-            "sha256": "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=",
+            "owner": "kidonng",
+            "repo": "nix.fish",
+            "rev": "ad57d970841ae4a24521b5b1a68121cf385ba71e",
+            "sha256": "sha256-GMV0GyORJ8Tt2S9wTCo2lkkLtetYv0rc19aA5KJbo48=",
             "type": "github"
         },
-        "version": "7b65bd228429e852c8fdfa07601159130a818cfa"
+        "version": "ad57d970841ae4a24521b5b1a68121cf385ba71e"
     },
     "nvm-fish": {
         "cargoLocks": null,

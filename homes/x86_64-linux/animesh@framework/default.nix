@@ -81,7 +81,7 @@ with lib.internal;
     enable = true;
 
     plugins = [
-      (with pkgs.nvfetcher-sources.nix-env-fish; { name = pname; inherit src; })
+      (with pkgs.nvfetcher-sources.nix-fish; { name = pname; inherit src; })
       (with pkgs.nvfetcher-sources.nvm-fish; { name = pname; inherit src; })
     ];
   };

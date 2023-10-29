@@ -8,10 +8,10 @@ src.git = "https://github.com/Animeshz/emacs-chdir"
 src.branch = "main"
 fetch.github = "Animeshz/emacs-chdir"
 
-[nix-env-fish]
-src.git = "https://github.com/lilyball/nix-env.fish"
+[nix-fish]
+src.git = "https://github.com/kidonng/nix.fish"
 src.branch = "master"
-fetch.github = "lilyball/nix-env.fish"
+fetch.github = "kidonng/nix.fish"
 
 [nvm-fish]
 src.git = "https://github.com/jorgebucaran/nvm.fish"

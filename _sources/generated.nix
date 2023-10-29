@@ -3,13 +3,13 @@
 {
   emacs-chdir = {
     pname = "emacs-chdir";
-    version = "54f143147f9ae8173193fe0f4c8a17976474239e";
+    version = "2de98712fd22b309e532c090cf2d6178496eb416";
     src = fetchFromGitHub {
       owner = "Animeshz";
       repo = "emacs-chdir";
-      rev = "54f143147f9ae8173193fe0f4c8a17976474239e";
+      rev = "2de98712fd22b309e532c090cf2d6178496eb416";
       fetchSubmodules = false;
-      sha256 = "sha256-R/wOZ4Chu1E+sU0lEI0vn08denxeZCbkE6PcKFag5/A=";
+      sha256 = "sha256-hc4fh5kAxIZS0/luvvtUscxoY68IgrTaw6v5FJ+dpN0=";
     };
     date = "2023-06-15";
   };
@@ -25,17 +25,17 @@
     };
     date = "2016-09-04";
   };
-  nix-env-fish = {
-    pname = "nix-env-fish";
-    version = "7b65bd228429e852c8fdfa07601159130a818cfa";
+  nix-fish = {
+    pname = "nix-fish";
+    version = "ad57d970841ae4a24521b5b1a68121cf385ba71e";
     src = fetchFromGitHub {
-      owner = "lilyball";
-      repo = "nix-env.fish";
-      rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
+      owner = "kidonng";
+      repo = "nix.fish";
+      rev = "ad57d970841ae4a24521b5b1a68121cf385ba71e";
       fetchSubmodules = false;
-      sha256 = "sha256-RG/0rfhgq6aEKNZ0XwIqOaZ6K5S4+/Y5EEMnIdtfPhk=";
+      sha256 = "sha256-GMV0GyORJ8Tt2S9wTCo2lkkLtetYv0rc19aA5KJbo48=";
     };
-    date = "2021-11-29";
+    date = "2023-07-04";
   };
   nvm-fish = {
     pname = "nvm-fish";
