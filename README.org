@@ -59,6 +59,8 @@ modules
     │   ├── cli
     │   │   ├── kitty
     │   │   │   └── default.nix
+    │   │   ├── ranger
+    │   │   │   └── default.nix
     │   │   ├── shells
     │   │   │   └── default.nix
     │   │   └── starship
@@ -117,7 +119,7 @@ just treeview overlays
 
 To cleanup older generations:
 
-#+begin_src sh :results output :exports code
+#+begin_src sh :noeval
 pushd ~/.local/state/nix/profiles && ls | awk "!/$(readlink home-manager)/ && /home-manager-/" | xargs rm && popd
 nix-collect-garbage --delete-old
 nix store gc --debug
