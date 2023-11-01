@@ -38,7 +38,7 @@ with lib;
         exec = "!exec ";  # run command from root of git repository
       };
 
-      signing = {
+      signing = mkIf (cfg.signingkey != null) {
         key = cfg.signingkey;
         signByDefault = true;
       };

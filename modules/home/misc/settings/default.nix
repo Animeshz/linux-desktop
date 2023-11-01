@@ -64,7 +64,7 @@ in
       macros = "cpp -dM /dev/null";
 
       audio = "inxi -A";
-      battery = "inxi -B";
+      battery = "inxi -B -xxx";
       bluetooth = "inxi -E";
       fonts = "kitty +list-fonts";
       graphics = "inxi -G";

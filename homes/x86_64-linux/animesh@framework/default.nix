@@ -1,26 +1,56 @@
-{ inputs, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 with lib;
 with lib.internal;
 {
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
-
   snowfallorg.user.enable = true;
   home.stateVersion = "23.05";
   nix.extraOptions = "max-jobs = auto";
 
-  # https://ayats.org/blog/channels-to-flakes
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  home.sessionVariables.NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
+  preferences = {
+    nix.setupComma = true;
+    nix.pinInputs = true;
+  };
 
-  apps.emacs = enabled;
   apps.cli.kitty = enabled;
   apps.cli.starship = enabled;
+
+  programs.emacs = {
+    enable = true;
+    config = "https://github.com/Animeshz/.emacs.d";
+
+    extraPackages = epkgs: with epkgs; with pkgs; [
+      custom.emacs-pcre
+      custom.emacs-chdir
+    ];
+  };
 
   apps.cli.ranger = {
     enable = true;
     previewImages = true;
     previewPdfs = true;
+  };
+
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+  };
+
+  programs.fish = {
+    enable = true;
+
+    plugins = [
+      (with pkgs.nvfetcher-sources.nix-fish; { name = pname; inherit src; })
+      (with pkgs.nvfetcher-sources.nvm-fish; { name = pname; inherit src; })
+    ];
+  };
+
+  programs.bat = enabled;
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableFishIntegration = true;
   };
 
   apps.git = {
@@ -31,8 +61,6 @@ with lib.internal;
   };
 
   puppet = enabled;
-  programs.nix-index-database.comma.enable = true;
-  programs.nix-index.enable = false;
 
   display = {
     enable = true;
@@ -72,20 +100,6 @@ with lib.internal;
   #   virtualboxHost = enabled;
   # };
 
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-  };
-
-  programs.fish = {
-    enable = true;
-
-    plugins = [
-      (with pkgs.nvfetcher-sources.nix-fish; { name = pname; inherit src; })
-      (with pkgs.nvfetcher-sources.nvm-fish; { name = pname; inherit src; })
-    ];
-  };
-
   programs.brave = {
     enable = true;
     extensions = [
@@ -103,25 +117,29 @@ with lib.internal;
   # General packages which require zero-to-no configurations
   # They _are_ general and not project-specific
   home.packages = with pkgs; [
-    bat
+    # archives
+    p7zip
+
+    # monitoring
     btop
     du-dust
+    inxi
+    tree
+
+    # utils
     fd
     ffmpeg
-    logseq
-    inxi
     maim
     moreutils
-    nushell
-    p7zip
-    pandoc
     ripgrep
-    tree
     wget
     xclip
+
+    # extras
+    logseq
+    nushell
+    pandoc
     xdg-utils
-    xterm
-    zoxide
   ];
 
   xdg.mimeApps = {
@@ -144,7 +162,4 @@ with lib.internal;
   # TODO: Move most of hardcoded personal better defaults (preferences) at misc.settings
   # to their individual modules its currently too unmanaged...
   misc.settings.apply = true;
-
-  # Realise this so flake inputs are not garbage-collected until this profile is activated
-  xdg.configFile."nix-flake-inputs".text = lib.concatStringsSep "\n" (map (ip: ip.outPath) (lib.attrValues inputs));
 }

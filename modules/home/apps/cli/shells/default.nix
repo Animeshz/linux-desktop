@@ -3,7 +3,6 @@
 {
   programs.fish.shellInit = ''
     set fish_greeting
-    ${pkgs.zoxide}/bin/zoxide init fish | source
 
     # TODO: make launch generic + multi-shell
     if [ -z $DISPLAY ] && [ $(tty) = "/dev/tty1" ];
