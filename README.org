@@ -66,24 +66,27 @@ modules
     │   │   └── starship
     │   │       └── default.nix
     │   ├── dev
+    │   │   ├── git
+    │   │   │   └── default.nix
     │   │   └── ruby
     │   │       └── default.nix
-    │   ├── emacs
+    │   ├── editors
+    │   │   └── emacs
+    │   │       └── default.nix
+    │   └── virt
+    │       └── vagrant
+    │           └── default.nix
+    ├── preferences
+    │   ├── display
+    │   │   ├── default.nix
+    │   │   └── xorg.nix
+    │   ├── nix
     │   │   └── default.nix
-    │   └── git
-    │       └── default.nix
-    ├── display
-    │   ├── default.nix
-    │   └── xorg.nix
-    ├── misc
     │   └── settings
     │       └── default.nix
-    ├── puppet
-    │   ├── default.nix
-    │   └── etc.nix
-    └── virtualization
-        └── vagrant
-            └── default.nix
+    └── puppet
+        ├── default.nix
+        └── etc.nix
 #+end_example
 
 *** Bundled packages

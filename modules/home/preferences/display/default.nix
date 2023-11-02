@@ -2,7 +2,7 @@
 
 with lib;
 let
-  cfg = config.display;
+  cfg = config.preferences.display;
 
   enabledWMs = count id (with cfg.windowManagers;
     [ awesome.enable herbstluftwm.enable hyprland.enable ]);
@@ -16,29 +16,29 @@ in
   ];
 
   options = {
-    display.enable = mkEnableOption "Enable display management or not";
+    preferences.display.enable = mkEnableOption "Enable display management or not";
 
-    display.hidpi.enable = mkEnableOption "Enable HiDPI settings or not";
-    display.scale = mkOption { type = types.nullOr types.float; };
-    display.cursorSize = mkOption { type = types.nullOr types.int; };
-    display.autoRepeat = {
+    preferences.display.hidpi.enable = mkEnableOption "Enable HiDPI settings or not";
+    preferences.display.scale = mkOption { type = types.nullOr types.float; };
+    preferences.display.cursorSize = mkOption { type = types.nullOr types.int; };
+    preferences.display.autoRepeat = {
       delay = mkOption { type = types.int; default = 660; };
       rate = mkOption { type = types.int; default = 25; };
     };
 
-    display.windowManagers = {
+    preferences.display.windowManagers = {
       awesome.enable = mkEnableOption "Setup awesome";
       herbstluftwm.enable = mkEnableOption "Setup hlwm";
       hyprland.enable = mkEnableOption "Setup hyprland";
     };
 
-    display.bars = {
+    preferences.display.bars = {
       eww.enable = mkEnableOption "Setup eww";
     };
 
-    display.wallpaper = mkOption { type = types.nullOr types.path; };
+    preferences.display.wallpaper = mkOption { type = types.nullOr types.path; };
 
-    display.fonts = mkOption { type = types.listOf types.package; default = []; };
+    preferences.display.fonts = mkOption { type = types.listOf types.package; default = []; };
   };
 
   config = mkIf cfg.enable {

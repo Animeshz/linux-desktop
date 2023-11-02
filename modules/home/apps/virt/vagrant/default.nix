@@ -1,17 +1,17 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.virtualization.vagrant;
+  cfg = config.apps.virt.vagrant;
 in
 with lib;
 with lib.home-manager;
 {
   options = {
-    virtualization.vagrant.enable = mkEnableOption "Install and configure vagrant";
+    apps.virt.vagrant.enable = mkEnableOption "Install and configure vagrant";
 
     # host because: dkms integration works better on host
-    virtualization.vagrant.libvirtHost.enable = mkEnableOption "vagrant libvirt support";
-    virtualization.vagrant.virtualboxHost.enable = mkEnableOption "vagrant virtualbox support";
+    apps.virt.vagrant.libvirtHost.enable = mkEnableOption "vagrant libvirt support";
+    apps.virt.vagrant.virtualboxHost.enable = mkEnableOption "vagrant virtualbox support";
   };
 
   config = mkIf cfg.enable {

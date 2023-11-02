@@ -2,11 +2,11 @@
 
 with lib;
 let
-  cfg = config.display;
+  cfg = config.preferences.display;
 in
 {
   options = {
-    display.xorg.enableHost = mkEnableOption "Manage Xorg and display drivers on host or not";
+    preferences.display.xorg.enableHost = mkEnableOption "Manage Xorg and display drivers on host or not";
   };
 
   config = mkIf cfg.enable {

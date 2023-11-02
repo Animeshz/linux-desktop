@@ -9,7 +9,7 @@ with lib.home-manager;
   imports = [ ./etc.nix ];
 
   options = {
-    puppet.enable = mkEnableOption "Install and configure kitty";
+    puppet.enable = mkEnableOption "Install and configure puppet";
 
     puppet.extraModulePaths = mkOption {
       type = types.listOf types.path;

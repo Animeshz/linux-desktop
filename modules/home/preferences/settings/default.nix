@@ -253,12 +253,5 @@ in
       governor = powersave
       turbo = never
     '';
-
-    environment.etc."sysctl.conf".text = ''
-      # See sysctl.conf(5)
-
-      vm.swappiness=10
-      dev.i915.perf_stream_paranoid=0
-    '';
   };
 }

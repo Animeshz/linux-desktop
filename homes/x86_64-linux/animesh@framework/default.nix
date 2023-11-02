@@ -8,9 +8,32 @@ with lib.internal;
   nix.extraOptions = "max-jobs = auto";
 
   preferences = {
-    nix.setupComma = true;
     nix.pinInputs = true;
+    nix.setupComma = true;
+
+    display = {
+      enable = true;
+      hidpi = enabled;
+      scale = 1.5;
+      cursorSize = 50;
+      autoRepeat.delay = 300;
+      autoRepeat.rate = 50;
+
+      xorg.enableHost = true;
+      windowManagers.herbstluftwm = enabled;
+      bars.eww = enabled;
+      wallpaper = ./wallpaper.jpg;
+
+      fonts = with pkgs; [
+        (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+        noto-fonts
+        noto-fonts-emoji
+        unifont
+      ];
+    };
   };
+
+  puppet = enabled;
 
   apps.cli.kitty = enabled;
   apps.cli.starship = enabled;
@@ -53,34 +76,11 @@ with lib.internal;
     enableFishIntegration = true;
   };
 
-  apps.git = {
+  apps.dev.git = {
     enable = true;
     user = "Animesh Sahu";
     email = "animeshsahu19@yahoo.com";
     signingkey = "541C03D55917185E";
-  };
-
-  puppet = enabled;
-
-  display = {
-    enable = true;
-    hidpi = enabled;
-    scale = 1.5;
-    cursorSize = 50;
-    autoRepeat.delay = 300;
-    autoRepeat.rate = 50;
-
-    xorg.enableHost = true;
-    windowManagers.herbstluftwm = enabled;
-    bars.eww = enabled;
-    wallpaper = ./wallpaper.jpg;
-
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-      noto-fonts
-      noto-fonts-emoji
-      unifont
-    ];
   };
 
   # Non-Systemd not working...
@@ -94,7 +94,7 @@ with lib.internal;
   #   };
   # };
 
-  # virtualization.vagrant = {
+  # apps.virt.vagrant = {
   #   enable = true;
   #   libvirtHost = enabled;
   #   virtualboxHost = enabled;
@@ -162,4 +162,9 @@ with lib.internal;
   # TODO: Move most of hardcoded personal better defaults (preferences) at misc.settings
   # to their individual modules its currently too unmanaged...
   misc.settings.apply = true;
+
+  environment.etc."sysctl.conf".text = ''
+    vm.swappiness=10
+    dev.i915.perf_stream_paranoid=0
+  '';
 }
