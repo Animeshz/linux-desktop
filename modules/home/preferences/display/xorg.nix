@@ -44,7 +44,7 @@ in
         ${if cfg.hidpi.enable then "export QT_ENABLE_HIDPI_SCALING=1" else ""}
 
         # Wallpaper
-        ${if cfg.wallpaper != null then "feh --bg-fill ${cfg.wallpaper}" else "xsetroot -solid '#5A8E3A'"} &
+        ${if cfg.wallpaper != null then "${pkgs.feh}/bin/feh --bg-fill ${cfg.wallpaper}" else "xsetroot -solid '#5A8E3A'"} &
 
         # Topbar
         ${barCommand}

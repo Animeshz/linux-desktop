@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 with lib;
 with lib.internal;
@@ -10,27 +10,6 @@ with lib.internal;
   preferences = {
     nix.pinInputs = true;
     nix.setupComma = true;
-
-    display = {
-      enable = true;
-      hidpi = enabled;
-      scale = 1.5;
-      cursorSize = 50;
-      autoRepeat.delay = 300;
-      autoRepeat.rate = 50;
-
-      xorg.enableHost = true;
-      windowManagers.herbstluftwm = enabled;
-      bars.eww = enabled;
-      wallpaper = ./wallpaper.jpg;
-
-      fonts = with pkgs; [
-        (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-        noto-fonts
-        noto-fonts-emoji
-        unifont
-      ];
-    };
   };
 
   puppet = enabled;
@@ -167,4 +146,53 @@ with lib.internal;
     vm.swappiness=10
     dev.i915.perf_stream_paranoid=0
   '';
+
+
+  preferences.display = {
+    enable = true;
+    hidpi = enabled;
+    scale = 1.5;
+    cursorSize = 50;
+    autoRepeat.delay = 300;
+    autoRepeat.rate = 50;
+
+    xorg.enableHost = true;
+    wallpaper = ./wallpaper.jpg;
+
+    fonts = with pkgs; [
+      (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+      noto-fonts
+      noto-fonts-emoji
+      unifont
+    ];
+
+    bars.eww = enabled;
+    windowManagers = {
+      herbstluftwm = enabled;
+
+      extraKeybinds = klib: klib.withModKey {
+        m =       klib.launch "${config.programs.emacs.finalPackage}/bin/emacs";
+        b =       klib.launch "${config.programs.brave.package}/bin/brave";
+        slash =   klib.launch "${pkgs.logseq}/bin/logseq";
+        t =       klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" ${config.programs.kitty.package}/bin/kitty'";
+        Return =  klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" ${config.programs.kitty.package}/bin/kitty'";
+
+        Shift-p = klib.launch "sh -c 'active-window-pid | xclip -sel clip'";
+        Shift-c = klib.launch "sh -c 'printf \"document.querySelector(\"video\").playbackRate = 3\" | xclip -sel clip'";
+
+        # Backups
+        Shift-t = klib.launch "xterm";
+        Shift-b = klib.launch "brave || brave-browser-stable";
+      } // {
+        Ctrl-Alt-t = klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" ${config.programs.kitty.package}/bin/kitty'";
+        # Alt-space = klib.launch "rofi";
+
+        # These depends on dbus-session at local user, rest of them defined in /etc/acpi/handler.sh
+        XF86AudioPlay = klib.launch "mutoggle";
+        XF86AudioStop = klib.launch "mutoggle";
+        XF86AudioPrev = klib.launch "muprv";
+        XF86AudioNext = klib.launch "munxt";
+      };
+    };
+  };
 }

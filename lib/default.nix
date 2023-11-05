@@ -11,6 +11,13 @@
         (lib.attrNames set)))
       input;
 
+  selectorFunctionOf = type: lib.mkOptionType {
+    name = "selectorFunctionOf";
+    description = "Function that takes an attribute set and returns a mergable type";
+    check = lib.isFunction;
+    merge = _loc: defs: as: lib.mkMerge (map (select: select as) (lib.getValues defs));
+  };
+
   nixGLWrapIntel = pkgs: pkg:
     let
       bins = "${pkg}/bin";
