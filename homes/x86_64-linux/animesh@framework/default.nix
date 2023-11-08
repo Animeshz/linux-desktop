@@ -119,6 +119,8 @@ with lib.internal;
     nushell
     pandoc
     xdg-utils
+    ulauncher
+    rofi
   ];
 
   xdg.mimeApps = {
@@ -147,7 +149,6 @@ with lib.internal;
     dev.i915.perf_stream_paranoid=0
   '';
 
-
   preferences.display = {
     enable = true;
     hidpi = enabled;
@@ -166,7 +167,10 @@ with lib.internal;
       unifont
     ];
 
-    bars.eww = enabled;
+    bars = {
+      eww = enabled;
+    };
+
     windowManagers = {
       herbstluftwm = enabled;
 
@@ -185,7 +189,9 @@ with lib.internal;
         Shift-b = klib.launch "brave || brave-browser-stable";
       } // {
         Ctrl-Alt-t = klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" ${config.programs.kitty.package}/bin/kitty'";
-        # Alt-space = klib.launch "rofi";
+        Ctrl-space = klib.launch "sh -c '${pkgs.ulauncher}/bin/ulauncher-toggle || ${pkgs.ulauncher}/bin/ulauncher'";
+        Alt-space = klib.launch "${pkgs.rofi}/bin/rofi -show run -kb-cancel Super-space,Alt-space,Escape -matching fuzzy -sorting-method fzf -sort";
+	# TODO: customize rofi and remove ulauncher
 
         # These depends on dbus-session at local user, rest of them defined in /etc/acpi/handler.sh
         XF86AudioPlay = klib.launch "mutoggle";

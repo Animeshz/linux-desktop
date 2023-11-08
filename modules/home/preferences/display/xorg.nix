@@ -38,6 +38,8 @@ in
 
         # Syncs Xresources
         xrdb -merge ~/.Xresources &
+        ${pkgs.picom}/bin/picom &
+        ${pkgs.ulauncher}/bin/ulauncher --hide-window &
         export GDK_DPI_SCALE=${toString cfg.scale}
         export QT_SCALE_FACTOR=${toString cfg.scale}
         export QT_AUTO_SCREEN_SCALE_FACTOR=0
