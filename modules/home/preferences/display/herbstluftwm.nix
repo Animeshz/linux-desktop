@@ -93,6 +93,7 @@ in
           Button1 = "move";
           Button2 = "zoom";
           Button3 = "resize";
+	  Ctrl-Button1 = "resize";
         })
         (cfg.extraMousebinds klib)
       ];
