@@ -1,8 +1,7 @@
 { pkgs, lib, emacsPackages, ...}:
 
 emacsPackages.trivialBuild {
-  pname = "emacs-pcre";
-  src = pkgs.nvfetcher-sources.emacs-pcre.src;
+  inherit (pkgs.nvfetcher-sources.emacs-pcre) pname version src;
 
   nativeBuildInputs = with pkgs; [ pcre ];
 

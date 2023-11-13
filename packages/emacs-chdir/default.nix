@@ -1,8 +1,7 @@
 { pkgs, lib, emacsPackages, ...}:
 
 emacsPackages.trivialBuild {
-  pname = "emacs-chdir";
-  src = pkgs.nvfetcher-sources.emacs-chdir.src;
+  inherit (pkgs.nvfetcher-sources.emacs-chdir) pname version src;
 
   preBuild = "make all";
   postInstall = ''

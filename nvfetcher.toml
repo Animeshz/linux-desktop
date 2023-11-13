@@ -18,3 +18,7 @@ src.git = "https://github.com/jorgebucaran/nvm.fish"
 src.branch = "main"
 fetch.github = "jorgebucaran/nvm.fish"
 
+[phosphor-icons]
+src.git = "https://github.com/phosphor-icons/web"
+src.branch = "master"
+fetch.github = "phosphor-icons/web"

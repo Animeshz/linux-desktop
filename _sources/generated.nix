@@ -49,4 +49,16 @@
     };
     date = "2023-04-30";
   };
+  phosphor-icons = {
+    pname = "phosphor-icons";
+    version = "07e44e0b2a1fad173d97e365c2ced5cb47698d36";
+    src = fetchFromGitHub {
+      owner = "phosphor-icons";
+      repo = "web";
+      rev = "07e44e0b2a1fad173d97e365c2ced5cb47698d36";
+      fetchSubmodules = false;
+      sha256 = "sha256-Gipz471rHIXr0XAk9o46FDli2rrvrM1G7HV3CCwp86o=";
+    };
+    date = "2023-09-27";
+  };
 }

@@ -165,6 +165,7 @@ with lib.internal;
       noto-fonts
       noto-fonts-emoji
       unifont
+      custom.phosphor-icons
     ];
 
     bars = {
