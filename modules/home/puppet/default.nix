@@ -36,6 +36,11 @@ with lib.home-manager;
         group are not affected and hence returned what they were.
       '';
     };
+
+    puppet.facts = mkOption {
+      type = with types; attrsOf str;
+      default = {};
+    };
   };
 
   config = mkIf cfg.enable {
@@ -46,24 +51,44 @@ with lib.home-manager;
 
     home.activation.puppetRAL =
       let
+        stringEscape = lib.strings.escape ["\"" "'"];
+
         modulePaths = concatStringsSep ":" (["/etc/puppet/modules"] ++ cfg.extraModulePaths);
         sortedRal = hm.dag.topoSort (lib.internal.reduceLevel cfg.ral);
 
-        mkCmd = res:
+        factsDir = pkgs.runCommand "puppet-facts" {} ''
+          mkdir -p $out
+
+          ${concatStringsSep "\n"
+            (map
+              (fact: ''echo 'Facter.add("${fact}") do setcode "${stringEscape cfg.facts."${fact}"}" end' > $out/${fact}.rb'')
+              (builtins.attrNames cfg.facts))}
+        '';
+
+        mkResource = res:
           let
             resourceName = builtins.elemAt (builtins.split "\\." res.name) 0;
             nameLen = builtins.stringLength resourceName;
             resourceTitle = builtins.substring (nameLen + 1) ((builtins.stringLength res.name) - nameLen - 1) res.name;
-            resourceAttributes = concatStringsSep " " (map (attr: "${attr}=${toString res.data."${attr}"}") (builtins.attrNames res.data));
-          in "${pkgs.custom.puppet}/bin/puppet resource ${resourceName} ${resourceTitle} ${resourceAttributes} --modulepath ${modulePaths}";
+            resourceAttributes = concatStringsSep ","
+              (map
+                (attr: "${attr} => \"${toString res.data."${attr}"}\"")
+                (builtins.attrNames res.data));
+          in "${resourceName} { '${resourceTitle}': ${resourceAttributes} }";
 
-        bootstrappingCmds =
-          if sortedRal ? result then concatStringsSep "; " (map mkCmd sortedRal.result)
-          else abort ("Dependency cycle in activation script: " + builtins.toJSON sortedCommands);
-      in
-      hm.dag.entryAfter [ "installPackages" ] ''
+        resourceFile = pkgs.writeText "manifest.puppet"
+          (if sortedRal ? result then concatStringsSep "\n" (map mkResource sortedRal.result)
+           else abort ("Dependency cycle in activation script: " + builtins.toJSON sortedCommands));
+
+      in hm.dag.entryAfter [ "installPackages" ] ''
         export PATH="/run/current-system/sw/bin:/usr/bin:$PATH"
-        $DRY_RUN_CMD sudo sh -c -- "${bootstrappingCmds}"
+        export FACTERLIB="${factsDir}"
+
+        if [[ -v DRY_RUN ]]; then
+          ${pkgs.custom.puppet}/bin/puppet apply ${resourceFile} --modulepath ${modulePaths} --noop
+        else
+          sudo -E ${pkgs.custom.puppet}/bin/puppet apply ${resourceFile} --modulepath ${modulePaths}
+        fi
       '';
   };
 }

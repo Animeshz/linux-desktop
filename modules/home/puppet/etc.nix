@@ -189,6 +189,8 @@ with lib;
   };
 
   config = {
+    puppet.facts.home_manager_backup_ext = ''[ -n "$HOME_MANAGER_BACKUP_EXT" ] && echo ".$HOME_MANAGER_BACKUP_EXT" || echo "false"'';
+
     puppet.ral = {
       file = lib.concatMapAttrs
         (_: cfg: {
@@ -198,7 +200,7 @@ with lib;
             target = mkIf (cfg.mode == "symlink") cfg.source;
             recurse = if cfg.recursive then "true" else "false";
             ensure = if (!cfg.enable) then "absent" else if (cfg.mode == "symlink") then "link" else "present";
-            backup = "$([ -n \"$HOME_MANAGER_BACKUP_EXT\" ] && echo \".$HOME_MANAGER_BACKUP_EXT\" || echo '')";
+            backup = "\${facts['home_manager_backup_ext']}";
             mode = mkIf (cfg.mode != "symlink" || cfg.executable == true) (if (cfg.mode != "symlink") then cfg.mode else "a+x");
             owner = cfg.user;
             group = cfg.group;
