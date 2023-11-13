@@ -14,6 +14,7 @@ with lib.internal;
 
   puppet = enabled;
 
+  apps.cli.just = enabled;
   apps.cli.kitty = enabled;
   apps.cli.starship = enabled;
 
