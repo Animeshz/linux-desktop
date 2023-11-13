@@ -212,5 +212,16 @@ with lib;
         })
         cfgs;
     };
+
+    home.activation.prePuppetEtc = hm.dag.entryBefore [ "puppetRAL" ] ''
+      export PATH="/run/current-system/sw/bin:/usr/bin:$PATH"
+
+      sudo mkdir -p ${concatStringsSep " "
+        (lib.unique
+          (builtins.sort builtins.lessThan
+            (map
+              (cfg: builtins.dirOf cfg.targetEtc)
+              (builtins.attrValues cfgs))))}
+    '';
   };
 }
