@@ -27,5 +27,10 @@ in {
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
     home.packages = cfg.fonts;
+
+    # Required to use gtk/dconf options from home-manager
+    puppet.ral = {
+      package.dconf = { ensure = "installed"; };
+    };
   };
 }

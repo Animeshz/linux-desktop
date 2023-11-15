@@ -63,16 +63,23 @@ with lib.internal;
     signingkey = "541C03D55917185E";
   };
 
-  # Non-Systemd not working...
-  # dconf = {
-  #   enable = true;
-  #   settings = with lib.home-manager.hm.gvariant; {
-  #     "org/gtk/settings/file-chooser" = {
-  #       window-position = mkTuple [ 100 100 ];
-  #       window-size = mkTuple [ 500 500 ];
-  #     };
-  #   };
-  # };
+  gtk = {
+    enable = true;
+    iconTheme = {
+      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+  };
+
+  dconf = {
+    enable = true;
+    settings = with lib.home-manager.hm.gvariant; {
+      "org/gtk/settings/file-chooser" = {
+        window-position = mkTuple [ 100 100 ];
+        window-size = mkTuple [ 500 500 ];
+      };
+    };
+  };
 
   # apps.virt.vagrant = {
   #   enable = true;

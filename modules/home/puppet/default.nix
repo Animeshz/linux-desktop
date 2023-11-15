@@ -80,7 +80,7 @@ with lib.home-manager;
           (if sortedRal ? result then concatStringsSep "\n" (map mkResource sortedRal.result)
            else abort ("Dependency cycle in activation script: " + builtins.toJSON sortedCommands));
 
-      in hm.dag.entryAfter [ "installPackages" ] ''
+      in hm.dag.entryBetween [ "dconfSettings" ] [ "installPackages" ] ''
         export PATH="/run/current-system/sw/bin:/usr/bin:$PATH"
         export FACTERLIB="${factsDir}"
 
