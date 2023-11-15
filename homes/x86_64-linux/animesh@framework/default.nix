@@ -178,6 +178,8 @@ with lib.internal;
 
     bars = {
       eww = enabled;
+
+      height = 38;
     };
 
     windowManagers = {

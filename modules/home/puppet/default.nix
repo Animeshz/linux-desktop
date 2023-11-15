@@ -76,8 +76,8 @@ with lib.home-manager;
                 (builtins.attrNames res.data));
           in "${resourceName} { '${resourceTitle}': ${resourceAttributes} }";
 
-        resourceFile = pkgs.writeText "manifest.puppet"
-          (if sortedRal ? result then concatStringsSep "\n" (map mkResource sortedRal.result)
+        resourceFile = pkgs.writeText "manifest.pp"
+          (if sortedRal ? result then concatStringsSep "\n -> " (map mkResource sortedRal.result)
            else abort ("Dependency cycle in activation script: " + builtins.toJSON sortedCommands));
 
       in hm.dag.entryBetween [ "dconfSettings" ] [ "installPackages" ] ''
