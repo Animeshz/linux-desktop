@@ -1,14 +1,14 @@
 // =============== Colors ===============
 
-$color0:               #181B22;
-$color1:               #d25252;
+$color0:               #1E1E2E;
+$color1:               #f38ba8;
 $color2:               #7fe173;
-$color3:               #ffc66d;
-$color4:               #4098ff;
-$color5:               #f57fff;
+$color3:               #f9e2af;
+$color4:               #89b4fa;
+$color5:               #cba6f7;
 $color6:               #bed6ff;
-$color7:               #eeeeec;
-$widget_bg:            #2b2f37;
+$color7:               #cdd6f4;
+$widget_bg:            transparent;
 
 .black {
   color: $color0;
@@ -43,13 +43,14 @@ $widget_bg:            #2b2f37;
 
 * {
   all: unset;
-  font-family: "Material Design Icons", "CaskaydiaCove Nerd Font";
+  min-height: 44px;
+  font-family: "CaskaydiaCove Nerd Font", "Phosphor";
 }
 
-.topbar {
+.topbar > * {   // https://github.com/elkowar/eww/issues/497#issuecomment-1197040374
   background-color: $color0;
-  font-size: 16px;
-  // padding: 5px 0 5px 0;
+  font-size: 18px;
+  padding: 0 15px;
 }
 
 
@@ -59,7 +60,7 @@ $widget_bg:            #2b2f37;
   background-color: $widget_bg;
 
   & > .app {
-    padding: 0 5px 0 2px;
+    // padding: 0 5px 0 2px;
 
     &:nth-child(3n+1) {
       color: #f9de8f;
@@ -78,12 +79,12 @@ $widget_bg:            #2b2f37;
 
 .workspaces {
   background-color: $widget_bg;
-  margin: 5px 0 5px 0;
+  // margin: 10px 0 10px 0;
+
   border-radius: 5px;
 
   & > .workspace {
     padding: 0 7px 0 7px;
-
     &.active {
       border-bottom: 1px solid;
       // box-shadow: inset 0px 0px 0px 1px;
@@ -108,13 +109,9 @@ $widget_bg:            #2b2f37;
 }
 
 .widget-group {
-  margin: 5px 0 5px 0;
-  padding: 0 10px 0 10px;
+  // margin: 5px 0 5px 0;
+  // padding: 0 10px 0 10px;
   border-radius: 5px;
   background-color: $widget_bg;
-}
-
-.separator-padding {
-  padding: 0 4px 0 4px;
 }
 

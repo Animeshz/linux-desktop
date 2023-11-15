@@ -8,10 +8,6 @@
 (deflisten vol_value
   `scripts/volume vol_icon`)
 
-; TODO: Get some async-updating based solution
-(defpoll bright_value :interval "5s"
-  `brillo -G | awk '{print int($1+0.5) "%"}'`)
-
 (defpoll updates_count :interval "1h"
   `xbps-install -Sun | wc -l`)
 
@@ -41,7 +37,7 @@
 ; =============== Widget Structure ===============
 
 (defwidget app [icon launch]
-  (button :class "app" :onclick "jumpapp ${launch}" :onrightclick launch
+  (button :class "app" :onclick "$(command -v jumpapp || echo eval) ${launch}" :onrightclick launch
     icon))
 
 (defwidget workspace [index name]
@@ -56,20 +52,15 @@
 
 (defwidget apps []
   (box :class "apps"
-    (app :icon "" :launch "rofi -show run -kb-cancel Alt-space,Escape")
-    (separator)
-    (app :icon "" :launch "firefox")
-    (app :icon "" :launch "nautilus")
-    (app :icon "" :launch "code-oss")))
+    ; TODO: Show context menu on home btn instead
+    (app :icon "󱓞" :launch "rofi -show run -kb-cancel Alt-space,Escape")))
+    ; (separator)
+    ; (app :icon "" :launch "firefox")
+    ; (app :icon "" :launch "nautilus")
+    ; (app :icon "" :launch "code-oss")))
 
 (defwidget workspaces []
   (literal :content xworkspaces))
-
-(defwidget brightness_sound []
-  (box :class "widget-group white" :space-evenly false
-    (box :class "red" "󰄨") "${bright_value}"
-    (separator)
-    (box :class "yellow" vol_icon) "${vol_value}"))
 
 (defwidget date_time []
   (box :class "cyan" dtime_info))
@@ -99,18 +90,16 @@
       "󰋊${round(EWW_DISK["/"]["free"]/1024/1024/1024, 1)}G" (revealer :transition "slideright" :reveal ram_disk_toggle "(${100-round(EWW_DISK["/"]["used_perc"],0)}%) Free"))))
 
 (defwidget battery []
-  (box :class "widget-group yellow" :visible {battery_value != ''} " ${battery_value}"))
+  (box :class "widget-group blue" :visible {battery_value != ''} " ${battery_value}"))
 
 (defwidget wifi_speed []
   (eventbox :onhover "eww update wireless_toggle=true" :onhoverlost "eww update wireless_toggle=false"
     (box :class "widget-group green" :space-evenly false
       ""
-      (revealer :transition "slideright" :reveal wireless_toggle :class "green" "${wifi_ssid}")
-      (separator)
-      "${round(EWW_NET['wlan0']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['wlan0']['NET_DOWN'] / 1024, 0)}K")))
+      (revealer :transition "slideright" :reveal wireless_toggle :class "green" "${wifi_ssid}"))))
 
 (defwidget power []
-  (button :class "red" :onclick "" "⏻"))
+  (button :class "red widget-group" :onclick "" "⏻"))
 
 
 ; =============== Bar Group ===============
@@ -118,8 +107,8 @@
 (defwidget barleft []
   (box :orientation "h" :space-evenly false :halign "start" :spacing 12
     (apps)
+    (separator)
     (workspaces)
-    (brightness_sound)
     (updates)))
 
 (defwidget barmiddle []
@@ -130,8 +119,14 @@
 ;    (weather)
     (cpu)
     (ram_disk)
-    (battery)
     (wifi_speed)
+      (box :class "yellow" vol_icon)
+      "${vol_value}"
+    (battery)
+    ; Bluetooth
+    (separator)
+    (box :class "green widget-group"
+      "${round(EWW_NET['wlan0']['NET_UP'] / 1024, 0)}K ⇅ ${round(EWW_NET['wlan0']['NET_DOWN'] / 1024, 0)}K")
     (power)))
 
 
@@ -139,9 +134,7 @@
 
 (defwindow topbar
   :monitor 0 :stacking "fg" :wm-ignore false :windowtype "dock"
-  :reserve (struts :side "top" :distance "32px")
-  :geometry (geometry :x "0" :y "0" :width "100%" :height "30px" :anchor "top center")
+  :reserve (struts :side "top" :distance "46px")
+  :geometry (geometry :x "0" :y "0" :width "100%" :height "44px" :anchor "top center")
   (centerbox :orientation "h"
     (barleft) (barmiddle) (barright)))
-
-
