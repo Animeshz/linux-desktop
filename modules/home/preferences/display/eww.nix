@@ -34,9 +34,9 @@ in {
           (launcher)
           (separator)))
 
-        (defwidget barright []
-          (box :orientation "h" :space-evenly false :halign "end" :spacing 9
-            "End of the bar"))
+      (defwidget barright []
+        (box :orientation "h" :space-evenly false :halign "end" :spacing 9
+          (systray :pack-direction "right")))
 
       ; =============== Top-Level Window Definitions ===============
 

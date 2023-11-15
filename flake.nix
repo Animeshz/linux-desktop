@@ -17,6 +17,8 @@
 
     nixgl.url = "github:guibou/nixGL";
     nixgl.inputs.nixpkgs.follows = "nixpkgs";
+
+    eww.url = "github:ralismark/eww/tray-3";
   };
 
   outputs = inputs:

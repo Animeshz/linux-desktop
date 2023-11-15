@@ -1,0 +1,70 @@
+From 2bfd3af0c0672448856d4bd778042a2ec28a7ca7 Mon Sep 17 00:00:00 2001
+From: hylo <hylo@posteo.de>
+Date: Tue, 5 Sep 2023 17:39:31 +0200
+Subject: [PATCH 1/2] feat: dynamic icons
+
+---
+ crates/eww/src/widgets/systray.rs                          | 5 +++++
+ crates/notifier_host/src/dbus/dbus_status_notifier_item.rs | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/crates/eww/src/widgets/systray.rs b/crates/eww/src/widgets/systray.rs
+index c6da58a8..ee331fc8 100644
+--- a/crates/eww/src/widgets/systray.rs
++++ b/crates/eww/src/widgets/systray.rs
+@@ -166,6 +166,7 @@ impl Item {
+         // updates
+         let mut status_updates = item.sni.receive_new_status().await?;
+         let mut title_updates = item.sni.receive_new_status().await?;
++        let mut icon_updates = item.sni.receive_new_icon().await?;
+ 
+         loop {
+             tokio::select! {
+@@ -184,6 +185,10 @@ impl Item {
+                     // set title
+                     widget.set_tooltip_text(Some(&item.sni.title().await?));
+                 }
++                Some(_) = icon_updates.next() => {
++                    // set icon
++                    icon.set_from_pixbuf(item.icon(*icon_size.borrow_and_update()).await.as_ref());
++                }
+             }
+         }
+     }
+diff --git a/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs b/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs
+index 0f472e35..7d5b0382 100644
+--- a/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs
++++ b/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs
+@@ -69,7 +69,7 @@ trait StatusNotifierItem {
+     fn category(&self) -> zbus::Result<String>;
+ 
+     /// IconName property
+-    #[dbus_proxy(property)]
++    #[dbus_proxy(property(emits_changed_signal = "false"))]
+     fn icon_name(&self) -> zbus::Result<String>;
+ 
+     /// IconPixmap property
+
+From 485dd6263df6123d41d04886a53715b037cf7aaf Mon Sep 17 00:00:00 2001
+From: hylo <hylo@posteo.de>
+Date: Fri, 29 Sep 2023 17:01:20 +0200
+Subject: [PATCH 2/2] fix: don't cache IconPixmap property
+
+this fixes dynamic icons for some icons, e.g. syncthingtray
+---
+ crates/notifier_host/src/dbus/dbus_status_notifier_item.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs b/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs
+index 7d5b0382..5c57b2a1 100644
+--- a/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs
++++ b/crates/notifier_host/src/dbus/dbus_status_notifier_item.rs
+@@ -73,7 +73,7 @@ trait StatusNotifierItem {
+     fn icon_name(&self) -> zbus::Result<String>;
+ 
+     /// IconPixmap property
+-    #[dbus_proxy(property)]
++    #[dbus_proxy(property(emits_changed_signal = "false"))]
+     fn icon_pixmap(&self) -> zbus::Result<Vec<(i32, i32, Vec<u8>)>>;
+ 
+     /// IconThemePath property
