@@ -50,11 +50,14 @@ in {
 
   config = mkIf cfg.enable {
     fonts.fontconfig.enable = true;
-    home.packages = cfg.fonts;
+    home.packages = with pkgs; [ jgmenu ] ++
+                               cfg.fonts;
 
     # Required to use gtk/dconf options from home-manager
     puppet.ral = {
       package.dconf = { ensure = "installed"; };
     };
+
+    xdg.configFile."jgmenu".source = ./jgmenu;
   };
 }

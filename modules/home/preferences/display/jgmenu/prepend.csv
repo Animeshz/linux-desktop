@@ -1,0 +1,21 @@
+@icon,,28,17,16,16,0,left,top,#cdd6f4,#cdd6f4,/home/animesh/.config/jgmenu/MenuIcons/search.png
+@search,,50,16,150,20,2,left,top,#cdd6f4,#1e1e2e,Search
+Web Browser,brave,/home/animesh/.config/jgmenu/MenuIcons/web-browser.png
+Terminal,kitty,/home/animesh/.config/jgmenu/MenuIcons/terminal.png
+File manager,kitty ranger,/home/animesh/.config/jgmenu/MenuIcons/file-manager.png
+Text Editor,kitty nvim,/home/animesh/.config/jgmenu/MenuIcons/edit-note.png
+
+^sep()
+Applications,^checkout(lx-apps),/home/animesh/.config/jgmenu/MenuIcons/applications.png
+^sep()
+Herbstluftwm,^checkout(hlwm),/home/animesh/.config/jgmenu/MenuIcons/hlwm.png
+^sep()
+Exit,,/home/animesh/.config/jgmenu/MenuIcons/exit.png
+
+^tag(hlwm)
+Website,xdg-open https://herbstluftwm.org/,/home/animesh/.config/jgmenu/MenuIcons/hlwm.png
+System Settings,kitty nvim ~/.config/herbstluftwm/autostart,/home/animesh/.config/jgmenu/MenuIcons/edit-note.png
+Reload,herbstclient reload,/home/animesh/.config/jgmenu/MenuIcons/restart.png
+Exit,herbstclient quit,/home/animesh/.config/jgmenu/MenuIcons/exit.png
+
+^tag(lx-apps)

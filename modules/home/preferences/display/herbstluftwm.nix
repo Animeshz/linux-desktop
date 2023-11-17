@@ -90,10 +90,10 @@ in
       # applied using "hc mousebind <key> <command>"
       mousebinds = lib.mkMerge [
         (withModKey {
-          Button1 = "move";
-          Button2 = "zoom";
-          Button3 = "resize";
-	  Ctrl-Button1 = "resize";
+          B1 = "move";
+          B2 = "zoom";
+          B3 = "resize";
+          Ctrl-B1 = "resize";
         })
         (cfg.extraMousebinds klib)
       ];
