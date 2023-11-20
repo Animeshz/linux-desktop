@@ -210,4 +210,10 @@ with lib.internal;
       };
     };
   };
+
+  apps.network.network-manager = {
+    enable = true;
+    iwd = enabled;
+    applet = enabled;
+  };
 }
