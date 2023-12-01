@@ -46,7 +46,8 @@ $widget_bg:            #2b2f37;
   font-family: "Material Design Icons", "CaskaydiaCove Nerd Font";
 }
 
-.topbar {
+// .topbar {    // https://github.com/elkowar/eww/issues/512#issuecomment-1517170635
+.background {
   background-color: $color0;
   font-size: 16px;
   // padding: 5px 0 5px 0;

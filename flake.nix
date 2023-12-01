@@ -2,11 +2,9 @@
   description = "My system configuration";
 
   inputs = {
-    # Until Ongoing PR merges on a stable branch: https://github.com/NixOS/nixpkgs/pull/237917
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:Animeshz/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
-    home-manager.url = "github:nix-community/home-manager/release-23.05";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     snowfall-lib.url = "github:snowfallorg/lib";
