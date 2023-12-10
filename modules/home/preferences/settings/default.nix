@@ -23,7 +23,7 @@ in
       NDK_HOME = "$HOME/.android-data/Ndk";
       PNPM_HOME = "/home/animesh/.local/share/pnpm";
       RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
-      PATH = "$PATH:$(${pkgs.ruby}/bin/gem env 2>/dev/null | ${pkgs.coreutils}/bin/grep 'EXECUTABLE DIRECTORY' | ${pkgs.gnused}/bin/sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\"):$(${pkgs.fd}/bin/fd -td -d1 . ~/.scripts 2>/dev/null | tr '\\n' ':')";
+      PATH = "$PATH:$(${pkgs.ruby}/bin/gem env 2>/dev/null | ${pkgs.gnugrep}/bin/grep 'EXECUTABLE DIRECTORY' | ${pkgs.gnused}/bin/sed --quiet \"s/.*EXECUTABLE DIRECTORY: \(.*\)/\1/p\"):$(${pkgs.fd}/bin/fd -td -d1 . ~/.scripts 2>/dev/null | tr '\\n' ':')";
     };
 
     home.sessionPath = [

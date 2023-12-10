@@ -21,6 +21,7 @@ with lib.internal;
   programs.emacs = {
     enable = true;
     config = "https://github.com/Animeshz/.emacs.d";
+    package = pkgs.emacs29;
 
     extraPackages = epkgs: with epkgs; with pkgs; [
       custom.emacs-pcre
@@ -188,8 +189,8 @@ with lib.internal;
         # b =       klib.launch "${config.programs.brave.package}/bin/brave";  # TODO: https://github.com/nix-community/home-manager/issues/4723
         b = klib.launch "brave || brave-browser-stable";
         slash =   klib.launch "${pkgs.logseq}/bin/logseq";
-        t =       klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" ${config.programs.kitty.package}/bin/kitty'";
-        Return =  klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" ${config.programs.kitty.package}/bin/kitty'";
+        t =       klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" kitty'";
+        Return =  klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" kitty'";
 
         Shift-p = klib.launch "sh -c 'active-window-pid | xclip -sel clip'";
         Shift-c = klib.launch "sh -c 'printf \"document.querySelector(\"video\").playbackRate = 3\" | xclip -sel clip'";

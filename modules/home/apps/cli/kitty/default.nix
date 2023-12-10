@@ -10,10 +10,10 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    programs.kitty = {
-      enable = true;
-      package = lib.internal.nixGLWrapIntel pkgs pkgs.kitty;
-    };
+    # programs.kitty = {
+    #   enable = true;
+    #   package = lib.internal.nixGLWrapIntel pkgs pkgs.kitty;
+    # };
 
     xdg.configFile."kitty/kitty.conf".source = ./kitty.conf;
     xdg.configFile."kitty/themes" = {
