@@ -9,9 +9,10 @@ src.branch = "main"
 fetch.github = "Animeshz/emacs-chdir"
 
 [nix-fish]
-src.git = "https://github.com/kidonng/nix.fish"
+# TODO: replace back to https://github.com/kidonng/nix.fish after PR #2 merged
+src.git = "https://github.com/Animeshz/nix.fish"
 src.branch = "master"
-fetch.github = "kidonng/nix.fish"
+fetch.github = "Animeshz/nix.fish"
 
 [nvm-fish]
 src.git = "https://github.com/jorgebucaran/nvm.fish"

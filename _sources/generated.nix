@@ -27,15 +27,15 @@
   };
   nix-fish = {
     pname = "nix-fish";
-    version = "ad57d970841ae4a24521b5b1a68121cf385ba71e";
+    version = "a3256cf49846ee4de072c3a9af7a58aad4021693";
     src = fetchFromGitHub {
-      owner = "kidonng";
+      owner = "Animeshz";
       repo = "nix.fish";
-      rev = "ad57d970841ae4a24521b5b1a68121cf385ba71e";
+      rev = "a3256cf49846ee4de072c3a9af7a58aad4021693";
       fetchSubmodules = false;
-      sha256 = "sha256-GMV0GyORJ8Tt2S9wTCo2lkkLtetYv0rc19aA5KJbo48=";
+      sha256 = "sha256-3M0dU30SrdjInp6MWEC0q7MTInrZNtY6Z9mhBw43PKs=";
     };
-    date = "2023-07-04";
+    date = "2024-01-03";
   };
   nvm-fish = {
     pname = "nvm-fish";
@@ -51,14 +51,14 @@
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "07e44e0b2a1fad173d97e365c2ced5cb47698d36";
+    version = "bd7eb6f78e4646a926a34deb7d437c0c8d468958";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "07e44e0b2a1fad173d97e365c2ced5cb47698d36";
+      rev = "bd7eb6f78e4646a926a34deb7d437c0c8d468958";
       fetchSubmodules = false;
-      sha256 = "sha256-Gipz471rHIXr0XAk9o46FDli2rrvrM1G7HV3CCwp86o=";
+      sha256 = "sha256-Wipruf3/CtYv7mjSiT3e2wrTWkna6yshO87SY8q1LbQ=";
     };
-    date = "2023-09-27";
+    date = "2023-12-23";
   };
 }

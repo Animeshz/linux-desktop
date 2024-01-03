@@ -41,7 +41,7 @@
     },
     "nix-fish": {
         "cargoLocks": null,
-        "date": "2023-07-04",
+        "date": "2024-01-03",
         "extract": null,
         "name": "nix-fish",
         "passthru": null,
@@ -51,13 +51,13 @@
             "fetchSubmodules": false,
             "leaveDotGit": false,
             "name": null,
-            "owner": "kidonng",
+            "owner": "Animeshz",
             "repo": "nix.fish",
-            "rev": "ad57d970841ae4a24521b5b1a68121cf385ba71e",
-            "sha256": "sha256-GMV0GyORJ8Tt2S9wTCo2lkkLtetYv0rc19aA5KJbo48=",
+            "rev": "a3256cf49846ee4de072c3a9af7a58aad4021693",
+            "sha256": "sha256-3M0dU30SrdjInp6MWEC0q7MTInrZNtY6Z9mhBw43PKs=",
             "type": "github"
         },
-        "version": "ad57d970841ae4a24521b5b1a68121cf385ba71e"
+        "version": "a3256cf49846ee4de072c3a9af7a58aad4021693"
     },
     "nvm-fish": {
         "cargoLocks": null,
@@ -81,7 +81,7 @@
     },
     "phosphor-icons": {
         "cargoLocks": null,
-        "date": "2023-09-27",
+        "date": "2023-12-23",
         "extract": null,
         "name": "phosphor-icons",
         "passthru": null,
@@ -93,10 +93,10 @@
             "name": null,
             "owner": "phosphor-icons",
             "repo": "web",
-            "rev": "07e44e0b2a1fad173d97e365c2ced5cb47698d36",
-            "sha256": "sha256-Gipz471rHIXr0XAk9o46FDli2rrvrM1G7HV3CCwp86o=",
+            "rev": "bd7eb6f78e4646a926a34deb7d437c0c8d468958",
+            "sha256": "sha256-Wipruf3/CtYv7mjSiT3e2wrTWkna6yshO87SY8q1LbQ=",
             "type": "github"
         },
-        "version": "07e44e0b2a1fad173d97e365c2ced5cb47698d36"
+        "version": "bd7eb6f78e4646a926a34deb7d437c0c8d468958"
     }
 }
