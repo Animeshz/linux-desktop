@@ -113,7 +113,7 @@ in
       "--use-vulkan"
       "--disable-features=UseChromeOSDirectVideoDecoder"
       "--disable-sync-preferences"
-      "--force-device-scale-factor=1.5"
+      "--force-device-scale-factor=${toString config.preferences.display.scale}"
       "--password-store=basic"
     ];
 

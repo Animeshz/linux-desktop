@@ -188,7 +188,7 @@ with lib.internal;
         m =       klib.launch "${config.programs.emacs.finalPackage}/bin/emacs";
         # b =       klib.launch "${config.programs.brave.package}/bin/brave";  # TODO: https://github.com/nix-community/home-manager/issues/4723
         b = klib.launch "brave || brave-browser-stable";
-        slash =   klib.launch "${pkgs.logseq}/bin/logseq";
+        # slash =   klib.launch "${pkgs.logseq}/bin/logseq";
         t =       klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" kitty'";
         Return =  klib.launch "sh -c '\"$(command -v pwd-launch || printf eval)\" kitty'";
 
