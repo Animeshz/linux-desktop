@@ -57,6 +57,8 @@ modules
 └── home
     ├── apps
     │   ├── cli
+    │   │   ├── just
+    │   │   │   └── default.nix
     │   │   ├── kitty
     │   │   │   └── default.nix
     │   │   ├── ranger
@@ -79,6 +81,8 @@ modules
     ├── preferences
     │   ├── display
     │   │   ├── default.nix
+    │   │   ├── herbstluftwm.nix
+    │   │   ├── windowManagers.nix
     │   │   └── xorg.nix
     │   ├── nix
     │   │   └── default.nix
@@ -96,14 +100,18 @@ just treeview packages
 #+end_src
 
 #+RESULTS:
-: packages
-: ├── emacs-chdir
-: │   └── default.nix
-: ├── emacs-pcre
-: │   └── default.nix
-: └── puppet
-:     ├── default.nix
-:     └── gemset.nix
+#+begin_example
+packages
+├── emacs-chdir
+│   └── default.nix
+├── emacs-pcre
+│   └── default.nix
+├── phosphor-icons
+│   └── default.nix
+└── puppet
+    ├── default.nix
+    └── gemset.nix
+#+end_example
 
 *** Overlays
 
@@ -113,8 +121,6 @@ just treeview overlays
 
 #+RESULTS:
 : overlays
-: ├── eww
-: │   └── default.nix
 : └── nvfetcher
 :     └── default.nix
 

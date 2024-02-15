@@ -59,7 +59,7 @@ in
       # applied using "hc keybind <key> <command>"
       keybinds = lib.mkMerge [
         (withModKey ({
-          Shift-q = "quit";
+          q = "quit";
           Shift-r = "reload";
           Shift-w = "close";
 
