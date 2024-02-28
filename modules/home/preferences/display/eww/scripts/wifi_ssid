@@ -1,3 +1,0 @@
-#!/bin/sh
-
-iw dev wlan0 link | grep 'SSID:' | cut -d: -f2 | xargs

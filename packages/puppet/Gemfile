@@ -1,3 +1,0 @@
-source 'https://rubygems.org'
-
-gem 'puppet', git: 'https://github.com/Animeshz/puppet', ref: 'xbps'
