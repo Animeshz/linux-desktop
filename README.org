@@ -37,7 +37,7 @@ Additionally, I've described nix extensively in [[https://animeshz.github.io/sit
 
 This is prepended to every file tangled from this file,
 
-#+BEGIN_SRC nix :tangle no
+#+BEGIN_SRC nix :noeval :tangle no
 # DON'T EDIT THIS FILE BY HAND!!! This file is controlled by README.org
 #+END_SRC
 
@@ -45,7 +45,7 @@ This is prepended to every file tangled from this file,
 
 This is analogus to =package.json= of some sort for nix, defining the inputs and outputs.
 
-#+BEGIN_SRC nix
+#+BEGIN_SRC nix :noeval :tangle flake.nix
 {
   description = "My system configuration";
 
@@ -62,9 +62,10 @@ This is analogus to =package.json= of some sort for nix, defining the inputs and
 This is then picked by nix comamnd,
 
 #+BEGIN_SRC sh
-nix build
-./result/activate
+nix build && ./result/activate
 #+END_SRC
+
+#+RESULTS:
 
 * Pog
 
