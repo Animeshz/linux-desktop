@@ -55,42 +55,48 @@ just treeview modules
 #+begin_example
 modules
 └── home
-    ├── apps
-    │   ├── cli
-    │   │   ├── just
-    │   │   │   └── default.nix
-    │   │   ├── kitty
-    │   │   │   └── default.nix
-    │   │   ├── ranger
-    │   │   │   └── default.nix
-    │   │   ├── shells
-    │   │   │   └── default.nix
-    │   │   └── starship
-    │   │       └── default.nix
-    │   ├── dev
-    │   │   ├── git
-    │   │   │   └── default.nix
-    │   │   └── ruby
-    │   │       └── default.nix
-    │   ├── editors
-    │   │   └── emacs
-    │   │       └── default.nix
-    │   └── virt
-    │       └── vagrant
-    │           └── default.nix
-    ├── preferences
-    │   ├── display
+    ├── cli
+    │   ├── fish
     │   │   ├── default.nix
-    │   │   ├── herbstluftwm.nix
-    │   │   ├── windowManagers.nix
-    │   │   └── xorg.nix
-    │   ├── nix
+    │   │   └── functions.nix
+    │   ├── git
     │   │   └── default.nix
-    │   └── settings
+    │   ├── just
+    │   │   └── default.nix
+    │   ├── kitty
+    │   │   └── default.nix
+    │   ├── nix
+    │   │   ├── default.nix
+    │   │   ├── pin-inputs.nix
+    │   │   └── setup-comma.nix
+    │   ├── ranger
+    │   │   └── default.nix
+    │   └── starship
     │       └── default.nix
-    └── puppet
-        ├── default.nix
-        └── etc.nix
+    ├── desktop
+    │   ├── eww
+    │   │   └── default.nix
+    │   ├── fonts
+    │   │   └── default.nix
+    │   ├── herbstluftwm
+    │   │   └── default.nix
+    │   └── xorg
+    │       └── default.nix
+    ├── editors
+    │   ├── emacs
+    │   │   └── default.nix
+    │   └── nvim
+    │       └── default.nix
+    ├── languages
+    │   └── ruby
+    │       └── default.nix
+    └── modules
+        ├── preferences
+        │   └── settings
+        │       └── default.nix
+        └── puppet
+            ├── default.nix
+            └── etc.nix
 #+end_example
 
 *** Bundled packages

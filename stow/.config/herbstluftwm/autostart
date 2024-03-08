@@ -1,0 +1,126 @@
+#!/nix/store/087167dfxal194pm54cmcbbxsfy3cjgn-bash-5.2p26/bin/bash
+shopt -s expand_aliases
+
+# shellcheck disable=SC2142
+alias herbstclient='set -- "$@" ";"'
+set --
+
+herbstclient emit_hook reload
+
+# Reset everything.
+herbstclient attr theme.tiling.reset 1
+herbstclient attr theme.floating.reset 1
+herbstclient keyunbind --all
+herbstclient mouseunbind --all
+herbstclient unrule --all
+
+herbstclient set focus_follows_mouse false
+herbstclient set focus_stealing_prevention true
+herbstclient set frame_border_width '0'
+herbstclient set frame_gap '0'
+herbstclient set frame_padding '0'
+herbstclient set show_frame_decorations 'none'
+herbstclient set smart_frame_surroundings false
+herbstclient set smart_window_surroundings true
+herbstclient set snap_gap '5'
+herbstclient set tree_style '╾│ ├└╼─┐'
+herbstclient set update_dragged_clients false
+herbstclient set window_border_active_color '#00b7eb'
+herbstclient set window_border_normal_color '#eeeeee'
+herbstclient set window_border_urgent_color '#7811A1'
+herbstclient set window_border_width '2'
+herbstclient set window_gap '5'
+
+for tag in '1' '2' '3' '4' '5'; do
+  herbstclient add "$tag"
+done
+
+if /nix/store/cwmq2fj6lbhi5myybi8ki2zsgqkzfyk3-herbstluftwm-0.9.5/bin/herbstclient object_tree tags.by-name.default &>/dev/null; then
+  herbstclient use '1'
+  herbstclient merge_tag default '1'
+fi
+
+
+herbstclient keybind Alt-space spawn /nix/store/h7f4qilkpb7z9lhjxc87qvkpfq7xi6ja-rofi-1.7.5/bin/rofi -show run -kb-cancel Super-space,Alt-space,Escape -matching fuzzy -sorting-method fzf -sort
+herbstclient keybind Ctrl-Alt-t spawn sh -c '"$(command -v pwd-launch || printf eval)" /nix/store/srs61svmn9xff5jggqv6a4097a5s5hx8-nixGL-kitty-0.32.2/bin/kitty'
+herbstclient keybind Ctrl-space spawn sh -c '/nix/store/8cw3s6hc3h748k2b11m2z35gdai03983-ulauncher-5.15.6/bin/ulauncher-toggle || /nix/store/8cw3s6hc3h748k2b11m2z35gdai03983-ulauncher-5.15.6/bin/ulauncher'
+herbstclient keybind Mod4-Ctrl-Down resize down
+herbstclient keybind Mod4-Ctrl-Left resize left
+herbstclient keybind Mod4-Ctrl-Right resize right
+herbstclient keybind Mod4-Ctrl-Up resize up
+herbstclient keybind Mod4-Ctrl-h resize left
+herbstclient keybind Mod4-Ctrl-j resize down
+herbstclient keybind Mod4-Ctrl-k resize up
+herbstclient keybind Mod4-Ctrl-l resize right
+herbstclient keybind Mod4-Down focus down
+herbstclient keybind Mod4-Left focus left
+herbstclient keybind Mod4-Return spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty -1'
+herbstclient keybind Mod4-Right focus right
+herbstclient keybind Mod4-Shift-Down shift down
+herbstclient keybind Mod4-Shift-Left shift left
+herbstclient keybind Mod4-Shift-Right shift right
+herbstclient keybind Mod4-Shift-Tab cycle_all -1
+herbstclient keybind Mod4-Shift-Up shift up
+herbstclient keybind Mod4-Shift-b spawn brave || brave-browser-stable
+herbstclient keybind Mod4-Shift-c spawn sh -c 'printf "document.querySelector("video").playbackRate = 3" | xclip -sel clip'
+herbstclient keybind Mod4-Shift-h shift left
+herbstclient keybind Mod4-Shift-j shift down
+herbstclient keybind Mod4-Shift-k shift up
+herbstclient keybind Mod4-Shift-l shift right
+herbstclient keybind Mod4-Shift-p spawn sh -c 'active-window-pid | xclip -sel clip'
+herbstclient keybind Mod4-Shift-r reload
+herbstclient keybind Mod4-Shift-t spawn xterm
+herbstclient keybind Mod4-Shift-w close
+herbstclient keybind Mod4-Tab cycle_all +1
+herbstclient keybind Mod4-Up focus up
+herbstclient keybind Mod4-b spawn brave || brave-browser-stable
+herbstclient keybind Mod4-comma use_index -1 --skip-visible
+herbstclient keybind Mod4-f fullscreen toggle
+herbstclient keybind Mod4-h focus left
+herbstclient keybind Mod4-i jumpto urgent
+herbstclient keybind Mod4-j focus down
+herbstclient keybind Mod4-k focus up
+herbstclient keybind Mod4-l focus right
+herbstclient keybind Mod4-m spawn /nix/store/28nnfirh5z9vccv628bgswpnv7m41xpi-emacs-with-packages-29.2/bin/emacs
+herbstclient keybind Mod4-o split right
+herbstclient keybind Mod4-p spawn /nix/store/kp4s2cjhj21gl4i6gyki0cjh0qprikm4-herbstluftwm-0.9.5-doc/share/doc/herbstluftwm/examples/q3terminal.sh
+herbstclient keybind Mod4-period use_index +1 --skip-visible
+herbstclient keybind Mod4-q quit
+herbstclient keybind Mod4-r remove
+herbstclient keybind Mod4-s floating toggle
+herbstclient keybind Mod4-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
+herbstclient keybind Mod4-t spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty -1'
+herbstclient keybind Mod4-u split bottom
+herbstclient keybind XF86AudioNext spawn munxt
+herbstclient keybind XF86AudioPlay spawn mutoggle
+herbstclient keybind XF86AudioPrev spawn muprv
+herbstclient keybind XF86AudioStop spawn mutoggle
+
+herbstclient mousebind Mod4-Button1 move
+herbstclient mousebind Mod4-Button2 zoom
+herbstclient mousebind Mod4-Button3 resize
+herbstclient mousebind Mod4-Ctrl-Button1 resize
+
+herbstclient rule focus=on floatplacement=smart
+herbstclient rule fixedsize floating=on
+herbstclient rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+herbstclient rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+herbstclient rule class='Brave-browser' tag=2 switchtag=on floatplacement=smart
+
+for i in {0..9}; do
+    key=$(((i+1)%10))
+    herbstclient keybind "Mod4-$key" use_index "$i"
+    herbstclient keybind "Mod4-Shift-$key" move_index "$i"
+done
+
+herbstclient detect_monitors
+
+# if herbstclient silent new_attr bool is_first_run && [[ $(cat /proc/scsi/scsi) =~ VMware ]]; then
+#     { sleep 5 && logger 'Running vmware cmd' && vmware-toolbox-cmd timesync enable && vmware-user &> /dev/null } &
+# fi
+
+
+herbstclient unlock
+
+/nix/store/cwmq2fj6lbhi5myybi8ki2zsgqkzfyk3-herbstluftwm-0.9.5/bin/herbstclient chain ";" "$@"
+
