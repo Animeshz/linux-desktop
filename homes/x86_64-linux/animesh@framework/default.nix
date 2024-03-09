@@ -6,16 +6,31 @@ with lib.internal;
   snowfallorg.user.enable = true;
   home.stateVersion = "23.05";
 
-  united = {
-    cli = {
-      kitty.enable = true;
-      fish.enable = true;
-      starship.enable = true;
-      just.enable = true;
-      ranger.enable = true;
+  # mimics top-level environment.etc
+  puppet.enable = true;
 
-      nix.pinInputs = true;
-      nix.setupComma = true;
+  united = {
+    system = {
+      acpi-handler.enable = true;
+      auto-cpufreq.enable = true;
+      fstrim.enable = true;
+      sysctl.enable = true;
+    };
+
+    cli = {
+      bat.enable = true;
+      fish.enable = true;
+      inxi.enable = true;
+      just.enable = true;
+      kitty.enable = true;
+      ranger.enable = true;
+      starship.enable = true;
+
+      nix = {
+        enable = true;
+        pinInputs = true;
+        setupComma = true;
+      };
 
       git = {
         enable = true;
@@ -25,9 +40,30 @@ with lib.internal;
       };
     };
 
+    editors = {
+      nvim.enable = true;
+
+      emacs = {
+        enable = true;
+        config = "https://github.com/Animeshz/.emacs.d";
+      };
+    };
+
+    apps = {
+      brave.enable = true;
+    };
+
+    languages = {
+      android.enable = true;
+      go.enable = true;
+      ruby.enable = true;
+    };
+
     desktop = {
       herbstluftwm.enable = true;
       eww.enable = true;
+
+      gtk.enable = true;
 
       fonts = with pkgs; [
         (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
@@ -45,28 +81,14 @@ with lib.internal;
         autoRepeat.delay = 300;
         autoRepeat.rate = 50;
 
-        xorg.enableHost = true;
+        installOnHost = true;
         wallpaper = ./wallpaper.jpg;
-      };
-    };
-
-    editors = {
-      nvim.enable = true;
-
-      emacs = {
-        enable = true;
-        config = "https://github.com/Animeshz/.emacs.d";
       };
     };
   };
 
-  puppet.enable = true;
-
   # direct home-manager modules
   programs = {
-    # TODO: make bat pager module
-    bat.enable = true;
-
     bash = {
       enable = true;
       enableCompletion = true;
@@ -79,38 +101,6 @@ with lib.internal;
     };
   };
 
-  gtk = {
-    enable = true;
-    iconTheme = {
-      package = pkgs.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-  };
-
-  dconf = {
-    enable = true;
-    settings = with lib.home-manager.hm.gvariant; {
-      "org/gtk/settings/file-chooser" = {
-        window-position = mkTuple [ 100 100 ];
-        window-size = mkTuple [ 500 500 ];
-      };
-    };
-  };
-
-  programs.brave = {
-    enable = true;
-    extensions = [
-      { id = "nngceckbapebfimnlniiiahkandclblb"; }  # Bitwarden
-      { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; }  # Dark Reader
-      { id = "jiaopdjbehhjgokpphdfgmapkobbnmjp"; }  # Youtube-shorts block
-      { id = "omkfmpieigblcllmkgbflkikinpkodlk"; }  # enhanced-h264ify
-      { id = "jghecgabfgfdldnmbfkhmffcabddioke"; }  # Volume Master
-      { id = "bpelaihoicobbkgmhcbikncnpacdbknn"; }  # Chrome Regex Search
-      { id = "jabopobgcpjmedljpbcaablpmlmfcogm"; }  # WhatFont
-      { id = "ckkdlimhmcjmikdlpkmbgfkaikojcbjk"; }  # Markdown Viewer
-    ];
-  };
-
   # General packages which require zero-to-no configurations
   # They _are_ general and not project-specific
   home.packages = with pkgs; [
@@ -120,7 +110,6 @@ with lib.internal;
     # monitoring
     btop
     du-dust
-    inxi
     tree
 
     # utils
@@ -133,11 +122,9 @@ with lib.internal;
     xclip
 
     # extras
-    logseq
     nushell
     pandoc
     xdg-utils
-    ulauncher
     rofi
   ];
 
@@ -155,15 +142,6 @@ with lib.internal;
       "x-scheme-handler/irc" = "element-desktop.desktop";
       "x-scheme-handler/logseq" = "logseq.desktop";
     };
-    # Default browser is set with $BROWSER in misc.settings for now
+    # TODO: do sth about default browser and xorg, fish module cleanup
   };
-
-  # TODO: Move most of hardcoded personal better defaults (preferences) at misc.settings
-  # to their individual modules its currently too unmanaged...
-  misc.settings.apply = true;
-
-  environment.etc."sysctl.conf".text = ''
-    vm.swappiness=10
-    dev.i915.perf_stream_paranoid=0
-  '';
 }

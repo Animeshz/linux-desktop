@@ -5,9 +5,7 @@ let
 in
 with lib;
 {
-  options.united.cli.ranger = {
-    enable = mkEnableOption "ranger";
-  };
+  options.united.cli.ranger.enable = mkEnableOption "ranger";
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [

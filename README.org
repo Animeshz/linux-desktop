@@ -55,11 +55,18 @@ just treeview modules
 #+begin_example
 modules
 └── home
+    ├── apps
+    │   └── brave
+    │       └── default.nix
     ├── cli
+    │   ├── bat
+    │   │   └── default.nix
     │   ├── fish
     │   │   ├── default.nix
     │   │   └── functions.nix
     │   ├── git
+    │   │   └── default.nix
+    │   ├── inxi
     │   │   └── default.nix
     │   ├── just
     │   │   └── default.nix
@@ -78,6 +85,8 @@ modules
     │   │   └── default.nix
     │   ├── fonts
     │   │   └── default.nix
+    │   ├── gtk
+    │   │   └── default.nix
     │   ├── herbstluftwm
     │   │   └── default.nix
     │   └── xorg
@@ -88,15 +97,25 @@ modules
     │   └── nvim
     │       └── default.nix
     ├── languages
+    │   ├── android
+    │   │   └── default.nix
+    │   ├── go
+    │   │   └── default.nix
     │   └── ruby
     │       └── default.nix
-    └── modules
-        ├── preferences
-        │   └── settings
-        │       └── default.nix
-        └── puppet
-            ├── default.nix
-            └── etc.nix
+    ├── modules
+    │   └── puppet
+    │       ├── default.nix
+    │       └── etc.nix
+    └── system
+        ├── acpi-handler
+        │   └── default.nix
+        ├── auto-cpufreq
+        │   └── default.nix
+        ├── fstrim
+        │   └── default.nix
+        └── sysctl
+            └── default.nix
 #+end_example
 
 *** Bundled packages

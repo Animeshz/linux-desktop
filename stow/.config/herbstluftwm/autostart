@@ -1,9 +1,5 @@
-#!/nix/store/087167dfxal194pm54cmcbbxsfy3cjgn-bash-5.2p26/bin/bash
+#!/bin/bash
 shopt -s expand_aliases
-
-# shellcheck disable=SC2142
-alias herbstclient='set -- "$@" ";"'
-set --
 
 herbstclient emit_hook reload
 
@@ -35,15 +31,14 @@ for tag in '1' '2' '3' '4' '5'; do
   herbstclient add "$tag"
 done
 
-if /nix/store/cwmq2fj6lbhi5myybi8ki2zsgqkzfyk3-herbstluftwm-0.9.5/bin/herbstclient object_tree tags.by-name.default &>/dev/null; then
+if herbstclient object_tree tags.by-name.default &>/dev/null; then
   herbstclient use '1'
   herbstclient merge_tag default '1'
 fi
 
 
-herbstclient keybind Alt-space spawn /nix/store/h7f4qilkpb7z9lhjxc87qvkpfq7xi6ja-rofi-1.7.5/bin/rofi -show run -kb-cancel Super-space,Alt-space,Escape -matching fuzzy -sorting-method fzf -sort
-herbstclient keybind Ctrl-Alt-t spawn sh -c '"$(command -v pwd-launch || printf eval)" /nix/store/srs61svmn9xff5jggqv6a4097a5s5hx8-nixGL-kitty-0.32.2/bin/kitty'
-herbstclient keybind Ctrl-space spawn sh -c '/nix/store/8cw3s6hc3h748k2b11m2z35gdai03983-ulauncher-5.15.6/bin/ulauncher-toggle || /nix/store/8cw3s6hc3h748k2b11m2z35gdai03983-ulauncher-5.15.6/bin/ulauncher'
+herbstclient keybind Alt-space spawn rofi -show run -kb-cancel Super-space,Alt-space,Escape -matching fuzzy -sorting-method fzf -sort
+herbstclient keybind Ctrl-Alt-t spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty'
 herbstclient keybind Mod4-Ctrl-Down resize down
 herbstclient keybind Mod4-Ctrl-Left resize left
 herbstclient keybind Mod4-Ctrl-Right resize right
@@ -81,9 +76,9 @@ herbstclient keybind Mod4-i jumpto urgent
 herbstclient keybind Mod4-j focus down
 herbstclient keybind Mod4-k focus up
 herbstclient keybind Mod4-l focus right
-herbstclient keybind Mod4-m spawn /nix/store/28nnfirh5z9vccv628bgswpnv7m41xpi-emacs-with-packages-29.2/bin/emacs
+herbstclient keybind Mod4-m spawn emacs
 herbstclient keybind Mod4-o split right
-herbstclient keybind Mod4-p spawn /nix/store/kp4s2cjhj21gl4i6gyki0cjh0qprikm4-herbstluftwm-0.9.5-doc/share/doc/herbstluftwm/examples/q3terminal.sh
+herbstclient keybind Mod4-p spawn /usr/share/doc/herbstluftwm/examples/q3terminal.sh
 herbstclient keybind Mod4-period use_index +1 --skip-visible
 herbstclient keybind Mod4-q quit
 herbstclient keybind Mod4-r remove
@@ -121,6 +116,4 @@ herbstclient detect_monitors
 
 
 herbstclient unlock
-
-/nix/store/cwmq2fj6lbhi5myybi8ki2zsgqkzfyk3-herbstluftwm-0.9.5/bin/herbstclient chain ";" "$@"
 

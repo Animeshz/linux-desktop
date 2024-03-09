@@ -17,5 +17,7 @@ with lib;
       source = ./files;
       recursive = true;
     };
+
+    home.shellAliases.fonts = "kitty +list-fonts";
   };
 }
