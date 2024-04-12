@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.united.system.acpi-handler;
 in {
-  options.united.system.acpi-handler.enable = mkEnableOption "sysctl";
+  options.united.system.acpi-handler.enable = mkEnableOption "acpi-handler";
 
   config = mkIf cfg.enable {
     environment.etc."acpi/handler.sh" = {

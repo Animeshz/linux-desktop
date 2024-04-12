@@ -10,13 +10,13 @@ in
 
     hidpi.enable = mkEnableOption "Enable HiDPI settings or not";
     scale = mkOption { type = types.float; default = 1; };
-    cursorSize = mkOption { type = types.nullOr types.int; };
+    cursorSize = mkOption { type = types.nullOr types.int; default = null; };
     autoRepeat = {
       delay = mkOption { type = types.int; default = 660; };
       rate = mkOption { type = types.int; default = 25; };
     };
 
-    wallpaper = mkOption { type = types.nullOr types.path; };
+    wallpaper = mkOption { type = types.nullOr types.path; default = null; };
     installOnHost = mkEnableOption "Manage Xorg and display drivers on host or not";
   };
 

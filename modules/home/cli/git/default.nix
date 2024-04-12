@@ -7,9 +7,9 @@ with lib;
 {
   options.united.cli.git = {
     enable = mkEnableOption "git";
-    user = mkOption { type = types.nullOr types.str; };
-    email = mkOption { type = types.nullOr types.str; };
-    signingkey = mkOption { type = types.nullOr types.str; };
+    user = mkOption { type = types.nullOr types.str; default = null; };
+    email = mkOption { type = types.nullOr types.str; default = null; };
+    signingkey = mkOption { type = types.nullOr types.str; default = null; };
   };
 
   config = mkIf cfg.enable {
@@ -36,6 +36,7 @@ with lib;
         core.editor = "nvim";
         core.symlinks = true;
         rerere.enabled = true;
+	rebase.autoSquash = true;
       };
       ignores = [ "*~" "*.swp" ];
 

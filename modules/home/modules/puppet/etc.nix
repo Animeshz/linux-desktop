@@ -201,6 +201,7 @@ with lib;
             recurse = if cfg.recursive then "true" else "false";
             ensure = if (!cfg.enable) then "absent" else if (cfg.mode == "symlink") then "link" else "present";
             backup = "\${facts['home_manager_backup_ext']}";
+	    # TODO: This might not be working for some reason when original file tracked by git is not executable and executable=true;
             mode = mkIf (cfg.mode != "symlink" || cfg.executable == true) (if (cfg.mode != "symlink") then cfg.mode else "a+x");
             owner = cfg.user;
             group = cfg.group;
