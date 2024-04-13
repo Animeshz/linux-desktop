@@ -3,15 +3,15 @@
 {
   emacs-chdir = {
     pname = "emacs-chdir";
-    version = "2de98712fd22b309e532c090cf2d6178496eb416";
+    version = "f0820e035518559edfdb9b4bc9fe2920bfeb5c07";
     src = fetchFromGitHub {
       owner = "Animeshz";
       repo = "emacs-chdir";
-      rev = "2de98712fd22b309e532c090cf2d6178496eb416";
+      rev = "f0820e035518559edfdb9b4bc9fe2920bfeb5c07";
       fetchSubmodules = false;
-      sha256 = "sha256-hc4fh5kAxIZS0/luvvtUscxoY68IgrTaw6v5FJ+dpN0=";
+      sha256 = "sha256-036sEYM9tZY0y3F2AcnW5DsTVjn797WB7nL2ZjFn2cQ=";
     };
-    date = "2023-06-15";
+    date = "2024-04-13";
   };
   emacs-pcre = {
     pname = "emacs-pcre";
@@ -51,14 +51,14 @@
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "9c7fab62067cde499045d3d4c28dcd564cbe1194";
+    version = "a8bd62efd3aa76c6868ceca97902290eac45a05b";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "9c7fab62067cde499045d3d4c28dcd564cbe1194";
+      rev = "a8bd62efd3aa76c6868ceca97902290eac45a05b";
       fetchSubmodules = false;
-      sha256 = "sha256-KYjRVrdDZlg7ef99k4CGrnGUyvzrbdJeYLFgQPjQEag=";
+      sha256 = "sha256-UV8WBR/6s2AFl6w2KXW1btV+V6L1YRzgWLW3ZxVrEiU=";
     };
-    date = "2024-02-12";
+    date = "2024-03-29";
   };
 }

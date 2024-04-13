@@ -1,7 +1,7 @@
 {
     "emacs-chdir": {
         "cargoLocks": null,
-        "date": "2023-06-15",
+        "date": "2024-04-13",
         "extract": null,
         "name": "emacs-chdir",
         "passthru": null,
@@ -13,11 +13,11 @@
             "name": null,
             "owner": "Animeshz",
             "repo": "emacs-chdir",
-            "rev": "2de98712fd22b309e532c090cf2d6178496eb416",
-            "sha256": "sha256-hc4fh5kAxIZS0/luvvtUscxoY68IgrTaw6v5FJ+dpN0=",
+            "rev": "f0820e035518559edfdb9b4bc9fe2920bfeb5c07",
+            "sha256": "sha256-036sEYM9tZY0y3F2AcnW5DsTVjn797WB7nL2ZjFn2cQ=",
             "type": "github"
         },
-        "version": "2de98712fd22b309e532c090cf2d6178496eb416"
+        "version": "f0820e035518559edfdb9b4bc9fe2920bfeb5c07"
     },
     "emacs-pcre": {
         "cargoLocks": null,
@@ -81,7 +81,7 @@
     },
     "phosphor-icons": {
         "cargoLocks": null,
-        "date": "2024-02-12",
+        "date": "2024-03-29",
         "extract": null,
         "name": "phosphor-icons",
         "passthru": null,
@@ -93,10 +93,10 @@
             "name": null,
             "owner": "phosphor-icons",
             "repo": "web",
-            "rev": "9c7fab62067cde499045d3d4c28dcd564cbe1194",
-            "sha256": "sha256-KYjRVrdDZlg7ef99k4CGrnGUyvzrbdJeYLFgQPjQEag=",
+            "rev": "a8bd62efd3aa76c6868ceca97902290eac45a05b",
+            "sha256": "sha256-UV8WBR/6s2AFl6w2KXW1btV+V6L1YRzgWLW3ZxVrEiU=",
             "type": "github"
         },
-        "version": "9c7fab62067cde499045d3d4c28dcd564cbe1194"
+        "version": "a8bd62efd3aa76c6868ceca97902290eac45a05b"
     }
 }
