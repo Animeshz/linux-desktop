@@ -53,7 +53,8 @@ with lib;
       "$GOPATH/bin"
       "$ANDROID_HOME/emulator"
       "$ANDROID_HOME/tools/bin"
-      "$ANDROID_HOME/cmdline-tools/bin"
+      "$ANDROID_HOME/cmdline-tools/latest/bin"
+      "$ANDROID_HOME/platform-tools"
       "$PNPM_HOME"
     ];
 

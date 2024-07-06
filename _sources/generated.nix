@@ -3,13 +3,13 @@
 {
   emacs-chdir = {
     pname = "emacs-chdir";
-    version = "f0820e035518559edfdb9b4bc9fe2920bfeb5c07";
+    version = "95900e47f45d5870da256cc9de11139d8e40c614";
     src = fetchFromGitHub {
       owner = "Animeshz";
       repo = "emacs-chdir";
-      rev = "f0820e035518559edfdb9b4bc9fe2920bfeb5c07";
+      rev = "95900e47f45d5870da256cc9de11139d8e40c614";
       fetchSubmodules = false;
-      sha256 = "sha256-036sEYM9tZY0y3F2AcnW5DsTVjn797WB7nL2ZjFn2cQ=";
+      sha256 = "sha256-ARMh16Md/B9T6QPrO7PgOcHDGq2iPpmRzCIqkYuLCaQ=";
     };
     date = "2024-04-13";
   };

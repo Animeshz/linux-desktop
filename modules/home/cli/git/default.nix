@@ -37,6 +37,7 @@ with lib;
         core.symlinks = true;
         rerere.enabled = true;
 	rebase.autoSquash = true;
+        credential.helper = "store";
       };
       ignores = [ "*~" "*.swp" ];
 

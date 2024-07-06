@@ -8,6 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     home.sessionVariables = {
+      JAVA_HOME = "/usr/lib/jvm/default-jdk";
       ANDROID_HOME = "$HOME/.android-data/Sdk";
       NDK_HOME = "$HOME/.android-data/Ndk";
     };
