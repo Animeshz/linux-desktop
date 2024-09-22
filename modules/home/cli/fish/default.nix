@@ -71,6 +71,7 @@ with lib;
     home.shellAliases = {
       sudo = "sudo ";  # Hack to run alias w/sudo: https://askubuntu.com/a/22043/669216 (does not work in fish)
       snvim = "sudo -E nvim";
+      ess = "emacsclient -a '' -e '(server-start)'";
       nv = "kitty-nopad nvim";
       snv = "sudo -E kitty-nopad nvim";
       hc = "herbstclient";

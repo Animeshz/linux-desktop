@@ -76,7 +76,7 @@ herbstclient keybind Mod4-i jumpto urgent
 herbstclient keybind Mod4-j focus down
 herbstclient keybind Mod4-k focus up
 herbstclient keybind Mod4-l focus right
-herbstclient keybind Mod4-m spawn emacs
+herbstclient keybind Mod4-m spawn emacsclient -c -a 'emacs' -q
 herbstclient keybind Mod4-o split right
 herbstclient keybind Mod4-p spawn /usr/share/doc/herbstluftwm/examples/q3terminal.sh
 herbstclient keybind Mod4-period use_index +1 --skip-visible
