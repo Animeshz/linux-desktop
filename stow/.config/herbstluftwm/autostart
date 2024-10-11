@@ -49,7 +49,7 @@ herbstclient keybind Mod4-Ctrl-k resize up
 herbstclient keybind Mod4-Ctrl-l resize right
 herbstclient keybind Mod4-Down focus down
 herbstclient keybind Mod4-Left focus left
-herbstclient keybind Mod4-Return spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty -1'
+herbstclient keybind Mod4-Return spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty'
 herbstclient keybind Mod4-Right focus right
 herbstclient keybind Mod4-Shift-Down shift down
 herbstclient keybind Mod4-Shift-Left shift left
@@ -77,6 +77,7 @@ herbstclient keybind Mod4-j focus down
 herbstclient keybind Mod4-k focus up
 herbstclient keybind Mod4-l focus right
 herbstclient keybind Mod4-m spawn emacsclient -c -a 'emacs' -q
+herbstclient keybind Mod4-Shift-m spawn emacs
 herbstclient keybind Mod4-o split right
 herbstclient keybind Mod4-p spawn /usr/share/doc/herbstluftwm/examples/q3terminal.sh
 herbstclient keybind Mod4-period use_index +1 --skip-visible
@@ -84,7 +85,7 @@ herbstclient keybind Mod4-q quit
 herbstclient keybind Mod4-r remove
 herbstclient keybind Mod4-s floating toggle
 herbstclient keybind Mod4-space or , and . compare tags.focus.curframe_wcount = 2 . cycle_layout +1 vertical horizontal max vertical grid , cycle_layout +1
-herbstclient keybind Mod4-t spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty -1'
+herbstclient keybind Mod4-t spawn sh -c '"$(command -v pwd-launch || printf eval)" kitty'
 herbstclient keybind Mod4-u split bottom
 herbstclient keybind XF86AudioNext spawn munxt
 herbstclient keybind XF86AudioPlay spawn mutoggle
